@@ -252,6 +252,88 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
+        /* Intro Accordions */
+        .intro-accordion {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #ffedd5;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .intro-accordion-header {
+            background: #fff7ed;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--accent-color);
+            transition: background 0.3s ease;
+        }
+        
+        .intro-accordion-header:hover {
+            background: #ffedd5;
+        }
+        
+        .intro-accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background: white;
+        }
+        
+        .intro-accordion.open .intro-accordion-body {
+            padding: 15px 20px;
+            max-height: 500px;
+            border-top: 1px solid #ffedd5;
+        }
+        
+        .intro-accordion-icon {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+        
+        .intro-accordion.open .intro-accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .risk-list, .symptom-list {
+            list-style-type: none;
+        }
+        
+        .risk-list li, .symptom-list li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+        
+        .risk-list li::before {
+            content: '\f071';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+        
+        .symptom-list li::before {
+            content: '\f06a';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--danger-color);
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+
         /* Interactive Grid for Types */
         .types-grid {
             display: grid;
@@ -535,88 +617,6 @@
             border-top: 1px solid #ffedd5;
         }
 
-        /* Intro Accordions */
-        .intro-accordion {
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid #ffedd5;
-            margin-bottom: 15px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        
-        .intro-accordion-header {
-            background: #fff7ed;
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 18px;
-            color: var(--accent-color);
-            transition: background 0.3s ease;
-        }
-        
-        .intro-accordion-header:hover {
-            background: #ffedd5;
-        }
-        
-        .intro-accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-            background: white;
-        }
-        
-        .intro-accordion.open .intro-accordion-body {
-            padding: 15px 20px;
-            max-height: 500px;
-            border-top: 1px solid #ffedd5;
-        }
-        
-        .intro-accordion-icon {
-            transition: transform 0.3s ease;
-            color: var(--text-muted);
-        }
-        
-        .intro-accordion.open .intro-accordion-icon {
-            transform: rotate(180deg);
-        }
-        
-        .risk-list, .symptom-list {
-            list-style-type: none;
-        }
-        
-        .risk-list li, .symptom-list li {
-            position: relative;
-            padding-right: 25px;
-            margin-bottom: 10px;
-            font-size: 16px;
-            color: var(--text-main);
-        }
-        
-        .risk-list li::before {
-            content: '\f071';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--secondary-color);
-            position: absolute;
-            right: 0;
-            top: 2px;
-        }
-        
-        .symptom-list li::before {
-            content: '\f06a';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--danger-color);
-            position: absolute;
-            right: 0;
-            top: 2px;
-        }
-
         .scenario-text {
             font-size: 16px;
             margin-bottom: 20px;
@@ -753,7 +753,7 @@
     <header>
         <div class="header-title">
             <h1>היפוגליקמיה בפגים</h1>
-            <p>לומדת צוות סיעודי בטיפול נמרץ פגים (NICU)</p>
+            <p>פגיה הדסה הר הצופים</p>
         </div>
         <div class="author-badge">
             <i class="fa-solid fa-user-nurse"></i>
@@ -780,9 +780,9 @@
         <section id="intro" class="tab-content active">
             <div class="intro-hero">
                 <div class="intro-text">
-                    <h2>היפוגליקמיה בפגיה</h2>
+                    <h2>היפוגליקמיה בפגים</h2>
                     <p>היפוגליקמיה מוגדרת כערך הנמוך מ-40 מ"ג/ד"ל. פגים מהווים אוכלוסייה בסיכון גבוה במיוחד בשל <strong>מאגרים מוגבלים של גליקוגן ושומן</strong>, יחד עם דרישה אנרגטית גבוהה (במצבי עקה כגון RDS, היפותרמיה או ספסיס).</p>
-                    <p>ההיפוגליקמיה מסוכנת ועלולה לגרום לדימום מוחי ולנזק נוירולוגי בלתי הפיך, שכן המוח עובר להשתמש בחלבוני מבנה ופוספוליפידים כמקור אנרגיה.</p>
+                    <p>ההיפוגליקמיה מסוכנת ועלולה לגרום לדימום מוחי ולנזק נוירולוגי בלתי הפיך, שכן המוח עובר להשתמש בחלבוני מבנה ופוספוליפידים כמקור אנרגיה. הטיפול בפגיה נסמך לא רק על המספר, אלא <strong>בעיקר על הקליניקה של הפג.</strong></p>
                 </div>
                 <div class="intro-image">
                     <div class="hero-icon-container">
@@ -853,7 +853,7 @@
             </div>
             
             <div style="display: flex; justify-content: center; margin-top: 20px;">
-                <button style="background: var(--primary-color); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);" onclick="switchTab('types')" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(249, 115, 22, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(249, 115, 22, 0.3)';">
+                <button style="background: var(--primary-color); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);" onclick="document.querySelectorAll('.tab-btn')[1].click()" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(249, 115, 22, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(249, 115, 22, 0.3)';">
                     הבא <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
@@ -904,7 +904,7 @@
                 <div class="type-card" style="border: 2px dashed #8b5cf6;" onclick="showDetail('pharma')">
                     <i class="fa-solid fa-pills type-icon" style="color: #8b5cf6;"></i>
                     <h3 class="type-title">טיפול תרופתי</h3>
-                    <p style="color: var(--text-muted); font-size: 15px;">דיאזוקסיד, גלוקגון והידרוקורטיזון</p>
+                    <p style="color: var(--text-muted); font-size: 15px;">דיאזוקסיד, גלוקגון ועוד</p>
                 </div>
             </div>
 
@@ -924,7 +924,7 @@
             
             <div class="case-studies">
                 
-                <!-- Case 1 (Fixed Asymptomatic logic) -->
+                <!-- Case 1: Asymptomatic -->
                 <div class="case-card" id="case1">
                     <div class="case-header" onclick="toggleCase('case1')">
                         <div class="case-title">
@@ -964,7 +964,7 @@
                     </div>
                     <div class="case-body">
                         <div class="scenario-text">
-                            <strong>תרחיש:</strong> פג במשקל 1,200 גרם סובל מאפניאות מרובות ורעד (Jitters). בבדיקת סוכר התקבל ערך של 22. הרופא מורה על מתן פוש (בולוס) מתמיסת גלוקוז כנדרש.
+                            <strong>תרחיש:</strong> פג במשקל 1,200 גרם סובל מאפניאות מרובות ורעד (Jitters). בבדיקת סוכר התקבל ערך של 22 מ"ג/ד"ל. הרופא מורה על מתן פוש (בולוס) מתמיסת גלוקוז.
                         </div>
                         <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">כמה מ"ל מתוך התמיסה עליך לשאוב למזרק ולהזריק בדחיפה אטית?</h4>
                         <div class="options-grid" id="options-case2">
@@ -1040,7 +1040,7 @@
                     </div>
                 </div>
 
-                <!-- Case 5: Escalation Logic -->
+                <!-- Case 5: Reverse GIR -->
                 <div class="case-card" id="case5">
                     <div class="case-header" onclick="toggleCase('case5')">
                         <div class="case-title">
@@ -1051,25 +1051,25 @@
                     </div>
                     <div class="case-body">
                         <div class="scenario-text">
-                            <strong>תרחיש:</strong> פג מקבל כעת עירוי D10% בקצב של 6 מ"ג גלוקוז לקילו לדקה, ועדיין סובל מסוכר של 32 מ"ג/ד"ל למרות שעברה חצי שעה.
+                            <strong>תרחיש:</strong> פג במשקל 2.0 ק"ג מטופל בעירוי דקסטרוז 10% שרץ כעת בקצב של 12 מ"ל/שעה.
                         </div>
-                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מהו הצעד הבא המועדף בפרוטוקול?</h4>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מהו קצב ה-GIR (מ"ג גלוקוז לקילו לדקה) שהפג מקבל בפועל?</h4>
                         <div class="options-grid" id="options-case5">
                             <button class="option-btn" onclick="checkAnswer('case5', 0, this)">
-                                א. להחליף מיד את השקית מ-D10% לתמיסה מרוכזת יותר (כגון 15%) ולהשאיר את אותו הקצב במשאבה.
+                                א. 8 
                             </button>
                             <button class="option-btn" onclick="checkAnswer('case5', 1, this)">
-                                ב. להעלות את קצב המשאבה (עד ל-12-16 מ"ג/ק"ג/דקה) עם שקית ה-D10% הקיימת, ורק אם אין תגובה לעבור לריכוז גבוה.
+                                ב. 10 
                             </button>
                             <button class="option-btn" onclick="checkAnswer('case5', 2, this)">
-                                ג. להפסיק את העירוי ולתת לפג לאכול ארוחה גדולה.
+                                ג. 12 
                             </button>
                         </div>
                         <div class="feedback-area" id="feedback-case5"></div>
                     </div>
                 </div>
 
-                <!-- Case 6: Pearson Square Mixing -->
+                <!-- Case 6: Escalation Logic -->
                 <div class="case-card" id="case6">
                     <div class="case-header" onclick="toggleCase('case6')">
                         <div class="case-title">
@@ -1080,25 +1080,25 @@
                     </div>
                     <div class="case-body">
                         <div class="scenario-text">
-                            <strong>תרחיש:</strong> הקצב הועלה ל-14, והפג הגיע למגבלת הנפח המותרת היומית ועדיין בהיפוגליקמיה. הרופא מורה על הכנת <strong>תמיסת דקסטרוז 12.5%</strong>. <br><br>את משתמשת בשיטת השמש (Pearson Square) כדי להכין את התמיסה. עומדות לרשותך שתי תמיסות זמינות: D10% ו-D50%. המטרה היא להכין שקית של 100 מ"ל בסך הכל.
+                            <strong>תרחיש:</strong> פג מקבל כעת עירוי D10% בקצב של 6 מ"ג גלוקוז לקילו לדקה, ועדיין סובל מסוכר של 32 מ"ג/ד"ל למרות שעברה חצי שעה.
                         </div>
-                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">על פי שיטת השמש (וחישוב ערך משולש), כמה מ"ל של D50% עליך לשאוב ולהוסיף לתוך שקית ה-100 מ"ל (של D10%)?</h4>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מהו הצעד הבא המועדף בפרוטוקול?</h4>
                         <div class="options-grid" id="options-case6">
                             <button class="option-btn" onclick="checkAnswer('case6', 0, this)">
-                                א. 12.5 מ"ל 
+                                א. להחליף מיד את השקית מ-D10% לתמיסה מרוכזת יותר (כגון 15%) ולהשאיר את אותו הקצב במשאבה.
                             </button>
                             <button class="option-btn" onclick="checkAnswer('case6', 1, this)">
-                                ב. 6.66 מ"ל 
+                                ב. להעלות את קצב המשאבה (עד ל-12-16 מ"ג גלוקוז לקילו לדקה) עם שקית ה-D10% הקיימת, ורק אם אין תגובה לעבור לריכוז גבוה.
                             </button>
                             <button class="option-btn" onclick="checkAnswer('case6', 2, this)">
-                                ג. 2.5 מ"ל 
+                                ג. להפסיק את העירוי ולתת לפג לאכול ארוחה גדולה.
                             </button>
                         </div>
                         <div class="feedback-area" id="feedback-case6"></div>
                     </div>
                 </div>
 
-                <!-- Case 7: Critical Sample -->
+                <!-- Case 7: Pearson Square Mixing -->
                 <div class="case-card" id="case7">
                     <div class="case-header" onclick="toggleCase('case7')">
                         <div class="case-title">
@@ -1109,25 +1109,25 @@
                     </div>
                     <div class="case-body">
                         <div class="scenario-text">
-                            <strong>תרחיש:</strong> הצוות חושד בהיפראינסוליניזם קבוע ומחליט לקחת <strong>Critical Sample</strong>.
+                            <strong>תרחיש:</strong> הקצב הועלה ל-14 מ"ג גלוקוז לקילו לדקה, והפג הגיע למגבלת הנפח המותרת היומית ועדיין בהיפוגליקמיה. הרופא מורה על הכנת <strong>תמיסת דקסטרוז D15%</strong>. <br><br>את משתמשת בשיטת השמש (Pearson Square) כדי להכין את התמיסה. עומדות לרשותך שתי תמיסות זמינות: D50% ו-D10%. המטרה היא להכין שקית של 500 מ"ל בסך הכל.
                         </div>
-                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מתי בדיוק חייבים לשאוב את הדם לבדיקה זו?</h4>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">על פי שיטת השמש (וחישוב ערך משולש), כמה מ"ל של D50% עליך לשאוב ולהוסיף לתוך שקית ה-500 מ"ל (של D10%)?</h4>
                         <div class="options-grid" id="options-case7">
                             <button class="option-btn" onclick="checkAnswer('case7', 0, this)">
-                                א. אך ורק לאחר שהסוכר התייצב מעל 60 מ"ג/ד"ל.
+                                א. 33.33 מ"ל 
                             </button>
                             <button class="option-btn" onclick="checkAnswer('case7', 1, this)">
-                                ב. בזמן שהתינוק נמצא במצב אקטיבי של היפוגליקמיה (מתחת ל-40), לפני שמזליפים שוב בולוס.
+                                ב. 71.43 מ"ל 
                             </button>
                             <button class="option-btn" onclick="checkAnswer('case7', 2, this)">
-                                ג. מיד לאחר ארוחה.
+                                ג. 12.5 מ"ל 
                             </button>
                         </div>
                         <div class="feedback-area" id="feedback-case7"></div>
                     </div>
                 </div>
 
-                <!-- Case 8: Rebound -->
+                <!-- Case 8: Critical Sample -->
                 <div class="case-card" id="case8">
                     <div class="case-header" onclick="toggleCase('case8')">
                         <div class="case-title">
@@ -1138,18 +1138,18 @@
                     </div>
                     <div class="case-body">
                         <div class="scenario-text">
-                            <strong>תרחיש:</strong> פג מקבל עירוי D10% בקצב גבוה מאוד. במהלך המשמרת העירוי נחסם ("סטה" / Infiltration) ונדרשו 20 דקות להכניס עירוי חדש.
+                            <strong>תרחיש:</strong> הצוות חושד בהיפראינסוליניזם קבוע ומחליט לקחת <strong>Critical Sample</strong>.
                         </div>
-                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">למה הפג נמצא בסיכון חמור בזמן ההמתנה לעירוי החדש?</h4>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מתי בדיוק חייבים לשאוב את הדם לבדיקה זו?</h4>
                         <div class="options-grid" id="options-case8">
                             <button class="option-btn" onclick="checkAnswer('case8', 0, this)">
-                                א. היפוגליקמיה תגובתית (Rebound Hypoglycemia) עקב הפסקה פתאומית של העירוי כשהלבלב עדיין מפריש אינסולין ברמה גבוהה.
+                                א. אך ורק לאחר שהסוכר התייצב מעל 60 מ"ג/ד"ל.
                             </button>
                             <button class="option-btn" onclick="checkAnswer('case8', 1, this)">
-                                ב. היפרגליקמיה, מכיוון שהגוף מפצה בפירוק מסיבי של שומנים.
+                                ב. בזמן שהתינוק נמצא במצב אקטיבי של היפוגליקמיה (מתחת ל-40), לפני שמזליפים שוב בולוס.
                             </button>
                             <button class="option-btn" onclick="checkAnswer('case8', 2, this)">
-                                ג. זיהום דם מיידי בגלל סטיית העירוי.
+                                ג. מיד לאחר ארוחה.
                             </button>
                         </div>
                         <div class="feedback-area" id="feedback-case8"></div>
@@ -1169,7 +1169,7 @@
                         <div class="scenario-text">
                             <strong>תרחיש:</strong> פג אובחן עם היפראינסוליניזם קבוע (Persistent Hyperinsulinism) למרות מתן גלוקוז בקצב מרבי. הרופא רושם טיפול תרופתי קבוע ב<strong>דיאזוקסיד (Diazoxide)</strong>.
                         </div>
-                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">לאיזו תופעת לוואי שכיחה ומשמעותית של התרופה עלייך לעקוב מקרוב במשמרת?</h4>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">לאיזו תופעת לוואי שכיחה של התרופה עלייך לעקוב מקרוב במשמרת?</h4>
                         <div class="options-grid" id="options-case9">
                             <button class="option-btn" onclick="checkAnswer('case9', 0, this)">
                                 א. צבירת נוזלים (Fluid retention) ובצקות, שלרוב מצריכה שילוב עם תרופה משתנת.
@@ -1185,6 +1185,35 @@
                     </div>
                 </div>
 
+                <!-- Case 10: Rebound -->
+                <div class="case-card" id="case10">
+                    <div class="case-header" onclick="toggleCase('case10')">
+                        <div class="case-title">
+                            <div class="case-icon">10</div>
+                            תרחיש מס' 10
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> פג מקבל עירוי D10% בקצב גבוה מאוד. במהלך המשמרת העירוי נחסם ("סטה" / Infiltration) ונדרשו 20 דקות להכניס עירוי חדש.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">למה הפג נמצא בסיכון חמור בזמן ההמתנה לעירוי החדש?</h4>
+                        <div class="options-grid" id="options-case10">
+                            <button class="option-btn" onclick="checkAnswer('case10', 0, this)">
+                                א. היפוגליקמיה תגובתית (Rebound Hypoglycemia) עקב הפסקה פתאומית של העירוי כשהלבלב עדיין מפריש אינסולין ברמה גבוהה.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case10', 1, this)">
+                                ב. היפרגליקמיה, מכיוון שהגוף מפצה בפירוק מסיבי של שומנים.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case10', 2, this)">
+                                ג. זיהום דם מיידי בגלל סטיית העירוי.
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case10"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -1195,7 +1224,7 @@
         const treatmentData = {
             bolus: {
                 icon: "fa-syringe",
-                title: "בולוס IV PUSH",
+                title: "בולוס IV PUSH דקסטרוז 10%",
                 subtitle: "מתן מנת העמסה ישירות לווריד",
                 mechanism: [
                     "העלאה דרמטית ומיידית של רמת הגלוקוז בדם להגנה על המוח מפני נזק בלתי הפיך."
@@ -1227,90 +1256,90 @@
                 title: "הכנת תמיסה מרוכזת",
                 subtitle: "הכנת תמיסה מרוכזת בשיטת השמש",
                 mechanism: [
-                    "כאשר רוצים להעלות סוכר אך הפג הגיע למגבלת הנפח, נדרש להעלות את ריכוז התמיסה.",
-                    "השיטה עוזרת לחשב במדויק כמה מ\"ל מכל תמיסה צריך לערבב."
+                    "כאשר רוצים להעלות סוכר אך הפג הגיע למגבלת הנפח, נדרש להעלות את ריכוז התמיסה. נשתמש בתמיסות D10% ו-D50% הקיימות במחלקה כדי לרקוח את הריכוז המדויק.",
+                    "השיטה עוזרת לחשב במדויק כמה מ\"ל מכל תמיסה צריך לערבב כדי להגיע לריכוז היעד."
                 ],
                 customHtml: `
-                    <div style="position: relative; width: 280px; height: 220px; margin: 20px auto; direction: ltr; font-family: Assistant, sans-serif;">
-                        <!-- Diagonal Lines (The X) -->
-                        <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: 1;">
-                            <line x1="45" y1="45" x2="235" y2="175" stroke="#cbd5e1" stroke-width="3" />
-                            <line x1="235" y1="45" x2="45" y2="175" stroke="#cbd5e1" stroke-width="3" />
+                    <div style="position: relative; width: 340px; height: 280px; margin: 20px auto; direction: ltr; font-family: Assistant, sans-serif; background: transparent;">
+                        <!-- Diagonal Lines -->
+                        <svg width="340" height="280" style="position: absolute; top: 0; left: 0; z-index: 1;">
+                            <line x1="60" y1="38" x2="280" y2="235" stroke="#cbd5e1" stroke-width="4" />
+                            <line x1="280" y1="38" x2="60" y2="235" stroke="#cbd5e1" stroke-width="4" />
                         </svg>
 
-                        <!-- Top Left: 50% -->
-                        <div style="position: absolute; top: 0; left: 0; z-index: 2; border: 2px solid #f97316; border-radius: 8px; background: white; padding: 8px; text-align: center; width: 90px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                            <div style="font-size:24px; font-weight:bold; color:#0f172a;">50%</div>
+                        <!-- Top Left: D50% -->
+                        <div style="position: absolute; top: 10px; left: 10px; z-index: 2; border: 3px solid #f97316; border-radius: 8px; background: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                            <div style="font-size:24px; font-weight:bold; color:#0f172a;">D50%</div>
                         </div>
 
-                        <!-- Top Right: 10% -->
-                        <div style="position: absolute; top: 0; right: 0; z-index: 2; border: 2px solid #0284c7; border-radius: 8px; background: white; padding: 8px; text-align: center; width: 90px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                            <div style="font-size:24px; font-weight:bold; color:#0f172a;">10%</div>
+                        <!-- Top Right: D10% -->
+                        <div style="position: absolute; top: 10px; right: 10px; z-index: 2; border: 3px solid #0284c7; border-radius: 8px; background: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                            <div style="font-size:24px; font-weight:bold; color:#0f172a;">D10%</div>
                         </div>
 
-                        <!-- Center: 12.5% -->
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; border: 3px solid #0284c7; border-radius: 50%; background: white; width: 80px; height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-                            <div style="font-size:12px; color:#475569; font-weight:bold; margin-bottom: -4px;">יעד</div>
-                            <div style="font-size:22px; font-weight:bold; color:#0284c7;">12.5%</div>
+                        <!-- Center: Target D12.5% -->
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; border: 4px solid #0284c7; border-radius: 50%; background: white; width: 90px; height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                            <div style="font-size:14px; color:#475569; font-weight:bold; margin-bottom: -2px;">יעד</div>
+                            <div style="font-size:18px; font-weight:bold; color:#0284c7;">D12.5%</div>
                         </div>
 
                         <!-- Bottom Left: 2.5 ml -->
-                        <div style="position: absolute; bottom: 0; left: 0; z-index: 2; background: #f97316; border-radius: 8px; color: white; padding: 8px; text-align: center; width: 90px; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
-                            <div style="font-size:24px; font-weight:bold;">2.5</div>
-                            <div style="font-size:14px;">מ"ל</div>
+                        <div style="position: absolute; bottom: 10px; left: 10px; z-index: 2; background: #f97316; border-radius: 8px; color: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+                            <div style="font-size:26px; font-weight:bold;">2.5</div>
+                            <div style="font-size:16px;">מ"ל</div>
                         </div>
 
                         <!-- Bottom Right: 37.5 ml -->
-                        <div style="position: absolute; bottom: 0; right: 0; z-index: 2; background: #0284c7; border-radius: 8px; color: white; padding: 8px; text-align: center; width: 90px; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
-                            <div style="font-size:24px; font-weight:bold;">37.5</div>
-                            <div style="font-size:14px;">מ"ל</div>
+                        <div style="position: absolute; bottom: 10px; right: 10px; z-index: 2; background: #0284c7; border-radius: 8px; color: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+                            <div style="font-size:26px; font-weight:bold;">37.5</div>
+                            <div style="font-size:16px;">מ"ל</div>
                         </div>
                     </div>
 
                     <!-- Text Explanation -->
                     <div dir="rtl" style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 20px;">
-                        <h4 style="color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; margin-top: 0;">חישוב "שיטת השמש" להכנת גלוקוז 12.5%</h4>
+                        <h4 style="color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; margin-top: 0;">חישוב "שיטת השמש" להכנת גלוקוז D12.5%</h4>
                         
                         <strong style="color: #ea580c;">שלב 1: הצבת הנתונים וחיסור באלכסון</strong><br>
-                        מציבים בשתי הפינות העליונות את הריכוזים הנתונים שלנו: 50% ו-10%.<br>
-                        באמצע רושמים את ריכוז היעד המבוקש: 12.5%.<br>
+                        מציבים בשתי הפינות העליונות את הריכוזים הנתונים שלנו: D50% ו-D10%.<br>
+                        באמצע רושמים את ריכוז היעד המבוקש: D12.5%.<br>
                         כעת, מחסרים באלכסון (תמיד בערך מוחלט, מתעלמים ממספרים שליליים) ורושמים את התוצאות למטה:<br>
                         <div style="margin-right: 15px; margin-bottom: 10px;">
                             • 50 פחות 12.5 = <strong>37.5</strong><br>
-                            • 10 פחות 12.5 = <strong>2.5</strong>
+                            • 10 פחות 12.5 (בערך מוחלט) = <strong>2.5</strong>
                         </div>
 
                         <strong style="color: #ea580c;">שלב 2: קריאת היחס שהתקבל</strong><br>
                         קוראים את התוצאות כלפי מטה, כך שכל עמודה מייצגת את התמיסה שמעליה:<br>
                         <div style="margin-right: 15px; margin-bottom: 10px;">
-                            • תחת ה-50% קיבלנו 2.5.<br>
-                            • תחת ה-10% קיבלנו 37.5.<br>
+                            • תחת ה-D50% קיבלנו 2.5.<br>
+                            • תחת ה-D10% קיבלנו 37.5.<br>
                         </div>
-                        המסקנה ביחס: על כל 2.5 מ"ל של גלוקוז 50%, נצטרך להוסיף 37.5 מ"ל של גלוקוז 10%.<br><br>
+                        המסקנה ביחס: על כל 2.5 מ"ל של גלוקוז D50%, נצטרך להוסיף 37.5 מ"ל של גלוקוז D10%.<br><br>
 
                         <strong style="color: #ea580c;">שלב 3: התאמה לשקית שלנו ("ערך משולש")</strong><br>
-                        מאחר ויש לנו שקית המכילה 100 מ"ל של גלוקוז 10% (ולא 37.5 מ"ל), נשתמש בערך משולש כדי לגלות כמה בדיוק לשאוב מהבקבוקון של ה-50%:<br>
+                        מאחר ויש לנו שקית המכילה 500 מ"ל של גלוקוז D10% (ולא 37.5 מ"ל), נשתמש בערך משולש כדי לגלות כמה בדיוק לשאוב מהבקבוקון של ה-D50%:<br>
                         
                         <div style="background: white; padding: 12px; border-radius: 6px; margin: 10px 0; border: 1px solid #cbd5e1; display: inline-block;">
                             <table style="width: 100%; text-align: right; border-collapse: collapse;">
                                 <tr>
-                                    <td style="padding: 4px 8px; border-bottom: 1px solid #e2e8f0;">37.5 מ"ל <span style="font-size:12px;color:#64748b;">(יחס של 10%)</span></td>
+                                    <td style="padding: 4px 8px; border-bottom: 1px solid #e2e8f0;">37.5 מ"ל <span style="font-size:12px;color:#64748b;">(יחס של D10%)</span></td>
                                     <td style="padding: 4px 8px; border-bottom: 1px solid #e2e8f0;">&rarr;</td>
-                                    <td style="padding: 4px 8px; border-bottom: 1px solid #e2e8f0;"><strong>100 מ"ל</strong> <span style="font-size:12px;color:#64748b;">(במציאות)</span></td>
+                                    <td style="padding: 4px 8px; border-bottom: 1px solid #e2e8f0;"><strong>500 מ"ל</strong> <span style="font-size:12px;color:#64748b;">(במציאות)</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 4px 8px;">2.5 מ"ל <span style="font-size:12px;color:#64748b;">(יחס של 50%)</span></td>
+                                    <td style="padding: 4px 8px;">2.5 מ"ל <span style="font-size:12px;color:#64748b;">(יחס של D50%)</span></td>
                                     <td style="padding: 4px 8px;">&rarr;</td>
                                     <td style="padding: 4px 8px;"><strong>X מ"ל</strong> <span style="font-size:12px;color:#64748b;">(במציאות)</span></td>
                                 </tr>
                             </table>
                         </div><br>
 
-                        <strong>החישוב:</strong> (2.5 כפול 100) לחלק ל-37.5 = <strong>6.66 מ"ל</strong>.<br><br>
+                        <strong>החישוב:</strong> (2.5 כפול 500) לחלק ל-37.5 = <strong>33.33 מ"ל</strong>.<br><br>
 
                         <div style="background: #fff7ed; border-right: 4px solid #f97316; padding: 12px; border-radius: 6px; font-size: 17px;">
                             <strong>השורה התחתונה:</strong><br>
-                            יש לשאוב <strong>6.66 מ"ל</strong> של D50% ולהוסיף אותם לשקית ה-100 מ"ל של ה-D10% כדי לקבל תמיסה בריכוז מדויק של 12.5%.
+                            יש לשאוב <strong>33.33 מ"ל</strong> של D50% ולהוסיף אותם לשקית ה-500 מ"ל של ה-D10% כדי לקבל תמיסה בריכוז מדויק של D12.5%.
                         </div>
                     </div>
                 `,
@@ -1330,21 +1359,6 @@
                     "כאשר ההיפוגליקמיה דורשת ריכוזים של D15% או D20% חובה לעבור לצנתר ורידי מרכזי (UVC / PICC)."
                 ],
                 warning: "מתן עירוי גלוקוז בריכוז גבוה מ-12.5% דרך וריד פריפרי עלול לגרום לנמק (Necrosis) חמור של העור במקרה של דליפה או סטייה של העירוי מהווריד."
-            },
-            pharma: {
-                icon: "fa-pills",
-                title: "טיפול תרופתי",
-                subtitle: "דיאזוקסיד, גלוקגון והידרוקורטיזון",
-                mechanism: [
-                    "כאשר היפוגליקמיה אינה מגיבה לעירוי גלוקוז בקצב גבוה (מעל 12-15 מ\"ג גלוקוז לקילו לדקה), לרוב בשל היפראינסוליניזם או חסר הורמונלי, נשתמש בטיפול תרופתי כדי לדכא הפרשת אינסולין או לעודד שחרור סוכר ממאגרים."
-                ],
-                customHtml: null,
-                indications: [
-                    "<strong>דיאזוקסיד (Diazoxide):</strong> תרופת הבחירה להיפראינסוליניזם. מעכבת הפרשת אינסולין מהלבלב. ניתנת פומית (PO). מחייבת מעקב אחר אגירת נוזלים (לרוב תשולב עם משתן כמו כלורותיאזיד).",
-                    "<strong>גלוקגון (Glucagon):</strong> הורמון המעודד פירוק גליקוגן בכבד. יכול להינתן בבולוס כטיפול חירום אם אין גישה ורידית, או כעירוי מתמשך. פחות יעיל בפגים קטנים מאוד כי אין להם מאגרי גליקוגן.",
-                    "<strong>הידרוקורטיזון (Hydrocortisone):</strong> קורטיקוסטרואיד הניתן במצבים עמידים במיוחד. מפחית את ניצול הסוכר בפריפריה ומעודד ייצור סוכר."
-                ],
-                warning: "שימו לב: גלוקגון עובד על פירוק מאגרי גליקוגן בכבד. בפגים קטנים מאוד או פגים עם פיגור בגדילה (SGA), מאגרים אלו ריקים מלכתחילה, ולכן התרופה עשויה שלא להשפיע!"
             },
             retest: {
                 icon: "fa-clock-rotate-left",
@@ -1369,14 +1383,28 @@
                 ],
                 customHtml: null,
                 indications: [
-                    "נלקחת במקרים של היפוגליקמיה עקשנית שלא מגיבה לטיפול (למשל GIR מעל 15 ללא שיפור).",
+                    "נלקחת במקרים של היפוגליקמיה עקשנית שלא מגיבה לטיפול (למשל כאשר ה-GIR מעל 15 ללא שיפור).",
                     "כוללת בדיקות כגון: קורטיזול, אינסולין, הורמון גדילה (GH), לקטט, קטונים, TSH וחומצות שומן חופשיות (FFA)."
                 ],
                 warning: "חובה לשאוב את הדם אך ורק כאשר הסוכר נמוך (מתחת ל-40), *לפני* מתן בולוס סוכר לתיקון. אחרת הבדיקה מאבדת את ערכה האבחוני."
+            },
+            pharma: {
+                icon: "fa-pills",
+                title: "טיפול תרופתי",
+                subtitle: "דיאזוקסיד, גלוקגון והידרוקורטיזון",
+                mechanism: [
+                    "כאשר היפוגליקמיה אינה מגיבה לעירוי גלוקוז בקצב גבוה (מעל 12-15 מ\"ג גלוקוז לקילו לדקה), לרוב בשל היפראינסוליניזם או חסר הורמונלי, נשתמש בטיפול תרופתי כדי לדכא הפרשת אינסולין או לעודד שחרור סוכר ממאגרים."
+                ],
+                customHtml: null,
+                indications: [
+                    "<strong>דיאזוקסיד (Diazoxide):</strong> תרופת הבחירה להיפראינסוליניזם. מעכבת הפרשת אינסולין מהלבלב. ניתנת פומית (PO). מחייבת מעקב אחר אגירת נוזלים (לרוב תשולב עם משתן כמו כלורותיאזיד).",
+                    "<strong>גלוקגון (Glucagon):</strong> הורמון המעודד פירוק גליקוגן בכבד. יכול להינתן בבולוס כטיפול חירום אם אין גישה ורידית, או כעירוי מתמשך. פחות יעיל בפגים קטנים מאוד כי אין להם מאגרי גליקוגן.",
+                    "<strong>הידרוקורטיזון (Hydrocortisone):</strong> קורטיקוסטרואיד הניתן במצבים עמידים במיוחד. מפחית את ניצול הסוכר בפריפריה ומעודד ייצור סוכר."
+                ],
+                warning: "שימו לב: גלוקגון עובד על פירוק מאגרי גליקוגן בכבד. בפגים קטנים מאוד או פגים עם פיגור בגדילה (SGA), מאגרים אלו ריקים מלכתחילה, ולכן התרופה עשויה שלא להשפיע!"
             }
         };
 
-        // Tab Switching Logic
         function switchTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             event.currentTarget.classList.add('active');
@@ -1393,7 +1421,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Show/Hide Detail Panel Logic
         function showDetail(typeId) {
             const data = treatmentData[typeId];
             if (!data) return;
@@ -1462,35 +1489,37 @@
             document.querySelectorAll('.type-card').forEach(card => card.classList.remove('active'));
         }
 
+        function toggleIntroAccordion(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('open');
+        }
+
         // Practice Cases Logic
         const correctAnswers = {
             'case1': 0, // A 
             'case2': 1, // B (2.4ml)
             'case3': 1, // B (Retest 15-30 min)
             'case4': 0, // A (5.4)
-            'case5': 1, // B (Increase GIR first)
-            'case6': 1, // B (71.43ml)
-            'case7': 1, // B (While hypoglycemic)
-            'case8': 0,  // A (Rebound)
-            'case9': 0   // A (Fluid retention)
+            'case5': 1, // B (10)
+            'case6': 1, // B (Increase GIR first)
+            'case7': 1, // B (71.43ml)
+            'case8': 1, // B (While hypoglycemic)
+            'case9': 0,  // A (Fluid retention)
+            'case10': 0  // A (Rebound)
         };
 
         const explanations = {
-            'case1': "בפגים, בניגוד ליילודים בשלים, הזנה אנטרלית לבדה לרוב <strong>אינה מספיקה</strong> עקב חוסר בשלות של המעי ומאגרי גליקוגן ריקים כמעט לחלוטין. גם פג אסימפטומטי במצב זה דורש מתן בולוס IV מהיר והתחלת עירוי למניעת נזק מוחי.",
-            'case2': "הנוסחה לבולוס היא 2 מ\"ל כפול משקל היילוד בק\"ג. <br>חישוב: 1.2 × 2 = <strong>2.4 מ\"ל.</strong><br>זכרו תמיד לתת בדחיפה איטית.",
+            'case1': "בפגים, בניגוד ליילודים בשלים, הזנה אנטרלית לבדה לרוב <strong>אינה מספיקה</strong> עקב חוסר בשלות של המעי ומאגרי גליקוגן ריקים כמעט לחלוטין. הטיפול בפגיה נסמך בעיקר על הקליניקה של הפג, אך בערך מתחת ל-40 תמיד נתערב עם בולוס IV מהיר והתחלת עירוי למניעת נזק מוחי.",
+            'case2': "<strong>נוסחת הבולוס:</strong> 2 מ\"ל כפול משקל היילוד בק\"ג. <br>חישוב: 1.2 × 2 = <strong>2.4 מ\"ל.</strong><br>זכרו תמיד לתת בדחיפה איטית.",
             'case3': "על פי הפרוטוקול, לאחר מתן התערבות תוך ורידית, חובה לבצע בדיקת סוכר חוזרת בטווח של <strong>15 עד 30 דקות</strong> כדי לוודא שרמת הגלוקוז עלתה לרמה בטוחה ויצאנו מסכנה מיידית.",
             'case4': "<strong>נוסחת קצב משאבה (למ\"ל/שעה):</strong><br><code>(הקצב × משקל × 6) ÷ ריכוז הדקסטרוז</code>.<br>חישוב: (6 × 1.5 × 6) ÷ 10 = 54 ÷ 10 = <strong>5.4 מ\"ל/שעה</strong>.",
-            'case5': "היררכיית הטיפול מחייבת קודם כל העלאה של <strong>הקצב</strong> (עד 12-16 מ\"ג גלוקוז לקילו לדקה). רק לאחר מכן, וכאשר הפג מתקרב למגבלת הנפח היומית שלו, נעבור לתמיסות מרוכזות יותר.",
-            'case6': "<strong>הסבר לפי שיטת השמש (ערך משולש) למטרה של 15%:</strong><br>1. מחסרים באלכסון: 50 פחות 15 = 35 מ\"ל (היחס של ה-10%).<br>2. מחסרים 15 פחות 10 = 5 מ\"ל (היחס של ה-50%).<br>כעת מבצעים ערך משולש כדי להתאים לשקית של 500 מ\"ל מה-D10%:<br>(5 כפול 500) לחלק ל-35 = <strong>71.43 מ\"ל</strong>. יש לשאוב 71.43 מ\"ל מה-D50% ולהוסיף לשקית.",
-            'case7': "דגימה קריטית (Critical Sample) נועדה לחשוף את הפרופיל ההורמונלי והמטבולי שהוביל למשבר. חובה לשאוב אותה <strong>בזמן האירוע עצמו (סוכר < 40)</strong>. אם ניתן סוכר ונתקן את המצב, הבדיקה מאבדת את ערכה לחלוטין.",
-            'case8': "היפוגליקמיה תגובתית (Rebound Hypoglycemia): כאשר פג מקבל הזלפת סוכר גבוהה, הלבלב שלו מפריש כמויות גדולות של אינסולין. כאשר העירוי נעצר בפתאומיות, האינסולין עדיין גבוה מאוד בדם, מה שגורם לצניחה מהירה ומסוכנת של רמת הסוכר.",
-            'case9': "<strong>דיאזוקסיד (Diazoxide)</strong> מעכב הפרשת אינסולין מהלבלב ונחשב קו ראשון בהיפראינסוליניזם. תופעת הלוואי העיקרית שלו היא <strong>צבירת נוזלים</strong> (אגירת נתרן ומים ע\"י הכליות), שעלולה להוביל לאי ספיקת לב ולבצקות. לכן לרוב משלבים אותו עם תרופה משתנת (למשל, כלורותיאזיד)."
+            'case5': "<strong>נוסחת GIR (ממ\"ל/שעה ל-GIR):</strong><br><code>(קצב מ\"ל/שעה × ריכוז הדקסטרוז) ÷ (משקל × 6)</code>.<br>חישוב: (12 × 10) ÷ (2 × 6) = 120 ÷ 12 = <strong>10 מ\"ג גלוקוז לקילו לדקה</strong>.",
+            'case6': "היררכיית הטיפול מחייבת קודם כל העלאה של <strong>הקצב</strong> (עד 12-16 מ\"ג גלוקוז לקילו לדקה). רק לאחר מכן, וכאשר הפג מתקרב למגבלת הנפח היומית שלו, נעבור לתמיסות מרוכזות יותר.",
+            'case7': "<strong>הסבר לפי שיטת השמש (ערך משולש) למטרה של D15%:</strong><br>1. מחסרים באלכסון: 50 פחות 15 = 35 מ\"ל (היחס של ה-D10%).<br>2. מחסרים 10 פחות 15 (בערך מוחלט) = 5 מ\"ל (היחס של ה-D50%).<br>כעת מבצעים ערך משולש כדי להתאים לשקית של 500 מ\"ל מה-D10%:<br>(5 כפול 500) לחלק ל-35 = <strong>71.43 מ\"ל</strong>. יש לשאוב 71.43 מ\"ל מה-D50% ולהוסיף לשקית.",
+            'case8': "דגימה קריטית (Critical Sample) נועדה לחשוף את הפרופיל ההורמונלי והמטבולי שהוביל למשבר. חובה לשאוב אותה <strong>בזמן האירוע עצמו (סוכר < 40)</strong>. אם ניתן סוכר ונתקן את המצב, הבדיקה מאבדת את ערכה לחלוטין.",
+            'case9': "<strong>דיאזוקסיד (Diazoxide)</strong> מעכב הפרשת אינסולין מהלבלב ונחשב קו ראשון בהיפראינסוליניזם. תופעת הלוואי העיקרית שלו היא <strong>צבירת נוזלים</strong> (אגירת נתרן ומים ע\"י הכליות), שעלולה להוביל לאי ספיקת לב ולבצקות. לכן לרוב משלבים אותו עם תרופה משתנת (למשל, כלורותיאזיד).",
+            'case10': "היפוגליקמיה תגובתית (Rebound Hypoglycemia): כאשר פג מקבל הזלפת סוכר גבוהה, הלבלב שלו מפריש כמויות גדולות של אינסולין. כאשר העירוי נעצר בפתאומיות, האינסולין עדיין גבוה מאוד בדם, מה שגורם לצניחה מהירה ומסוכנת של רמת הסוכר."
         };
-
-        function toggleIntroAccordion(id) {
-            const el = document.getElementById(id);
-            el.classList.toggle('open');
-        }
 
         function toggleCase(caseId) {
             const caseEl = document.getElementById(caseId);
