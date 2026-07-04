@@ -257,6 +257,15 @@
             animation: floaty 5s ease-in-out infinite;
         }
 
+        .hero-illustration.photo {
+            border-radius: 26px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+            border: 4px solid rgba(255, 255, 255, 0.25);
+            filter: none;
+            animation: none;
+            object-fit: cover;
+        }
+
         @keyframes floaty {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
@@ -466,7 +475,7 @@
             top: 14px;
             left: 14px;
             background: white;
-            color: #be123c;
+            color: #0e7490;
             font-family: 'Heebo', sans-serif;
             font-weight: 800;
             font-size: 13px;
@@ -489,13 +498,13 @@
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
 
-        /* Per-module palettes matching each page's design */
+        /* Module card palettes - blue family */
         .card-hypo .card-banner {
-            background: linear-gradient(135deg, #f97316, #ea580c);
+            background: linear-gradient(135deg, #0c4a6e, #0369a1);
         }
 
         .card-vent .card-banner {
-            background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
         }
 
         .card-nasal .card-banner {
@@ -503,7 +512,7 @@
         }
 
         .card-withdraw .card-banner {
-            background: linear-gradient(135deg, #be123c, #fb7185);
+            background: linear-gradient(135deg, #0e7490, #06b6d4);
         }
 
         .card-body {
@@ -535,10 +544,10 @@
             font-size: clamp(14px, 3vw, 16px);
         }
 
-        .card-hypo .card-cta { color: #ea580c; }
-        .card-vent .card-cta { color: #6d28d9; }
+        .card-hypo .card-cta { color: #0369a1; }
+        .card-vent .card-cta { color: #1d4ed8; }
         .card-nasal .card-cta { color: #0284c7; }
-        .card-withdraw .card-cta { color: #be123c; }
+        .card-withdraw .card-cta { color: #0e7490; }
 
         .module-card:hover .card-cta i {
             transform: translateX(-5px);
@@ -679,7 +688,7 @@
                 <p>אנו מאמינים שלמידה היא חלק בלתי נפרד מהעשייה היומיומית, ושכל ידע חדש מחזק את הביטחון המקצועי ומשפר את איכות הטיפול שאנו מעניקות לפגים ולבני משפחותיהם.</p>
             </div>
             <div class="hero-figure">
-                <img class="hero-illustration" src="nicu_illustration.svg" alt="אחות מטפלת בפג באינקובטור">
+                <img id="heroImg" class="hero-illustration" src="nicu_illustration.svg" alt="אחות מטפלת בפג באינקובטור">
             </div>
         </div>
     </section>
@@ -783,6 +792,24 @@
     </footer>
 
     <script>
+        // If a real photo (hero_photo.jpg / hero_photo.png) exists in the repo,
+        // use it in the hero instead of the illustration.
+        (function () {
+            const candidates = ['hero_photo.jpg', 'hero_photo.png'];
+            const heroImg = document.getElementById('heroImg');
+            function tryNext(i) {
+                if (i >= candidates.length) return;
+                const probe = new Image();
+                probe.onload = function () {
+                    heroImg.src = candidates[i];
+                    heroImg.classList.add('photo');
+                };
+                probe.onerror = function () { tryNext(i + 1); };
+                probe.src = candidates[i];
+            }
+            tryNext(0);
+        })();
+
         function showModules(e) {
             e.preventDefault();
             const section = document.getElementById('modules');
