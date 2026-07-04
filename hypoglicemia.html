@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>לומדת היפוגליקמיה בפגים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Orange Palette */
+            --primary-color: #f97316;    
+            --secondary-color: #fb923c;  
+            --accent-color: #ea580c;     
+            --success-color: #10b981;    
+            --danger-color: #ef4444;     
+            --bg-light: #fff7ed;         
+            --card-bg: #ffffff;
+            --text-main: #0f172a;        
+            --text-muted: #475569;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Heebo', sans-serif;
+            color: #0f172a; 
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        header h1, header p {
+             color: white;
+        }
+
+        .header-title {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .header-title h1 {
+            font-size: clamp(20px, 4vw, 28px);
+            font-weight: 800;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .header-title p {
+            font-size: clamp(12px, 2.5vw, 16px);
+            opacity: 0.9;
+        }
+
+        .author-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: clamp(12px, 2.5vw, 14px);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(5px);
+            white-space: nowrap;
+        }
+
+        /* Main Container */
+        .app-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 15px;
+            width: 100%;
+        }
+
+        /* Navigation Tabs */
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            background: var(--card-bg);
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            border: 1px solid #ffedd5; 
+        }
+        
+        .tabs-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 18px;
+            font-size: clamp(14px, 3vw, 18px);
+            font-family: 'Heebo', sans-serif;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tab-btn:hover {
+            background: #ffedd5;
+            color: var(--accent-color);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+        }
+
+        /* Content Sections */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Intro Section */
+        .intro-hero {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.05);
+            border: 1px solid #ffedd5;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: clamp(24px, 5vw, 36px);
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .intro-text p {
+            font-size: clamp(16px, 3.5vw, 20px);
+            margin-bottom: 15px;
+        }
+
+        /* Hero Icon Animation & Styling */
+        .intro-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            order: -1;
+        }
+
+        .hero-icon-container {
+            position: relative;
+            width: min(200px, 60vw);
+            height: min(200px, 60vw);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffedd5, #fed7aa); 
+            border-radius: 50%;
+            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.15);
+            margin: 0 auto;
+        }
+
+        .hero-icon-container::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid #fdba74; 
+            animation: pulse 2.5s infinite ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+
+        .main-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-icon {
+            font-size: min(80px, 22vw);
+            color: var(--accent-color);
+            z-index: 2;
+        }
+        
+        .arrow-overlay {
+            position: absolute;
+            bottom: -5px;
+            right: -15px;
+            color: var(--danger-color); 
+            font-size: min(45px, 12vw);
+            background: var(--card-bg);
+            border-radius: 50%;
+            padding: 2px;
+            z-index: 3;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Intro Accordions */
+        .intro-accordion {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #ffedd5;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .intro-accordion-header {
+            background: #fff7ed;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--accent-color);
+            transition: background 0.3s ease;
+        }
+        
+        .intro-accordion-header:hover {
+            background: #ffedd5;
+        }
+        
+        .intro-accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background: white;
+        }
+        
+        .intro-accordion.open .intro-accordion-body {
+            padding: 15px 20px;
+            max-height: 500px;
+            border-top: 1px solid #ffedd5;
+        }
+        
+        .intro-accordion-icon {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+        
+        .intro-accordion.open .intro-accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .risk-list, .symptom-list {
+            list-style-type: none;
+        }
+        
+        .risk-list li, .symptom-list li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+        
+        .risk-list li::before {
+            content: '\f071';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+        
+        .symptom-list li::before {
+            content: '\f06a';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--danger-color);
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+
+        /* Interactive Grid for Types */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .type-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            border: 1px solid #ffedd5;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: right;
+        }
+
+        .type-card:hover, .type-card:active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.15);
+            border-color: var(--secondary-color);
+        }
+
+        .type-card:hover::before, .type-card:active::before {
+            transform: scaleX(1);
+        }
+
+        .type-card.active {
+            border-color: var(--primary-color);
+            background: #fff7ed;
+        }
+
+        .type-icon {
+            font-size: 40px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .type-card:hover .type-icon, .type-card:active .type-icon {
+            transform: scale(1.1);
+            color: var(--accent-color);
+        }
+
+        .type-title {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        /* Detail Modal / Panel */
+        .detail-panel {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-top: 25px;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.08);
+            display: none;
+            border-right: 5px solid var(--primary-color);
+            position: relative;
+        }
+
+        .detail-panel.show {
+            display: block;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ffedd5;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            font-size: 20px;
+            color: var(--accent-color);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .close-btn:hover, .close-btn:active {
+            color: white;
+            background: var(--danger-color);
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ffedd5;
+            padding-left: 40px;
+        }
+
+        .detail-header i {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+
+        .detail-header h3 {
+            font-size: clamp(22px, 5vw, 28px);
+            color: #0f172a;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .detail-body {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .info-box {
+            background: #fff7ed;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #ffedd5;
+            width: 100%; 
+        }
+
+        .info-box h4 {
+            color: var(--accent-color);
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box ul {
+            list-style: none;
+        }
+
+        .info-box li {
+            margin-bottom: 12px;
+            padding-right: 25px;
+            position: relative;
+            font-size: 16px;
+            word-wrap: break-word; 
+        }
+
+        .info-box li:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-box li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: #fef2f2;
+            border-right: 4px solid var(--danger-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .warning-box i {
+            color: var(--danger-color);
+            font-size: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Practice Section */
+        .case-studies {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .case-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid #ffedd5;
+        }
+
+        .case-header {
+            background: #fff7ed;
+            padding: 20px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .case-header:hover, .case-header:active {
+            background: #ffedd5;
+        }
+
+        .case-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: 600;
+            color: #0f172a;
+            flex: 1;
+            line-height: 1.3;
+        }
+
+        .case-icon {
+            background: var(--primary-color);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .expand-icon {
+            font-size: 18px;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .case-card.open .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .case-body {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background: white;
+        }
+
+        .case-card.open .case-body {
+            padding: 20px 15px;
+            max-height: 2000px;
+            border-top: 1px solid #ffedd5;
+        }
+
+        .scenario-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fff7ed;
+            border-radius: 10px;
+            border-right: 4px solid var(--primary-color);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            background: #ffffff;
+            border: 2px solid #fed7aa;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: right;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .option-btn:hover, .option-btn:active:not(:disabled) {
+            border-color: var(--primary-color);
+            background: #fff7ed;
+        }
+
+        .option-btn.selected-correct {
+            background: #ecfdf5;
+            border-color: var(--success-color);
+            color: #065f46;
+        }
+
+        .option-btn.selected-wrong {
+            background: #fef2f2;
+            border-color: var(--danger-color);
+            color: #991b1b;
+        }
+        
+        .option-btn:disabled {
+            cursor: default;
+            opacity: 0.8;
+        }
+
+        .feedback-area {
+            display: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            animation: fadeIn 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .feedback-area.show {
+            display: block;
+        }
+
+        .feedback-area.success {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+        }
+
+        .feedback-area.error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        .feedback-area i {
+            margin-left: 8px;
+            font-size: 20px;
+        }
+        
+        /* Utility classes for layout */
+        .section-title {
+            font-size: clamp(24px, 6vw, 30px);
+            margin-bottom: 10px;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
+        
+        .section-subtitle {
+            font-size: clamp(16px, 4vw, 20px);
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        /* Responsive Media Queries */
+        @media (min-width: 768px) {
+            .intro-hero {
+                grid-template-columns: 1fr 1fr;
+            }
+            .intro-image {
+                order: 1;
+            }
+            .detail-body {
+                grid-template-columns: 1fr 1fr;
+            }
+            .app-container {
+                padding: 40px 20px;
+            }
+            .detail-panel {
+                padding: 40px;
+            }
+            .close-btn {
+                background: transparent;
+            }
+            .case-card.open .case-body {
+                padding: 30px;
+            }
+            .options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .intro-text h2 {
+                margin-bottom: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>היפוגליקמיה בפגים</h1>
+            <p>פגיה הדסה הר הצופים</p>
+        </div>
+        <div class="author-badge">
+            <i class="fa-solid fa-user-nurse"></i>
+            רעות לאופר כהן BSN
+        </div>
+    </header>
+
+    <div class="app-container">
+        
+        <!-- Navigation Tabs -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('intro')">
+                <i class="fa-solid fa-house"></i> מבוא
+            </button>
+            <button class="tab-btn" onclick="switchTab('types')">
+                <i class="fa-solid fa-kit-medical"></i> אמצעי טיפול
+            </button>
+            <button class="tab-btn" onclick="switchTab('practice')">
+                <i class="fa-solid fa-stethoscope"></i> שאלות תרגול
+            </button>
+        </nav>
+
+        <!-- Tab: Intro -->
+        <section id="intro" class="tab-content active">
+            <div class="intro-hero">
+                <div class="intro-text">
+                    <h2>היפוגליקמיה בפגים</h2>
+                    <p>היפוגליקמיה מוגדרת כערך הנמוך מ-40 מ"ג/ד"ל. פגים מהווים אוכלוסייה בסיכון גבוה במיוחד בשל <strong>מאגרים מוגבלים של גליקוגן ושומן</strong>, יחד עם דרישה אנרגטית גבוהה (במצבי עקה כגון RDS, היפותרמיה או ספסיס).</p>
+                    <p>ההיפוגליקמיה מסוכנת ועלולה לגרום לדימום מוחי ולנזק נוירולוגי בלתי הפיך, שכן המוח עובר להשתמש בחלבוני מבנה ופוספוליפידים כמקור אנרגיה. הטיפול בפגיה נסמך לא רק על המספר, אלא <strong>בעיקר על הקליניקה של הפג.</strong></p>
+                </div>
+                <div class="intro-image">
+                    <div class="hero-icon-container">
+                        <div class="main-icon-container">
+                            <i class="fa-solid fa-droplet main-icon"></i>
+                            <i class="fa-solid fa-arrow-down-short-wide arrow-overlay"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <div class="intro-accordion" id="acc-risks">
+                    <div class="intro-accordion-header" onclick="toggleIntroAccordion('acc-risks')">
+                        <span><i class="fa-solid fa-triangle-exclamation" style="margin-left: 8px;"></i> גורמי סיכון שכיחים להיפוגליקמיה</span>
+                        <i class="fa-solid fa-chevron-down intro-accordion-icon"></i>
+                    </div>
+                    <div class="intro-accordion-body">
+                        <ul class="risk-list">
+                            <li><strong>פגות ומשקל לידה נמוך (SGA / IUGR):</strong> מאגרי גליקוגן ושומן חום מדולדלים מלכתחילה.</li>
+                            <li><strong>אמהות סוכרתיות (IDM) ומשקל לידה גבוה (LGA):</strong> היפראינסולינמיה עוברית שגורמת לצניחת סוכר מהירה לאחר הניתוק מאספקת הסוכר דרך השליה.</li>
+                            <li><strong>מצבי סטרס (Stress):</strong> מצוקה נשימתית (RDS), היפותרמיה, אלח דם (Sepsis) או תשניק (Asphyxia) המגבירים את קצב חילוף החומרים וצריכת האנרגיה של הפג.</li>
+                            <li><strong>פוליציטמיה (Polycythemia):</strong> ריבוי כדוריות דם אדומות המגביר משמעותית את צריכת הגלוקוז בדם.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="intro-accordion" id="acc-symptoms">
+                    <div class="intro-accordion-header" onclick="toggleIntroAccordion('acc-symptoms')">
+                        <span><i class="fa-solid fa-stethoscope" style="margin-left: 8px;"></i> סימפטומים קליניים המחייבים התייחסות</span>
+                        <i class="fa-solid fa-chevron-down intro-accordion-icon"></i>
+                    </div>
+                    <div class="intro-accordion-body">
+                        <p style="margin-bottom: 12px; color: var(--danger-color); font-weight: bold; background: #fef2f2; padding: 10px; border-radius: 8px;">שימו לב: פגים רבים נמצאים במצב אסימפטומטי למרות רמת סוכר נמוכה. אלו המציגים סימפטומים מחייבים טיפול מיידי!</p>
+                        <ul class="symptom-list">
+                            <li>רעד (Jitters / Tremors) או אי-שקט קיצוני.</li>
+                            <li>אפניאות (הפסקות נשימה) וטכיפניאה (נשימה מהירה).</li>
+                            <li>כיחלון (Cyanosis) או חיוורון משמעותי.</li>
+                            <li>אפתיה, לתרגיה והיפוטוניה (רפיון שרירים).</li>
+                            <li>קשיי האכלה, פליטות, רפלקס מציצה חלש או סירוב לאכול.</li>
+                            <li>במקרים חמורים וקיצוניים: פרכוסים ותרדמת.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
+                <h3 style="color: var(--accent-color); font-size: clamp(20px, 5vw, 26px);">עקרונות המפתח בטיפול בפגים:</h3>
+                <div style="width: 60px; height: 4px; background: var(--secondary-color); margin: 10px auto; border-radius: 2px;"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <div class="info-box" style="text-align: center;">
+                    <i class="fa-solid fa-syringe" style="font-size: 40px; color: var(--secondary-color); margin-bottom: 15px;"></i>
+                    <h3 style="margin-bottom: 10px; font-size: 20px; color: #0f172a;">התערבות גם ללא סימפטומים</h3>
+                    <p style="font-size: 16px;">בפגים, בשל מאגרי סוכר מדולדלים, <strong>לא נסתמך על הזנה בלבד</strong> לתיקון. ערך מתחת ל-40 מחייב לרוב התערבות IV (בולוס + הזלפה) גם בפג אסימפטומטי.</p>
+                </div>
+                <div class="info-box" style="text-align: center;">
+                    <i class="fa-solid fa-arrow-trend-up" style="font-size: 40px; color: var(--secondary-color); margin-bottom: 15px;"></i>
+                    <h3 style="margin-bottom: 10px; font-size: 20px; color: #0f172a;">היררכיית העלאת קצב</h3>
+                    <p style="font-size: 16px;">כשהסוכר לא עולה, קודם כל <strong>מעלים את קצב ההזלפה (GIR)</strong> עד ל-12-16 מ"ג גלוקוז לקילו לדקה. רק כשאין תגובה למרות זאת ומגיעים למגבלת הנפח, עוברים לתמיסות מרוכזות יותר.</p>
+                </div>
+                <div class="info-box" style="text-align: center;">
+                    <i class="fa-solid fa-vial" style="font-size: 40px; color: var(--secondary-color); margin-bottom: 15px;"></i>
+                    <h3 style="margin-bottom: 10px; font-size: 20px; color: #0f172a;">דגימה קריטית (Critical Sample)</h3>
+                    <p style="font-size: 16px;">בהיפוגליקמיה עקשנית (מתחת ל-40, למרות GIR גבוה), יש לקחת דם לאינסולין, קורטיזול, GH, לקטט, קטונים ו-FFA <strong>לפני</strong> מתן פוש נוסף ותיקון הסוכר.</p>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+                <button style="background: var(--primary-color); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);" onclick="document.querySelectorAll('.tab-btn')[1].click()" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(249, 115, 22, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(249, 115, 22, 0.3)';">
+                    הבא <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Tab: Treatments (Interactive Explorer) -->
+        <section id="types" class="tab-content">
+            <h2 class="section-title">אמצעי הטיפול והמעקב</h2>
+            <p class="section-subtitle">לחצי על כל כרטיס כדי לחשוף את ההנחיות והנוסחאות.</p>
+            
+            <div class="types-grid">
+                <div class="type-card" onclick="showDetail('bolus')">
+                    <i class="fa-solid fa-syringe type-icon"></i>
+                    <h3 class="type-title">בולוס PUSH</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">העלאת סוכר מהירה</p>
+                </div>
+
+                <div class="type-card" onclick="showDetail('gir')">
+                    <i class="fa-solid fa-droplet type-icon"></i>
+                    <h3 class="type-title">עירוי רציף (GIR)</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">הקו הראשון בשמירת היציבות</p>
+                </div>
+
+                <div class="type-card" style="border: 2px dashed var(--accent-color);" onclick="showDetail('mixing')">
+                    <i class="fa-solid fa-flask type-icon" style="color: var(--accent-color);"></i>
+                    <h3 class="type-title">הכנת תמיסה מרוכזת</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">הכנת תמיסה בשיטת השמש</p>
+                </div>
+
+                <div class="type-card" style="border: 2px dashed #9ca3af;" onclick="showDetail('central')">
+                    <i class="fa-solid fa-pump-medical type-icon" style="color: #64748b;"></i>
+                    <h3 class="type-title">מתן ורידי בטוח</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">מעבר לצנתר מרכזי</p>
+                </div>
+
+                <div class="type-card" style="border: 2px dashed var(--success-color);" onclick="showDetail('retest')">
+                    <i class="fa-solid fa-clock-rotate-left type-icon" style="color: var(--success-color);"></i>
+                    <h3 class="type-title">מתי בודקים שוב?</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">תזמוני ניטור לאחר התערבות</p>
+                </div>
+
+                <div class="type-card" style="border: 2px dashed var(--danger-color);" onclick="showDetail('critical')">
+                    <i class="fa-solid fa-vial-circle-check type-icon" style="color: var(--danger-color);"></i>
+                    <h3 class="type-title">Critical Sample</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">בירור היפוגליקמיה עקשנית</p>
+                </div>
+
+                <div class="type-card" style="border: 2px dashed #8b5cf6;" onclick="showDetail('pharma')">
+                    <i class="fa-solid fa-pills type-icon" style="color: #8b5cf6;"></i>
+                    <h3 class="type-title">טיפול תרופתי</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">דיאזוקסיד, גלוקגון ועוד</p>
+                </div>
+            </div>
+
+            <!-- Dynamic Detail Panel -->
+            <div id="detailPanel" class="detail-panel">
+                <button class="close-btn" onclick="closeDetail()"><i class="fa-solid fa-xmark"></i></button>
+                <div id="detailContent">
+                    <!-- Content injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Practice / Case Studies -->
+        <section id="practice" class="tab-content">
+            <h2 class="section-title">שאלות תרגול</h2>
+            <p class="section-subtitle">קראי את התרחישים ובחרי בתשובה הנכונה</p>
+            
+            <div class="case-studies">
+                
+                <!-- Case 1: Asymptomatic -->
+                <div class="case-card" id="case1">
+                    <div class="case-header" onclick="toggleCase('case1')">
+                        <div class="case-title">
+                            <div class="case-icon">1</div>
+                            תרחיש מס' 1
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> פג בשבוע 33, משקל 1,600 גרם, נמדד סוכר סקר של 34 מ"ג/ד"ל. הפג נראה חיוני, ורוד, נושם בנינוחות וללא שום סימן קליני כגון רעד או אפניאה.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">בהתאם לגישת הטיפול המעודכנת בפגים, מהי הפעולה המועדפת כעת?</h4>
+                        <div class="options-grid" id="options-case1">
+                            <button class="option-btn" onclick="checkAnswer('case1', 0, this)">
+                                א. מתן פוש של תמיסת גלוקוז והתחלת הזלפה רציפה, היות והזנה בלבד אינה מספיקה לתיקון בטוח בפגים.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case1', 1, this)">
+                                ב. מתן האכלה אנטרלית / פומית מוקדמת והימנעות לחלוטין מהתערבות תוך-ורידית, בגלל שהוא אסימפטומטי.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case1', 2, this)">
+                                ג. המשך מעקב בעוד שעה מבלי לתת טיפול כלשהו.
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case1"></div>
+                    </div>
+                </div>
+
+                <!-- Case 2: Bolus math -->
+                <div class="case-card" id="case2">
+                    <div class="case-header" onclick="toggleCase('case2')">
+                        <div class="case-title">
+                            <div class="case-icon">2</div>
+                            תרחיש מס' 2
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> פג במשקל 1,200 גרם סובל מאפניאות מרובות ורעד (Jitters). בבדיקת סוכר התקבל ערך של 22 מ"ג/ד"ל. הרופא מורה על מתן פוש (בולוס) מתמיסת גלוקוז.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">כמה מ"ל מתוך התמיסה עליך לשאוב למזרק ולהזריק בדחיפה אטית?</h4>
+                        <div class="options-grid" id="options-case2">
+                            <button class="option-btn" onclick="checkAnswer('case2', 0, this)">
+                                א. 1.2 מ"ל
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case2', 1, this)">
+                                ב. 2.4 מ"ל
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case2', 2, this)">
+                                ג. 4.8 מ"ל
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case2"></div>
+                    </div>
+                </div>
+
+                <!-- Case 3: Retest -->
+                <div class="case-card" id="case3">
+                    <div class="case-header" onclick="toggleCase('case3')">
+                        <div class="case-title">
+                            <div class="case-icon">3</div>
+                            תרחיש מס' 3
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> לאחר שזיהית היפוגליקמיה חריפה, נתת בהצלחה בולוס IV והתחלת הזלפה רציפה.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מתי עלייך לבצע את בדיקת הסוכר החוזרת כדי לוודא שהטיפול יעיל?</h4>
+                        <div class="options-grid" id="options-case3">
+                            <button class="option-btn" onclick="checkAnswer('case3', 0, this)">
+                                א. מיד עם סיום הזרקת הבולוס.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case3', 1, this)">
+                                ב. כעבור 15 עד 30 דקות ממתן ההתערבות התוך-ורידית.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case3', 2, this)">
+                                ג. כעבור שעתיים, לפני זמן ההאכלה הבא.
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case3"></div>
+                    </div>
+                </div>
+
+                <!-- Case 4: GIR calc -->
+                <div class="case-card" id="case4">
+                    <div class="case-header" onclick="toggleCase('case4')">
+                        <div class="case-title">
+                            <div class="case-icon">4</div>
+                            תרחיש מס' 4
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> פג במשקל 1.5 ק"ג. יש להתחיל הזלפה רציפה של דקסטרוז 10% בקצב התחלתי של 6 מ"ג גלוקוז לקילו לדקה.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">לכמה מ"ל/שעה תכווני את המשאבה?</h4>
+                        <div class="options-grid" id="options-case4">
+                            <button class="option-btn" onclick="checkAnswer('case4', 0, this)">
+                                א. 5.4 מ"ל/שעה
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case4', 1, this)">
+                                ב. 9.0 מ"ל/שעה
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case4', 2, this)">
+                                ג. 3.6 מ"ל/שעה
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case4"></div>
+                    </div>
+                </div>
+
+                <!-- Case 5: Reverse GIR -->
+                <div class="case-card" id="case5">
+                    <div class="case-header" onclick="toggleCase('case5')">
+                        <div class="case-title">
+                            <div class="case-icon">5</div>
+                            תרחיש מס' 5
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> פג במשקל 2.0 ק"ג מטופל בעירוי דקסטרוז 10% שרץ כעת בקצב של 12 מ"ל/שעה.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מהו קצב ה-GIR (מ"ג גלוקוז לקילו לדקה) שהפג מקבל בפועל?</h4>
+                        <div class="options-grid" id="options-case5">
+                            <button class="option-btn" onclick="checkAnswer('case5', 0, this)">
+                                א. 8 
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case5', 1, this)">
+                                ב. 10 
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case5', 2, this)">
+                                ג. 12 
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case5"></div>
+                    </div>
+                </div>
+
+                <!-- Case 6: Escalation Logic -->
+                <div class="case-card" id="case6">
+                    <div class="case-header" onclick="toggleCase('case6')">
+                        <div class="case-title">
+                            <div class="case-icon">6</div>
+                            תרחיש מס' 6
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> פג מקבל כעת עירוי D10% בקצב של 6 מ"ג גלוקוז לקילו לדקה, ועדיין סובל מסוכר של 32 מ"ג/ד"ל למרות שעברה חצי שעה.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מהו הצעד הבא המועדף בפרוטוקול?</h4>
+                        <div class="options-grid" id="options-case6">
+                            <button class="option-btn" onclick="checkAnswer('case6', 0, this)">
+                                א. להחליף מיד את השקית מ-D10% לתמיסה מרוכזת יותר (כגון 15%) ולהשאיר את אותו הקצב במשאבה.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case6', 1, this)">
+                                ב. להעלות את קצב המשאבה (עד ל-12-16 מ"ג גלוקוז לקילו לדקה) עם שקית ה-D10% הקיימת, ורק אם אין תגובה לעבור לריכוז גבוה.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case6', 2, this)">
+                                ג. להפסיק את העירוי ולתת לפג לאכול ארוחה גדולה.
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case6"></div>
+                    </div>
+                </div>
+
+                <!-- Case 7: Pearson Square Mixing -->
+                <div class="case-card" id="case7">
+                    <div class="case-header" onclick="toggleCase('case7')">
+                        <div class="case-title">
+                            <div class="case-icon">7</div>
+                            תרחיש מס' 7
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> הקצב הועלה ל-14 מ"ג גלוקוז לקילו לדקה, והפג הגיע למגבלת הנפח המותרת היומית ועדיין בהיפוגליקמיה. הרופא מורה על הכנת <strong>תמיסת דקסטרוז D15%</strong>. <br><br>את משתמשת בשיטת השמש (Pearson Square) כדי להכין את התמיסה. עומדות לרשותך שתי תמיסות זמינות: D50% ו-D10%. המטרה היא להכין שקית של 500 מ"ל בסך הכל.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">על פי שיטת השמש (וחישוב ערך משולש), כמה מ"ל של D50% עליך לשאוב ולהוסיף לתוך שקית ה-500 מ"ל (של D10%)?</h4>
+                        <div class="options-grid" id="options-case7">
+                            <button class="option-btn" onclick="checkAnswer('case7', 0, this)">
+                                א. 33.33 מ"ל 
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case7', 1, this)">
+                                ב. 71.43 מ"ל 
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case7', 2, this)">
+                                ג. 12.5 מ"ל 
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case7"></div>
+                    </div>
+                </div>
+
+                <!-- Case 8: Critical Sample -->
+                <div class="case-card" id="case8">
+                    <div class="case-header" onclick="toggleCase('case8')">
+                        <div class="case-title">
+                            <div class="case-icon">8</div>
+                            תרחיש מס' 8
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> הצוות חושד בהיפראינסוליניזם קבוע ומחליט לקחת <strong>Critical Sample</strong>.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">מתי בדיוק חייבים לשאוב את הדם לבדיקה זו?</h4>
+                        <div class="options-grid" id="options-case8">
+                            <button class="option-btn" onclick="checkAnswer('case8', 0, this)">
+                                א. אך ורק לאחר שהסוכר התייצב מעל 60 מ"ג/ד"ל.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case8', 1, this)">
+                                ב. בזמן שהתינוק נמצא במצב אקטיבי של היפוגליקמיה (מתחת ל-40), לפני שמזליפים שוב בולוס.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case8', 2, this)">
+                                ג. מיד לאחר ארוחה.
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case8"></div>
+                    </div>
+                </div>
+
+                <!-- Case 9: Pharma -->
+                <div class="case-card" id="case9">
+                    <div class="case-header" onclick="toggleCase('case9')">
+                        <div class="case-title">
+                            <div class="case-icon">9</div>
+                            תרחיש מס' 9
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> פג אובחן עם היפראינסוליניזם קבוע (Persistent Hyperinsulinism) למרות מתן גלוקוז בקצב מרבי. הרופא רושם טיפול תרופתי קבוע ב<strong>דיאזוקסיד (Diazoxide)</strong>.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">לאיזו תופעת לוואי שכיחה של התרופה עלייך לעקוב מקרוב במשמרת?</h4>
+                        <div class="options-grid" id="options-case9">
+                            <button class="option-btn" onclick="checkAnswer('case9', 0, this)">
+                                א. צבירת נוזלים (Fluid retention) ובצקות, שלרוב מצריכה שילוב עם תרופה משתנת.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case9', 1, this)">
+                                ב. אי ספיקת כליות ועלייה חדה ברמות האשלגן בדם.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case9', 2, this)">
+                                ג. שלשולים חמורים ואיבוד משקל ניכר.
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case9"></div>
+                    </div>
+                </div>
+
+                <!-- Case 10: Rebound -->
+                <div class="case-card" id="case10">
+                    <div class="case-header" onclick="toggleCase('case10')">
+                        <div class="case-title">
+                            <div class="case-icon">10</div>
+                            תרחיש מס' 10
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-text">
+                            <strong>תרחיש:</strong> פג מקבל עירוי D10% בקצב גבוה מאוד. במהלך המשמרת העירוי נחסם ("סטה" / Infiltration) ונדרשו 20 דקות להכניס עירוי חדש.
+                        </div>
+                        <h4 style="margin-bottom: 15px; font-size: 18px; color: #0f172a;">למה הפג נמצא בסיכון חמור בזמן ההמתנה לעירוי החדש?</h4>
+                        <div class="options-grid" id="options-case10">
+                            <button class="option-btn" onclick="checkAnswer('case10', 0, this)">
+                                א. היפוגליקמיה תגובתית (Rebound Hypoglycemia) עקב הפסקה פתאומית של העירוי כשהלבלב עדיין מפריש אינסולין ברמה גבוהה.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case10', 1, this)">
+                                ב. היפרגליקמיה, מכיוון שהגוף מפצה בפירוק מסיבי של שומנים.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case10', 2, this)">
+                                ג. זיהום דם מיידי בגלל סטיית העירוי.
+                            </button>
+                        </div>
+                        <div class="feedback-area" id="feedback-case10"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Data for Treatment Types
+        const treatmentData = {
+            bolus: {
+                icon: "fa-syringe",
+                title: "בולוס IV PUSH דקסטרוז 10%",
+                subtitle: "מתן מנת העמסה ישירות לווריד",
+                mechanism: [
+                    "העלאה דרמטית ומיידית של רמת הגלוקוז בדם להגנה על המוח מפני נזק בלתי הפיך."
+                ],
+                customHtml: null,
+                indications: [
+                    "טיפול מועדף והכרחי לפגים עם סוכר נמוך מ-40, גם אם הם אסימפטומטיים.",
+                    "המינון: 2 מ\"ל/ק\"ג מתמיסת 10% בדחיפה איטית."
+                ],
+                warning: "מתן מהיר מדי יגרום לעלייה חדה בסוכר שתגרור הפרשת אינסולין ועלולה לגרום ל'ריבאונד'. לכן יש להזריק באיטיות ולאחריה להתחיל הזלפה רציפה."
+            },
+            gir: {
+                icon: "fa-droplet",
+                title: "עירוי רציף (GIR)",
+                subtitle: "Glucose Infusion Rate",
+                mechanism: [
+                    "אספקה קבועה של גלוקוז בדם התואמת את קצב חילוף החומרים של הפג (נמדד במ\"ג גלוקוז לקילו לדקה)."
+                ],
+                customHtml: null,
+                indications: [
+                    "מתחילים מטווח של 4-6 מ\"ג גלוקוז לקילו לדקה (שווה ערך לכ-80 מ\"ל/ק\"ג/יום של D10%).",
+                    "אם אין תגובה, מעלים את הקצב בהדרגה עד ל-12-16 מ\"ג גלוקוז לקילו לדקה.",
+                    "רק אם הגענו למגבלת הנפח והקצב המותרת לפג, עוברים לתמיסות מרוכזות."
+                ],
+                warning: "הפסקת עירוי פתאומית (כגון חסימת קטטר) עלולה להוביל לריבאונד היפוגליקמיה מסוכן. ירידה בקצב חייבת להתבצע בהדרגה."
+            },
+            mixing: {
+                icon: "fa-flask",
+                title: "הכנת תמיסה מרוכזת",
+                subtitle: "הכנת תמיסה מרוכזת בשיטת השמש",
+                mechanism: [
+                    "כאשר רוצים להעלות סוכר אך הפג הגיע למגבלת הנפח, נדרש להעלות את ריכוז התמיסה. נשתמש בתמיסות D10% ו-D50% הקיימות במחלקה כדי לרקוח את הריכוז המדויק.",
+                    "השיטה עוזרת לחשב במדויק כמה מ\"ל מכל תמיסה צריך לערבב כדי להגיע לריכוז היעד."
+                ],
+                customHtml: `
+                    <div style="position: relative; width: 340px; height: 280px; margin: 20px auto; direction: ltr; font-family: Assistant, sans-serif; background: transparent;">
+                        <!-- Diagonal Lines -->
+                        <svg width="340" height="280" style="position: absolute; top: 0; left: 0; z-index: 1;">
+                            <line x1="60" y1="38" x2="280" y2="235" stroke="#cbd5e1" stroke-width="4" />
+                            <line x1="280" y1="38" x2="60" y2="235" stroke="#cbd5e1" stroke-width="4" />
+                        </svg>
+
+                        <!-- Top Left: D50% -->
+                        <div style="position: absolute; top: 10px; left: 10px; z-index: 2; border: 3px solid #f97316; border-radius: 8px; background: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                            <div style="font-size:24px; font-weight:bold; color:#0f172a;">D50%</div>
+                        </div>
+
+                        <!-- Top Right: D10% -->
+                        <div style="position: absolute; top: 10px; right: 10px; z-index: 2; border: 3px solid #0284c7; border-radius: 8px; background: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                            <div style="font-size:24px; font-weight:bold; color:#0f172a;">D10%</div>
+                        </div>
+
+                        <!-- Center: Target D12.5% -->
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; border: 4px solid #0284c7; border-radius: 50%; background: white; width: 90px; height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                            <div style="font-size:14px; color:#475569; font-weight:bold; margin-bottom: -2px;">יעד</div>
+                            <div style="font-size:18px; font-weight:bold; color:#0284c7;">D12.5%</div>
+                        </div>
+
+                        <!-- Bottom Left: 2.5 ml -->
+                        <div style="position: absolute; bottom: 10px; left: 10px; z-index: 2; background: #f97316; border-radius: 8px; color: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+                            <div style="font-size:26px; font-weight:bold;">2.5</div>
+                            <div style="font-size:16px;">מ"ל</div>
+                        </div>
+
+                        <!-- Bottom Right: 37.5 ml -->
+                        <div style="position: absolute; bottom: 10px; right: 10px; z-index: 2; background: #0284c7; border-radius: 8px; color: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+                            <div style="font-size:26px; font-weight:bold;">37.5</div>
+                            <div style="font-size:16px;">מ"ל</div>
+                        </div>
+                    </div>
+
+                    <!-- Text Explanation -->
+                    <div dir="rtl" style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 20px;">
+                        <h4 style="color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; margin-top: 0;">חישוב "שיטת השמש" להכנת גלוקוז D12.5%</h4>
+                        
+                        <strong style="color: #ea580c;">שלב 1: הצבת הנתונים וחיסור באלכסון</strong><br>
+                        מציבים בשתי הפינות העליונות את הריכוזים הנתונים שלנו: D50% ו-D10%.<br>
+                        באמצע רושמים את ריכוז היעד המבוקש: D12.5%.<br>
+                        כעת, מחסרים באלכסון (תמיד בערך מוחלט, מתעלמים ממספרים שליליים) ורושמים את התוצאות למטה:<br>
+                        <div style="margin-right: 15px; margin-bottom: 10px;">
+                            • 50 פחות 12.5 = <strong>37.5</strong><br>
+                            • 10 פחות 12.5 (בערך מוחלט) = <strong>2.5</strong>
+                        </div>
+
+                        <strong style="color: #ea580c;">שלב 2: קריאת היחס שהתקבל</strong><br>
+                        קוראים את התוצאות כלפי מטה, כך שכל עמודה מייצגת את התמיסה שמעליה:<br>
+                        <div style="margin-right: 15px; margin-bottom: 10px;">
+                            • תחת ה-D50% קיבלנו 2.5.<br>
+                            • תחת ה-D10% קיבלנו 37.5.<br>
+                        </div>
+                        המסקנה ביחס: על כל 2.5 מ"ל של גלוקוז D50%, נצטרך להוסיף 37.5 מ"ל של גלוקוז D10%.<br><br>
+
+                        <strong style="color: #ea580c;">שלב 3: התאמה לשקית שלנו ("ערך משולש")</strong><br>
+                        מאחר ויש לנו שקית המכילה 500 מ"ל של גלוקוז D10% (ולא 37.5 מ"ל), נשתמש בערך משולש כדי לגלות כמה בדיוק לשאוב מהבקבוקון של ה-D50%:<br>
+                        
+                        <div style="background: white; padding: 12px; border-radius: 6px; margin: 10px 0; border: 1px solid #cbd5e1; display: inline-block;">
+                            <table style="width: 100%; text-align: right; border-collapse: collapse;">
+                                <tr>
+                                    <td style="padding: 4px 8px; border-bottom: 1px solid #e2e8f0;">37.5 מ"ל <span style="font-size:12px;color:#64748b;">(יחס של D10%)</span></td>
+                                    <td style="padding: 4px 8px; border-bottom: 1px solid #e2e8f0;">&rarr;</td>
+                                    <td style="padding: 4px 8px; border-bottom: 1px solid #e2e8f0;"><strong>500 מ"ל</strong> <span style="font-size:12px;color:#64748b;">(במציאות)</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 8px;">2.5 מ"ל <span style="font-size:12px;color:#64748b;">(יחס של D50%)</span></td>
+                                    <td style="padding: 4px 8px;">&rarr;</td>
+                                    <td style="padding: 4px 8px;"><strong>X מ"ל</strong> <span style="font-size:12px;color:#64748b;">(במציאות)</span></td>
+                                </tr>
+                            </table>
+                        </div><br>
+
+                        <strong>החישוב:</strong> (2.5 כפול 500) לחלק ל-37.5 = <strong>33.33 מ"ל</strong>.<br><br>
+
+                        <div style="background: #fff7ed; border-right: 4px solid #f97316; padding: 12px; border-radius: 6px; font-size: 17px;">
+                            <strong>השורה התחתונה:</strong><br>
+                            יש לשאוב <strong>33.33 מ"ל</strong> של D50% ולהוסיף אותם לשקית ה-500 מ"ל של ה-D10% כדי לקבל תמיסה בריכוז מדויק של D12.5%.
+                        </div>
+                    </div>
+                `,
+                indications: [],
+                warning: "ערבוב תמיסות דורש תשומת לב קפדנית, סביבה סטרילית ואישור כפול מול אחות נוספת."
+            },
+            central: {
+                icon: "fa-pump-medical",
+                title: "בטיחות מתן ורידי",
+                subtitle: "מעבר לצנתר מרכזי",
+                mechanism: [
+                    "הזרמת נוזלים היפראוסמוטיים (בריכוז גבוה) גורמת לגירוי משמעותי של דופן כלי הדם."
+                ],
+                customHtml: null,
+                indications: [
+                    "במתן תמיסות של עד 12.5% - ניתן להשתמש בווריד פריפרי תוך מעקב צמוד.",
+                    "כאשר ההיפוגליקמיה דורשת ריכוזים של D15% או D20% חובה לעבור לצנתר ורידי מרכזי (UVC / PICC)."
+                ],
+                warning: "מתן עירוי גלוקוז בריכוז גבוה מ-12.5% דרך וריד פריפרי עלול לגרום לנמק (Necrosis) חמור של העור במקרה של דליפה או סטייה של העירוי מהווריד."
+            },
+            retest: {
+                icon: "fa-clock-rotate-left",
+                title: "הנחיות לבדיקה חוזרת (Retest)",
+                subtitle: "תזמוני ניטור סוכר לאחר התערבות",
+                mechanism: [
+                    "בדיקת סוכר דם כדי לאשר שרמת הגלוקוז חזרה לטווח הבטוח."
+                ],
+                customHtml: null,
+                indications: [
+                    "לאחר מתן בולוס ורידי: יש לבדוק סוכר כעבור 15 עד 30 דקות מקסימום.",
+                    "לאחר שינוי קצב עירוי: יש לבדוק לאחר כ-30 דקות ולוודא התייצבות."
+                ],
+                warning: "אין להמתין לארוחה הבאה או לזמן טיפול שגרתי (Care) אם בוצעה התערבות. חובה לוודא יציאה מסכנה בזמן קצר."
+            },
+            critical: {
+                icon: "fa-vial-circle-check",
+                title: "דגימה קריטית (Critical Sample)",
+                subtitle: "בירור היפוגליקמיה עקשנית",
+                mechanism: [
+                    "שאיבת דם מדויקת לבדיקת הפרופיל ההורמונלי והמטבולי *בזמן* שהגוף נמצא בסטרס של חוסר סוכר."
+                ],
+                customHtml: null,
+                indications: [
+                    "נלקחת במקרים של היפוגליקמיה עקשנית שלא מגיבה לטיפול (למשל כאשר ה-GIR מעל 15 ללא שיפור).",
+                    "כוללת בדיקות כגון: קורטיזול, אינסולין, הורמון גדילה (GH), לקטט, קטונים, TSH וחומצות שומן חופשיות (FFA)."
+                ],
+                warning: "חובה לשאוב את הדם אך ורק כאשר הסוכר נמוך (מתחת ל-40), *לפני* מתן בולוס סוכר לתיקון. אחרת הבדיקה מאבדת את ערכה האבחוני."
+            },
+            pharma: {
+                icon: "fa-pills",
+                title: "טיפול תרופתי",
+                subtitle: "דיאזוקסיד, גלוקגון והידרוקורטיזון",
+                mechanism: [
+                    "כאשר היפוגליקמיה אינה מגיבה לעירוי גלוקוז בקצב גבוה (מעל 12-15 מ\"ג גלוקוז לקילו לדקה), לרוב בשל היפראינסוליניזם או חסר הורמונלי, נשתמש בטיפול תרופתי כדי לדכא הפרשת אינסולין או לעודד שחרור סוכר ממאגרים."
+                ],
+                customHtml: null,
+                indications: [
+                    "<strong>דיאזוקסיד (Diazoxide):</strong> תרופת הבחירה להיפראינסוליניזם. מעכבת הפרשת אינסולין מהלבלב. ניתנת פומית (PO). מחייבת מעקב אחר אגירת נוזלים (לרוב תשולב עם משתן כמו כלורותיאזיד).",
+                    "<strong>גלוקגון (Glucagon):</strong> הורמון המעודד פירוק גליקוגן בכבד. יכול להינתן בבולוס כטיפול חירום אם אין גישה ורידית, או כעירוי מתמשך. פחות יעיל בפגים קטנים מאוד כי אין להם מאגרי גליקוגן.",
+                    "<strong>הידרוקורטיזון (Hydrocortisone):</strong> קורטיקוסטרואיד הניתן במצבים עמידים במיוחד. מפחית את ניצול הסוכר בפריפריה ומעודד ייצור סוכר."
+                ],
+                warning: "שימו לב: גלוקגון עובד על פירוק מאגרי גליקוגן בכבד. בפגים קטנים מאוד או פגים עם פיגור בגדילה (SGA), מאגרים אלו ריקים מלכתחילה, ולכן התרופה עשויה שלא להשפיע!"
+            }
+        };
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            
+            if(tabId !== 'types') {
+                closeDetail();
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showDetail(typeId) {
+            const data = treatmentData[typeId];
+            if (!data) return;
+
+            document.querySelectorAll('.type-card').forEach(card => card.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            let warningHtml = data.warning ? `
+                <div class="warning-box" style="grid-column: 1 / -1;">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <strong>דגש קליני וסיעודי בפגיה:</strong><br>
+                        ${data.warning}
+                    </div>
+                </div>` : '';
+                
+            let indicationsHtml = '';
+            if(data.indications.length > 0) {
+                 indicationsHtml = `
+                    <div class="info-box">
+                        <h4><i class="fa-solid fa-user-check"></i> התוויות / פעולה</h4>
+                        <ul>
+                            ${data.indications.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                 `;
+            }
+
+            const contentHtml = `
+                <div class="detail-header">
+                    <i class="fa-solid ${data.icon}"></i>
+                    <div>
+                        <h3>${data.title}</h3>
+                        <p style="color: var(--text-muted); font-size: clamp(14px, 3.5vw, 18px); margin-top: 5px;">${data.subtitle}</p>
+                    </div>
+                </div>
+                <div class="detail-body" style="${data.customHtml ? 'grid-template-columns: 1fr;' : ''}">
+                    <div class="info-box">
+                        <h4><i class="fa-solid fa-cogs"></i> מנגנון ורציונל</h4>
+                        <ul>
+                            ${data.mechanism.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ${data.customHtml ? data.customHtml : indicationsHtml}
+                    ${warningHtml}
+                </div>
+            `;
+
+            document.getElementById('detailContent').innerHTML = contentHtml;
+            document.getElementById('detailPanel').classList.add('show');
+            
+            setTimeout(() => {
+                const panel = document.getElementById('detailPanel');
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const panelPosition = panel.getBoundingClientRect().top + window.scrollY;
+                
+                window.scrollTo({
+                    top: panelPosition - headerHeight - 20, 
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+
+        function closeDetail() {
+            document.getElementById('detailPanel').classList.remove('show');
+            document.querySelectorAll('.type-card').forEach(card => card.classList.remove('active'));
+        }
+
+        function toggleIntroAccordion(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('open');
+        }
+
+        // Practice Cases Logic
+        const correctAnswers = {
+            'case1': 0, // A 
+            'case2': 1, // B (2.4ml)
+            'case3': 1, // B (Retest 15-30 min)
+            'case4': 0, // A (5.4)
+            'case5': 1, // B (10)
+            'case6': 1, // B (Increase GIR first)
+            'case7': 1, // B (71.43ml)
+            'case8': 1, // B (While hypoglycemic)
+            'case9': 0,  // A (Fluid retention)
+            'case10': 0  // A (Rebound)
+        };
+
+        const explanations = {
+            'case1': "בפגים, בניגוד ליילודים בשלים, הזנה אנטרלית לבדה לרוב <strong>אינה מספיקה</strong> עקב חוסר בשלות של המעי ומאגרי גליקוגן ריקים כמעט לחלוטין. הטיפול בפגיה נסמך בעיקר על הקליניקה של הפג, אך בערך מתחת ל-40 תמיד נתערב עם בולוס IV מהיר והתחלת עירוי למניעת נזק מוחי.",
+            'case2': "<strong>נוסחת הבולוס:</strong> 2 מ\"ל כפול משקל היילוד בק\"ג. <br>חישוב: 1.2 × 2 = <strong>2.4 מ\"ל.</strong><br>זכרו תמיד לתת בדחיפה איטית.",
+            'case3': "על פי הפרוטוקול, לאחר מתן התערבות תוך ורידית, חובה לבצע בדיקת סוכר חוזרת בטווח של <strong>15 עד 30 דקות</strong> כדי לוודא שרמת הגלוקוז עלתה לרמה בטוחה ויצאנו מסכנה מיידית.",
+            'case4': "<strong>נוסחת קצב משאבה (למ\"ל/שעה):</strong><br><code>(הקצב × משקל × 6) ÷ ריכוז הדקסטרוז</code>.<br>חישוב: (6 × 1.5 × 6) ÷ 10 = 54 ÷ 10 = <strong>5.4 מ\"ל/שעה</strong>.",
+            'case5': "<strong>נוסחת GIR (ממ\"ל/שעה ל-GIR):</strong><br><code>(קצב מ\"ל/שעה × ריכוז הדקסטרוז) ÷ (משקל × 6)</code>.<br>חישוב: (12 × 10) ÷ (2 × 6) = 120 ÷ 12 = <strong>10 מ\"ג גלוקוז לקילו לדקה</strong>.",
+            'case6': "היררכיית הטיפול מחייבת קודם כל העלאה של <strong>הקצב</strong> (עד 12-16 מ\"ג גלוקוז לקילו לדקה). רק לאחר מכן, וכאשר הפג מתקרב למגבלת הנפח היומית שלו, נעבור לתמיסות מרוכזות יותר.",
+            'case7': "<strong>הסבר לפי שיטת השמש (ערך משולש) למטרה של D15%:</strong><br>1. מחסרים באלכסון: 50 פחות 15 = 35 מ\"ל (היחס של ה-D10%).<br>2. מחסרים 10 פחות 15 (בערך מוחלט) = 5 מ\"ל (היחס של ה-D50%).<br>כעת מבצעים ערך משולש כדי להתאים לשקית של 500 מ\"ל מה-D10%:<br>(5 כפול 500) לחלק ל-35 = <strong>71.43 מ\"ל</strong>. יש לשאוב 71.43 מ\"ל מה-D50% ולהוסיף לשקית.",
+            'case8': "דגימה קריטית (Critical Sample) נועדה לחשוף את הפרופיל ההורמונלי והמטבולי שהוביל למשבר. חובה לשאוב אותה <strong>בזמן האירוע עצמו (סוכר < 40)</strong>. אם ניתן סוכר ונתקן את המצב, הבדיקה מאבדת את ערכה לחלוטין.",
+            'case9': "<strong>דיאזוקסיד (Diazoxide)</strong> מעכב הפרשת אינסולין מהלבלב ונחשב קו ראשון בהיפראינסוליניזם. תופעת הלוואי העיקרית שלו היא <strong>צבירת נוזלים</strong> (אגירת נתרן ומים ע\"י הכליות), שעלולה להוביל לאי ספיקת לב ולבצקות. לכן לרוב משלבים אותו עם תרופה משתנת (למשל, כלורותיאזיד).",
+            'case10': "היפוגליקמיה תגובתית (Rebound Hypoglycemia): כאשר פג מקבל הזלפת סוכר גבוהה, הלבלב שלו מפריש כמויות גדולות של אינסולין. כאשר העירוי נעצר בפתאומיות, האינסולין עדיין גבוה מאוד בדם, מה שגורם לצניחה מהירה ומסוכנת של רמת הסוכר."
+        };
+
+        function toggleCase(caseId) {
+            const caseEl = document.getElementById(caseId);
+            const isOpen = caseEl.classList.contains('open');
+            
+            document.querySelectorAll('.case-card').forEach(c => c.classList.remove('open'));
+            
+            if (!isOpen) {
+                caseEl.classList.add('open');
+                
+                setTimeout(() => {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const elementPosition = caseEl.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({
+                        top: elementPosition - headerHeight - 10,
+                        behavior: 'smooth'
+                    });
+                }, 350); 
+            }
+        }
+
+        function checkAnswer(caseId, selectedIndex, btnElement) {
+            const correctIndex = correctAnswers[caseId];
+            const feedbackArea = document.getElementById(`feedback-${caseId}`);
+            
+            const optionsContainer = document.getElementById(`options-${caseId}`);
+            const buttons = optionsContainer.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected-correct', 'selected-wrong');
+                btn.disabled = true;
+            });
+
+            if (selectedIndex === correctIndex) {
+                btnElement.classList.add('selected-correct');
+                feedbackArea.className = 'feedback-area show success';
+                feedbackArea.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong style="font-size: 18px;">תשובה נכונה!</strong><br><br><strong>הסבר מקצועי:</strong><br>${explanations[caseId]}`;
+            } else {
+                btnElement.classList.add('selected-wrong');
+                buttons[correctIndex].classList.add('selected-correct');
+                feedbackArea.className = 'feedback-area show error';
+                feedbackArea.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <strong style="font-size: 18px;">תשובה שגויה. התשובה הנכונה הודגשה בירוק.</strong><br><br><strong>הסבר מקצועי:</strong><br>${explanations[caseId]}`;
+            }
+            
+            setTimeout(() => {
+                 feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
