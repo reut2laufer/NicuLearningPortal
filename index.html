@@ -231,65 +231,17 @@
 
         .hero-text h2 {
             color: white;
-            font-size: clamp(28px, 5.5vw, 50px);
+            font-size: clamp(32px, 6.5vw, 54px);
             font-weight: 900;
             line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .hero-text h2 .hl {
-            color: var(--cyan-light);
+            margin-bottom: 20px;
         }
 
         .hero-text p {
-            font-size: clamp(16px, 3.5vw, 21px);
+            font-size: clamp(15px, 3.4vw, 19px);
             opacity: 0.95;
-            margin-bottom: 30px;
-            max-width: 560px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            font-family: 'Heebo', sans-serif;
-            font-weight: 700;
-            font-size: clamp(15px, 3vw, 18px);
-            padding: 13px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            cursor: pointer;
-        }
-
-        .btn-light {
-            background: white;
-            color: var(--navy);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
-        .btn-light:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-        }
-
-        .btn-outline {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-color: rgba(255,255,255,0.55);
-            backdrop-filter: blur(4px);
-        }
-
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-3px);
+            margin-bottom: 14px;
+            max-width: 580px;
         }
 
         .hero-figure {
@@ -297,27 +249,17 @@
             justify-content: center;
         }
 
-        .feet-circle {
-            width: clamp(170px, 24vw, 260px);
-            height: clamp(170px, 24vw, 260px);
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            border: 2px solid rgba(255,255,255,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .hero-illustration {
+            width: clamp(250px, 36vw, 470px);
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
             animation: floaty 5s ease-in-out infinite;
-            backdrop-filter: blur(3px);
         }
 
         @keyframes floaty {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
-        }
-
-        .feet-circle svg {
-            width: 58%;
-            height: 58%;
         }
 
         /* Feature cards overlapping hero */
@@ -446,44 +388,10 @@
             z-index: 1;
         }
 
-        /* Welcome Section */
-        .welcome-card {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto 20px;
-        }
-
-        .welcome-icon {
-            width: clamp(64px, 12vw, 82px);
-            height: clamp(64px, 12vw, 82px);
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--blue), var(--cyan));
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(26px, 5vw, 36px);
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
-        }
-
-        .welcome-card h2 {
-            font-size: clamp(30px, 6.5vw, 44px);
-            font-weight: 900;
-            margin-bottom: 20px;
-            color: var(--navy);
-        }
-
-        .welcome-card p {
-            font-size: clamp(17px, 3.6vw, 20px);
-            margin: 0 auto 16px;
-            max-width: 800px;
-        }
-
         /* Modules Section - hidden until requested */
         #modules {
             display: none;
-            padding-top: 45px;
+            padding-top: 10px;
         }
 
         #modules.show {
@@ -765,37 +673,13 @@
     <section class="hero" id="top">
         <div class="hero-inner">
             <div class="hero-text">
-                <h2><span class="hl">מרכז הלמידה</span> - הבית המקצועי שלך ב-NICU</h2>
-                <p>מרכז למידה מתקדם, פיתוח מקצועי ועדכונים לאחיות טיפול נמרץ ילודים.</p>
-                <div class="hero-actions">
-                    <a class="btn btn-light" href="#modules" onclick="showModules(event)">
-                        <i class="fa-solid fa-book-open"></i>
-                        הצטרפי אלינו והתחילי ללמוד
-                    </a>
-                    <a class="btn btn-outline" href="#welcome">
-                        ברוכות הבאות
-                    </a>
-                </div>
+                <h2>ברוכות הבאות!</h2>
+                <p>האתר נבנה במיוחד עבור צוות אחיות הפגייה, מתוך רצון להנגיש ידע מקצועי, לרענן מיומנויות ולתמוך בלמידה מתמשכת.</p>
+                <p>כאן תוכלו למצוא לומדות, סרטוני הדרכה, נהלים, מבחני ידע וחומרי עזר במגוון נושאים הקשורים לטיפול בפגים וביילודים.</p>
+                <p>אנו מאמינים שלמידה היא חלק בלתי נפרד מהעשייה היומיומית, ושכל ידע חדש מחזק את הביטחון המקצועי ומשפר את איכות הטיפול שאנו מעניקות לפגים ולבני משפחותיהם.</p>
             </div>
             <div class="hero-figure">
-                <div class="feet-circle">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="white" opacity="0.92">
-                        <g transform="rotate(-12 22 40)">
-                            <ellipse cx="22" cy="42" rx="9" ry="13"/>
-                            <circle cx="12.5" cy="28" r="3.4"/>
-                            <circle cx="19" cy="25" r="3"/>
-                            <circle cx="25" cy="25.5" r="2.7"/>
-                            <circle cx="30" cy="28.5" r="2.4"/>
-                        </g>
-                        <g transform="rotate(12 44 34)">
-                            <ellipse cx="44" cy="34" rx="9" ry="13"/>
-                            <circle cx="34.5" cy="20" r="3.4"/>
-                            <circle cx="41" cy="17" r="3"/>
-                            <circle cx="47" cy="17.5" r="2.7"/>
-                            <circle cx="52" cy="20.5" r="2.4"/>
-                        </g>
-                    </svg>
-                </div>
+                <img class="hero-illustration" src="nicu_illustration.svg" alt="אחות מטפלת בפג באינקובטור">
             </div>
         </div>
     </section>
@@ -823,17 +707,6 @@
     </section>
 
     <main class="app-container">
-
-        <!-- Welcome -->
-        <section class="welcome-card" id="welcome">
-            <div class="welcome-icon">
-                <i class="fa-solid fa-hand-holding-heart"></i>
-            </div>
-            <h2>ברוכות הבאות!</h2>
-            <p>האתר נבנה במיוחד עבור צוות אחיות הפגייה, מתוך רצון להנגיש ידע מקצועי, לרענן מיומנויות ולתמוך בלמידה מתמשכת.</p>
-            <p>כאן תוכלו למצוא לומדות, סרטוני הדרכה, נהלים, מבחני ידע וחומרי עזר במגוון נושאים הקשורים לטיפול בפגים וביילודים.</p>
-            <p>אנו מאמינים שלמידה היא חלק בלתי נפרד מהעשייה היומיומית, ושכל ידע חדש מחזק את הביטחון המקצועי ומשפר את איכות הטיפול שאנו מעניקות לפגים ולבני משפחותיהם.</p>
-        </section>
 
         <!-- Modules -->
         <section id="modules">
