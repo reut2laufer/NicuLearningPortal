@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>מרכז הלמידה של אחיות הפגייה - הדסה הר הצופים</title>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #0f766e;
-            --primary-dark: #115e59;
             --secondary-color: #14b8a6;
-            --accent-light: #5eead4;
             --success-color: #10b981;
             --danger-color: #ef4444;
-            --warm-accent: #a855f7;
             --bg-light: #f0fdfa;
             --card-bg: #ffffff;
             --text-main: #0f172a;
@@ -98,256 +95,43 @@
             white-space: nowrap;
         }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            background: linear-gradient(140deg, var(--primary-dark) 0%, var(--primary-color) 45%, var(--secondary-color) 100%);
-            color: white;
-            text-align: center;
-            padding: clamp(60px, 10vw, 110px) 20px clamp(80px, 12vw, 130px);
-            overflow: hidden;
-        }
-
-        .hero::before, .hero::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.35;
-            pointer-events: none;
-        }
-
-        .hero::before {
-            width: 380px;
-            height: 380px;
-            background: var(--accent-light);
-            top: -120px;
-            left: -100px;
-        }
-
-        .hero::after {
-            width: 320px;
-            height: 320px;
-            background: #c084fc;
-            bottom: -140px;
-            right: -80px;
-        }
-
-        .hero-inner {
-            position: relative;
-            z-index: 2;
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        .hero-icon {
-            font-size: clamp(38px, 7vw, 56px);
-            margin-bottom: 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(80px, 14vw, 110px);
-            height: clamp(80px, 14vw, 110px);
-            background: rgba(255,255,255,0.15);
-            border-radius: 50%;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            animation: floatIcon 4s ease-in-out infinite;
-        }
-
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .hero h2 {
-            color: white;
-            font-size: clamp(26px, 5.5vw, 48px);
-            font-weight: 900;
-            line-height: 1.25;
-            margin-bottom: 18px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
-
-        .hero p {
-            font-size: clamp(16px, 3.5vw, 22px);
-            opacity: 0.95;
-            max-width: 650px;
-            margin: 0 auto 35px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            font-family: 'Heebo', sans-serif;
-            font-weight: 700;
-            font-size: clamp(15px, 3vw, 18px);
-            padding: 14px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary-dark);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-        }
-
-        .btn-ghost {
-            background: rgba(255,255,255,0.12);
-            color: white;
-            border-color: rgba(255,255,255,0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        .btn-ghost:hover {
-            background: rgba(255,255,255,0.22);
-            transform: translateY(-3px);
-        }
-
-        /* Values Strip */
-        .values-strip {
-            max-width: 900px;
-            margin: -55px auto 0;
-            position: relative;
-            z-index: 5;
-            background: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(15, 118, 110, 0.15);
-            border: 1px solid #ccfbf1;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            padding: 25px 15px;
-            gap: 10px;
-            text-align: center;
-        }
-
-        .value-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 5px 10px;
-        }
-
-        .value-item:not(:last-child) {
-            border-left: 1px solid #e2e8f0;
-        }
-
-        .value-item i {
-            font-size: clamp(22px, 4vw, 30px);
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .value-item .value-title {
-            font-family: 'Heebo', sans-serif;
-            font-weight: 800;
-            font-size: clamp(15px, 3.5vw, 20px);
-        }
-
-        .values-caption {
-            grid-column: 1 / -1;
-            color: var(--text-muted);
-            font-size: clamp(13px, 3vw, 16px);
-            margin-top: 8px;
-            padding-top: 12px;
-            border-top: 1px dashed #e2e8f0;
-        }
-
         /* Main Container */
         .app-container {
             flex: 1;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 50px 15px 30px;
+            padding: 40px 15px 30px;
             width: 100%;
-        }
-
-        /* Section headings */
-        .section-head {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section-head h2 {
-            font-size: clamp(22px, 4.5vw, 34px);
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .section-head .head-line {
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            margin: 10px auto 12px;
-            border-radius: 2px;
-        }
-
-        .section-head p {
-            color: var(--text-muted);
-            font-size: clamp(14px, 3vw, 18px);
-            max-width: 620px;
-            margin: 0 auto;
         }
 
         /* Welcome Section */
         .welcome-card {
             background: var(--card-bg);
-            border-radius: 24px;
+            border-radius: 20px;
             border: 1px solid #ccfbf1;
-            box-shadow: 0 10px 30px rgba(15, 118, 110, 0.07);
+            box-shadow: 0 8px 25px rgba(15, 118, 110, 0.07);
             padding: clamp(25px, 5vw, 45px);
-            margin-bottom: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .welcome-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), #c084fc);
+            margin-bottom: 45px;
         }
 
         .welcome-card h2 {
             font-size: clamp(24px, 5vw, 34px);
             font-weight: 800;
             margin-bottom: 18px;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
         .welcome-card h2 i {
-            color: var(--warm-accent);
-            font-size: 0.9em;
+            font-size: 0.85em;
+            color: var(--secondary-color);
         }
 
         .welcome-card p {
-            font-size: clamp(15px, 3.2vw, 19px);
-            color: var(--text-main);
-            margin-bottom: 15px;
+            font-size: clamp(15px, 3.2vw, 18px);
+            margin-bottom: 14px;
             max-width: 900px;
         }
 
@@ -355,22 +139,49 @@
             margin-bottom: 0;
         }
 
+        /* Section headings */
+        .section-head {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(22px, 4.5vw, 30px);
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .section-head .head-line {
+            width: 55px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 8px auto 10px;
+            border-radius: 2px;
+        }
+
+        .section-head p {
+            color: var(--text-muted);
+            font-size: clamp(14px, 3vw, 17px);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         /* Quick Access Tiles */
         .quick-section {
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .quick-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
         }
 
         .quick-tile {
             background: var(--card-bg);
             border: 1px solid #e2e8f0;
             border-radius: 18px;
-            padding: 24px 15px;
+            padding: 28px 18px;
             text-align: center;
             text-decoration: none;
             color: var(--text-main);
@@ -390,30 +201,27 @@
         }
 
         .quick-icon {
-            width: 58px;
-            height: 58px;
+            width: 62px;
+            height: 62px;
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 26px;
             color: white;
         }
 
-        .qi-teal   { background: linear-gradient(135deg, #0f766e, #14b8a6); }
-        .qi-purple { background: linear-gradient(135deg, #7c3aed, #a855f7); }
-        .qi-amber  { background: linear-gradient(135deg, #d97706, #fbbf24); }
-        .qi-sky    { background: linear-gradient(135deg, #0284c7, #38bdf8); }
-        .qi-rose   { background: linear-gradient(135deg, #be123c, #fb7185); }
-        .qi-emerald{ background: linear-gradient(135deg, #047857, #34d399); }
+        .qi-teal  { background: linear-gradient(135deg, #0f766e, #14b8a6); }
+        .qi-sky   { background: linear-gradient(135deg, #0284c7, #38bdf8); }
+        .qi-amber { background: linear-gradient(135deg, #d97706, #fbbf24); }
 
         .quick-tile h3 {
-            font-size: clamp(15px, 3vw, 18px);
+            font-size: clamp(16px, 3.2vw, 20px);
             font-weight: 700;
         }
 
         .quick-tile span {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--text-muted);
         }
 
@@ -444,7 +252,7 @@
 
         .module-card {
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 18px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             overflow: hidden;
             text-decoration: none;
@@ -554,18 +362,18 @@
 
         /* Footer */
         footer {
-            margin-top: 60px;
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            margin-top: 50px;
+            background: linear-gradient(135deg, #115e59, var(--primary-color));
             color: white;
             text-align: center;
-            padding: 40px 20px 30px;
+            padding: 32px 20px 26px;
         }
 
         .footer-slogan {
             font-family: 'Heebo', sans-serif;
-            font-size: clamp(18px, 4vw, 26px);
+            font-size: clamp(17px, 4vw, 24px);
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .footer-copy {
@@ -573,20 +381,9 @@
             opacity: 0.85;
         }
 
-        @media (max-width: 560px) {
-            .values-strip {
-                grid-template-columns: 1fr;
-                margin: -45px 15px 0;
-            }
-
-            .value-item:not(:last-child) {
-                border-left: none;
-                border-bottom: 1px solid #e2e8f0;
-                padding-bottom: 12px;
-            }
-
+        @media (max-width: 480px) {
             .app-container {
-                padding: 35px 12px 20px;
+                padding: 25px 12px 20px;
             }
 
             .modules-grid {
@@ -615,49 +412,11 @@
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-icon">
-                <i class="fa-solid fa-hand-holding-heart"></i>
-            </div>
-            <h2>כל פג קטן. כל רגע משמעותי.<br>כל למידה עושה הבדל.</h2>
-            <p>מרכז הלמידה של אחיות הפגייה – מקום אחד לכל הידע, ההכשרות וההתפתחות המקצועית.</p>
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="#modules">
-                    <i class="fa-solid fa-book-open"></i>
-                    התחלת הלמידה
-                </a>
-                <a class="btn btn-ghost" href="withdraw_nicu.html">
-                    <i class="fa-solid fa-star"></i>
-                    הלומדה החדשה
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Values Strip -->
-    <div class="values-strip">
-        <div class="value-item">
-            <i class="fa-solid fa-book-medical"></i>
-            <span class="value-title">ידע</span>
-        </div>
-        <div class="value-item">
-            <i class="fa-solid fa-award"></i>
-            <span class="value-title">מקצועיות</span>
-        </div>
-        <div class="value-item">
-            <i class="fa-solid fa-heart"></i>
-            <span class="value-title">רגישות</span>
-        </div>
-        <div class="values-caption">שלושת היסודות של הטיפול בפגים</div>
-    </div>
-
     <main class="app-container">
 
         <!-- Welcome -->
         <section class="welcome-card">
-            <h2><i class="fa-solid fa-hands-holding-child"></i> ברוכות הבאות!</h2>
+            <h2><i class="fa-solid fa-hand-holding-heart"></i> ברוכות הבאות!</h2>
             <p>האתר נבנה במיוחד עבור צוות אחיות הפגייה, מתוך רצון להנגיש ידע מקצועי, לרענן מיומנויות ולתמוך בלמידה מתמשכת.</p>
             <p>כאן תוכלו למצוא לומדות, סרטוני הדרכה, נהלים, מבחני ידע וחומרי עזר במגוון נושאים הקשורים לטיפול בפגים וביילודים.</p>
             <p>אנו מאמינים שלמידה היא חלק בלתי נפרד מהעשייה היומיומית, ושכל ידע חדש מחזק את הביטחון המקצועי ומשפר את איכות הטיפול שאנו מעניקות לפגים ולבני משפחותיהם.</p>
@@ -665,25 +424,11 @@
 
         <!-- Quick Access -->
         <section class="quick-section">
-            <div class="section-head">
-                <h2>מה תמצאו כאן?</h2>
-                <div class="head-line"></div>
-            </div>
             <div class="quick-grid">
                 <a class="quick-tile" href="#modules">
                     <div class="quick-icon qi-teal"><i class="fa-solid fa-book-open-reader"></i></div>
-                    <h3>התחלת הלמידה</h3>
+                    <h3>לומדות</h3>
                     <span>כל הלומדות שלנו</span>
-                </a>
-                <a class="quick-tile" href="#modules">
-                    <div class="quick-icon qi-purple"><i class="fa-solid fa-clipboard-question"></i></div>
-                    <h3>מבחני ידע</h3>
-                    <span>שאלות תרגול בכל לומדה</span>
-                </a>
-                <a class="quick-tile" href="withdraw_nicu.html">
-                    <div class="quick-icon qi-rose"><i class="fa-solid fa-star"></i></div>
-                    <h3>לומדות חדשות</h3>
-                    <span>תסמונת גמילה (NAS)</span>
                 </a>
                 <div class="quick-tile soon">
                     <span class="soon-badge">בקרוב</span>
@@ -695,12 +440,6 @@
                     <span class="soon-badge">בקרוב</span>
                     <div class="quick-icon qi-amber"><i class="fa-solid fa-file-lines"></i></div>
                     <h3>נהלים ועדכונים</h3>
-                    <span>בהכנה</span>
-                </div>
-                <div class="quick-tile soon">
-                    <span class="soon-badge">בקרוב</span>
-                    <div class="quick-icon qi-emerald"><i class="fa-solid fa-user-nurse"></i></div>
-                    <h3>פינת הטיפ הקליני</h3>
                     <span>בהכנה</span>
                 </div>
             </div>
