@@ -795,7 +795,7 @@
         // If a real photo (hero_photo.jpg / hero_photo.png) exists in the repo,
         // use it in the hero instead of the illustration.
         (function () {
-            const candidates = ['hero_photo.jpg', 'hero_photo.png'];
+            const candidates = ['hero_photo.jpg', 'hero_photo.jpeg', 'hero_photo.png'];
             const heroImg = document.getElementById('heroImg');
             function tryNext(i) {
                 if (i >= candidates.length) return;
