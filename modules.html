@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הלומדות שלנו - מרכז הלמידה של אחיות הפגייה</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0c4a6e;
+            --navy-deep: #082f49;
+            --blue: #0284c7;
+            --cyan: #06b6d4;
+            --bg-soft: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Heebo', sans-serif;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(12, 74, 110, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--navy);
+        }
+
+        .brand-logo {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(6, 182, 212, 0.35);
+        }
+
+        .brand-logo svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .brand-text .brand-name {
+            font-family: 'Heebo', sans-serif;
+            font-weight: 900;
+            font-size: clamp(15px, 3.5vw, 19px);
+            line-height: 1.15;
+        }
+
+        .brand-text .brand-sub {
+            font-size: clamp(11px, 2.5vw, 13px);
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            max-width: 100%;
+        }
+
+        .nav-links::-webkit-scrollbar { display: none; }
+
+        .nav-links a {
+            font-family: 'Heebo', sans-serif;
+            font-weight: 600;
+            font-size: clamp(14px, 3vw, 16px);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            background: var(--bg-soft);
+            color: var(--blue);
+        }
+
+        .nav-links a.active {
+            background: var(--blue);
+            color: white;
+        }
+
+        /* Page head */
+        .page-head {
+            background: linear-gradient(135deg, var(--navy-deep), var(--blue));
+            color: white;
+            padding: clamp(35px, 6vw, 60px) 20px;
+        }
+
+        .page-head-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .page-head h1 {
+            color: white;
+            font-size: clamp(26px, 5.5vw, 42px);
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .page-head p {
+            font-size: clamp(14px, 3.2vw, 18px);
+            opacity: 0.92;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.55);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 700;
+            font-size: clamp(14px, 3vw, 16px);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.28);
+            transform: translateY(-2px);
+        }
+
+        /* Modules grid */
+        .app-container {
+            flex: 1;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 15px 30px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+            gap: 25px;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .module-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .module-card:active {
+            transform: translateY(-2px);
+        }
+
+        .new-ribbon {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: white;
+            color: #0e7490;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 3px 12px;
+            border-radius: 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            z-index: 3;
+        }
+
+        .card-banner {
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .card-banner i {
+            font-size: 52px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+
+        /* Module card palettes - blue family, matching each page */
+        .card-hypo .card-banner {
+            background: linear-gradient(135deg, #0c4a6e, #0369a1);
+        }
+
+        .card-vent .card-banner {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+        }
+
+        .card-nasal .card-banner {
+            background: linear-gradient(135deg, #0284c7, #38bdf8);
+        }
+
+        .card-withdraw .card-banner {
+            background: linear-gradient(135deg, #0e7490, #06b6d4);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-body h3 {
+            font-size: clamp(18px, 3.5vw, 22px);
+            font-weight: 800;
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: clamp(14px, 3vw, 16px);
+            flex: 1;
+        }
+
+        .card-cta {
+            margin-top: 12px;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(14px, 3vw, 16px);
+        }
+
+        .card-hypo .card-cta { color: #0369a1; }
+        .card-vent .card-cta { color: #1d4ed8; }
+        .card-nasal .card-cta { color: #0284c7; }
+        .card-withdraw .card-cta { color: #0e7490; }
+
+        .module-card:hover .card-cta i {
+            transform: translateX(-5px);
+        }
+
+        .card-cta i {
+            transition: var(--transition);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+            color: white;
+            text-align: center;
+            padding: 30px 20px 24px;
+        }
+
+        .footer-slogan {
+            font-family: 'Heebo', sans-serif;
+            font-size: clamp(16px, 4vw, 22px);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .footer-copy {
+            font-size: clamp(12px, 2.5vw, 14px);
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a class="brand" href="index.html">
+            <span class="brand-logo">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="white">
+                    <g transform="rotate(-12 22 40)">
+                        <ellipse cx="22" cy="42" rx="9" ry="13"/>
+                        <circle cx="12.5" cy="28" r="3.4"/>
+                        <circle cx="19" cy="25" r="3"/>
+                        <circle cx="25" cy="25.5" r="2.7"/>
+                        <circle cx="30" cy="28.5" r="2.4"/>
+                    </g>
+                    <g transform="rotate(12 44 34)">
+                        <ellipse cx="44" cy="34" rx="9" ry="13"/>
+                        <circle cx="34.5" cy="20" r="3.4"/>
+                        <circle cx="41" cy="17" r="3"/>
+                        <circle cx="47" cy="17.5" r="2.7"/>
+                        <circle cx="52" cy="20.5" r="2.4"/>
+                    </g>
+                </svg>
+            </span>
+            <span class="brand-text">
+                <span class="brand-name">מרכז הלמידה של אחיות הפגייה</span><br>
+                <span class="brand-sub">פגיית הדסה הר הצופים</span>
+            </span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">ראשי</a>
+            <a href="modules.html" class="active">לומדות</a>
+            <a href="index.html#features">סרטוני הדרכה</a>
+            <a href="index.html#features">נהלים ועדכונים</a>
+        </div>
+    </nav>
+
+    <!-- Page Head -->
+    <section class="page-head">
+        <div class="page-head-inner">
+            <div>
+                <h1>הלומדות שלנו</h1>
+                <p>בחרי לומדה מהרשימה כדי להתחיל ללמוד. כל לומדה כוללת תוכן מקצועי, תרגול ובוחן ידע.</p>
+            </div>
+            <a class="back-btn" href="index.html">
+                <i class="fa-solid fa-arrow-right"></i>
+                חזרה לדף הבית
+            </a>
+        </div>
+    </section>
+
+    <!-- Modules -->
+    <main class="app-container">
+        <div class="modules-grid">
+            <a class="module-card card-hypo" href="hypoglicemia.html">
+                <div class="card-banner">
+                    <i class="fa-solid fa-droplet"></i>
+                </div>
+                <div class="card-body">
+                    <h3>היפוגליקמיה בפגים</h3>
+                    <p>זיהוי, ניטור וטיפול בהיפוגליקמיה ביילוד ובפג - ערכי סוכר, גורמי סיכון ופרוטוקול טיפול.</p>
+                    <span class="card-cta">
+                        כניסה ללומדה
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="module-card card-vent" href="mechnicalvent.html">
+                <div class="card-banner">
+                    <i class="fa-solid fa-lungs"></i>
+                </div>
+                <div class="card-body">
+                    <h3>הנשמה פולשנית בפגים</h3>
+                    <p>עקרונות ההנשמה המכנית הפולשנית - מצבי הנשמה, פרמטרים, טיפול בחולה המונשם וגמילה.</p>
+                    <span class="card-cta">
+                        כניסה ללומדה
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="module-card card-nasal" href="nasal_ventilationnicu.html">
+                <div class="card-banner">
+                    <i class="fa-solid fa-wind"></i>
+                </div>
+                <div class="card-body">
+                    <h3>הנשמה נזאלית בפגים</h3>
+                    <p>תמיכה נשימתית לא פולשנית - CPAP, NIPPV והיי-פלואו, התוויות, טיפול ומעקב.</p>
+                    <span class="card-cta">
+                        כניסה ללומדה
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="module-card card-withdraw" href="withdraw_nicu.html">
+                <span class="new-ribbon">חדש</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-baby"></i>
+                </div>
+                <div class="card-body">
+                    <h3>תסמונת גמילה ביילוד (NAS)</h3>
+                    <p>זיהוי וטיפול בתסמונת גמילה ביילוד - סרגל פינגן, טיפול תומך ותרופתי ופרוטוקול מתאדון.</p>
+                    <span class="card-cta">
+                        כניסה ללומדה
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-slogan">לומדות היום. מטפלות טוב יותר מחר. 💜</div>
+        <div class="footer-copy">© פגיית הדסה הר הצופים · רעות לאופר כהן BSN</div>
+    </footer>
+</body>
+</html>

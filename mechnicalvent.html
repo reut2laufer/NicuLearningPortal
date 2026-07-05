@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #6d28d9; /* Deep Purple */
-            --secondary-color: #8b5cf6; /* Light Purple */
-            --accent-color: #d946ef; /* Fuchsia / Magenta */
+            --primary-color: #1d4ed8; /* Deep Purple */
+            --secondary-color: #3b82f6; /* Light Purple */
+            --accent-color: #0ea5e9; /* Fuchsia / Magenta */
             --success-color: #10b981;
             --danger-color: #ef4444;
-            --bg-light: #faf5ff; /* Very light purple background */
+            --bg-light: #eff6ff; /* Very light purple background */
             --card-bg: #ffffff;
-            --text-main: #2e1065; /* Very dark purple text */
-            --text-muted: #5b21b6;
-            --border-color: #e9d5ff; /* Light purple border */
+            --text-main: #172554; /* Very dark purple text */
+            --text-muted: #1e40af;
+            --border-color: #bfdbfe; /* Light purple border */
             --transition: all 0.3s ease;
         }
 
@@ -46,7 +46,7 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(109, 40, 217, 0.15);
+            box-shadow: 0 4px 15px rgba(29, 78, 216, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -97,7 +97,7 @@
             background: var(--card-bg);
             padding: 10px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(109, 40, 217, 0.05);
+            box-shadow: 0 4px 6px rgba(29, 78, 216, 0.05);
             overflow-x: auto;
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
@@ -131,7 +131,7 @@
         .tab-btn.active {
             background: var(--primary-color);
             color: white;
-            box-shadow: 0 4px 10px rgba(109, 40, 217, 0.3);
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
         }
 
         /* Content Sections */
@@ -144,8 +144,8 @@
         }
         
         @keyframes breathe {
-            0%, 100% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 5px rgba(109, 40, 217, 0.3)); }
-            50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 15px rgba(109, 40, 217, 0.6)); }
+            0%, 100% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 5px rgba(29, 78, 216, 0.3)); }
+            50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 15px rgba(29, 78, 216, 0.6)); }
         }
         
         .animate-breathe {
@@ -170,7 +170,7 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 40px 30px;
-            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.08);
+            box-shadow: 0 10px 25px rgba(29, 78, 216, 0.08);
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
@@ -205,9 +205,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #f3e8ff, #d8b4fe);
+            background: linear-gradient(135deg, #dbeafe, #93c5fd);
             border-radius: 50%;
-            box-shadow: 0 15px 35px rgba(109, 40, 217, 0.15);
+            box-shadow: 0 15px 35px rgba(29, 78, 216, 0.15);
             margin: 0 auto;
         }
 
@@ -217,7 +217,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 3px solid #c084fc;
+            border: 3px solid #60a5fa;
             animation: pulse 2.5s infinite ease-out;
         }
 
@@ -257,7 +257,7 @@
             background: var(--card-bg);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(109, 40, 217, 0.05);
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.05);
             cursor: pointer;
             transition: var(--transition);
             border: 1px solid var(--border-color);
@@ -268,7 +268,7 @@
 
         .term-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(109, 40, 217, 0.12);
+            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.12);
             border-color: var(--secondary-color);
         }
 
@@ -323,7 +323,7 @@
             background: var(--card-bg);
             border-radius: 16px;
             padding: 25px;
-            box-shadow: 0 6px 15px rgba(109, 40, 217, 0.08);
+            box-shadow: 0 6px 15px rgba(29, 78, 216, 0.08);
             border-top: 5px solid var(--primary-color);
         }
 
@@ -373,7 +373,7 @@
             background: var(--card-bg);
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 6px 15px rgba(109, 40, 217, 0.08);
+            box-shadow: 0 6px 15px rgba(29, 78, 216, 0.08);
             border-top: 6px solid;
             display: flex;
             flex-direction: column;
@@ -432,7 +432,7 @@
             border-radius: 12px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(109, 40, 217, 0.05);
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.05);
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
@@ -441,7 +441,7 @@
         .mode-card:hover, .mode-card.active {
             transform: translateY(-5px);
             border-color: var(--primary-color);
-            box-shadow: 0 10px 20px rgba(109, 40, 217, 0.15);
+            box-shadow: 0 10px 20px rgba(29, 78, 216, 0.15);
         }
 
         .mode-icon {
@@ -457,7 +457,7 @@
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(109, 40, 217, 0.1);
+            box-shadow: 0 10px 30px rgba(29, 78, 216, 0.1);
             display: none;
             border-right: 5px solid var(--primary-color);
             animation: slideDown 0.4s ease;
@@ -496,7 +496,7 @@
         .case-wrap {
             background: var(--card-bg);
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(109, 40, 217, 0.05);
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.05);
             border: 1px solid var(--border-color);
             overflow: hidden;
         }
@@ -511,7 +511,7 @@
             transition: var(--transition);
         }
 
-        .case-header:hover { background: #f3e8ff; }
+        .case-header:hover { background: #dbeafe; }
         
         .case-title {
             display: flex;
@@ -604,7 +604,7 @@
 
         .option-btn:hover:not(:disabled) {
             border-color: var(--primary-color);
-            background: #f3e8ff;
+            background: #dbeafe;
         }
 
         .option-btn.selected-correct {
@@ -654,12 +654,12 @@
             align-items: center;
             gap: 10px;
             transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(109, 40, 217, 0.3);
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
         }
 
         .next-tab-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(109, 40, 217, 0.4);
+            box-shadow: 0 6px 15px rgba(29, 78, 216, 0.4);
             background: var(--secondary-color);
         }
 
@@ -876,7 +876,7 @@
                             <text x="-5" y="55" font-size="8" fill="#64748b" font-weight="bold" transform="rotate(-90 -5,55)">נפח (Volume)</text>
                             
                             <!-- Beaking Path -->
-                            <path d="M 10 90 C 20 50, 40 20, 70 15 L 90 15 L 70 25 C 50 50, 30 70, 10 90 Z" fill="rgba(139, 92, 246, 0.2)" stroke="var(--primary-color)" stroke-width="2" />
+                            <path d="M 10 90 C 20 50, 40 20, 70 15 L 90 15 L 70 25 C 50 50, 30 70, 10 90 Z" fill="rgba(59, 130, 246, 0.2)" stroke="var(--primary-color)" stroke-width="2" />
                             
                             <!-- Arrow pointing to beak -->
                             <text x="180" y="45" font-size="8" fill="#ef4444">צורת "מקור"</text>
@@ -938,7 +938,7 @@
                             <path d="M 10 50 C 15 10, 85 10, 90 50 C 85 90, 15 90, 10 50 Z" fill="none" stroke="var(--success-color)" stroke-width="1.5" stroke-dasharray="2,2" />
                             
                             <!-- Obstruction / Scooped out -->
-                            <path d="M 10 50 C 15 10, 85 10, 90 50 C 70 60, 40 60, 10 50 Z" fill="rgba(217, 70, 239, 0.2)" stroke="var(--accent-color)" stroke-width="2" />
+                            <path d="M 10 50 C 15 10, 85 10, 90 50 C 70 60, 40 60, 10 50 Z" fill="rgba(14, 165, 233, 0.2)" stroke="var(--accent-color)" stroke-width="2" />
                             
                             <text x="180" y="75" font-size="8" fill="var(--accent-color)">זרוע "קעורה"</text>
                             <line x1="135" y1="72" x2="65" y2="60" stroke="var(--accent-color)" stroke-width="1" stroke-dasharray="2,2"/>
@@ -1238,7 +1238,7 @@
                                     <text x="-5" y="55" font-size="8" fill="#64748b" font-weight="bold" transform="rotate(-90 -5,55)">נפח (Volume)</text>
                                     
                                     <!-- Beaking Path -->
-                                    <path d="M 10 90 C 20 50, 40 20, 70 15 L 90 15 L 70 25 C 50 50, 30 70, 10 90 Z" fill="rgba(139, 92, 246, 0.2)" stroke="var(--primary-color)" stroke-width="2" />
+                                    <path d="M 10 90 C 20 50, 40 20, 70 15 L 90 15 L 70 25 C 50 50, 30 70, 10 90 Z" fill="rgba(59, 130, 246, 0.2)" stroke="var(--primary-color)" stroke-width="2" />
                                     
                                     <text x="180" y="45" font-size="8" fill="#ef4444">צורת "מקור"</text>
                                     <line x1="140" y1="42" x2="92" y2="20" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-q9)" />

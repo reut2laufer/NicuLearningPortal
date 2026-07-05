@@ -9,12 +9,12 @@
     <style>
         :root {
             /* Orange Palette */
-            --primary-color: #f97316;    
-            --secondary-color: #fb923c;  
-            --accent-color: #ea580c;     
+            --primary-color: #0369a1;    
+            --secondary-color: #38bdf8;  
+            --accent-color: #0c4a6e;     
             --success-color: #10b981;    
             --danger-color: #ef4444;     
-            --bg-light: #fff7ed;         
+            --bg-light: #f0f9ff;         
             --card-bg: #ffffff;
             --text-main: #0f172a;        
             --text-muted: #475569;
@@ -49,7 +49,7 @@
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
             padding: 15px 20px;
-            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.2);
+            box-shadow: 0 4px 15px rgba(12, 74, 110, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -115,7 +115,7 @@
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            border: 1px solid #ffedd5; 
+            border: 1px solid #e0f2fe; 
         }
         
         .tabs-nav::-webkit-scrollbar {
@@ -141,14 +141,14 @@
         }
 
         .tab-btn:hover {
-            background: #ffedd5;
+            background: #e0f2fe;
             color: var(--accent-color);
         }
 
         .tab-btn.active {
             background: var(--primary-color);
             color: white;
-            box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+            box-shadow: 0 4px 10px rgba(3, 105, 161, 0.3);
         }
 
         /* Content Sections */
@@ -171,8 +171,8 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.05);
-            border: 1px solid #ffedd5;
+            box-shadow: 0 10px 25px rgba(3, 105, 161, 0.05);
+            border: 1px solid #e0f2fe;
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
@@ -207,9 +207,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ffedd5, #fed7aa); 
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd); 
             border-radius: 50%;
-            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.15);
+            box-shadow: 0 15px 35px rgba(3, 105, 161, 0.15);
             margin: 0 auto;
         }
 
@@ -219,7 +219,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 3px solid #fdba74; 
+            border: 3px solid #7dd3fc; 
             animation: pulse 2.5s infinite ease-out;
         }
 
@@ -257,14 +257,14 @@
             background: var(--card-bg);
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid #ffedd5;
+            border: 1px solid #e0f2fe;
             margin-bottom: 15px;
             overflow: hidden;
             transition: var(--transition);
         }
         
         .intro-accordion-header {
-            background: #fff7ed;
+            background: #f0f9ff;
             padding: 15px 20px;
             cursor: pointer;
             display: flex;
@@ -277,7 +277,7 @@
         }
         
         .intro-accordion-header:hover {
-            background: #ffedd5;
+            background: #e0f2fe;
         }
         
         .intro-accordion-body {
@@ -290,7 +290,7 @@
         .intro-accordion.open .intro-accordion-body {
             padding: 15px 20px;
             max-height: 500px;
-            border-top: 1px solid #ffedd5;
+            border-top: 1px solid #e0f2fe;
         }
         
         .intro-accordion-icon {
@@ -348,7 +348,7 @@
             padding: 25px 20px;
             text-align: center;
             box-shadow: 0 6px 15px rgba(0,0,0,0.06);
-            border: 1px solid #ffedd5;
+            border: 1px solid #e0f2fe;
             cursor: pointer;
             transition: var(--transition);
             position: relative;
@@ -370,7 +370,7 @@
 
         .type-card:hover, .type-card:active {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.15);
+            box-shadow: 0 10px 25px rgba(3, 105, 161, 0.15);
             border-color: var(--secondary-color);
         }
 
@@ -380,7 +380,7 @@
 
         .type-card.active {
             border-color: var(--primary-color);
-            background: #fff7ed;
+            background: #f0f9ff;
         }
 
         .type-icon {
@@ -407,7 +407,7 @@
             border-radius: 16px;
             padding: 25px 20px;
             margin-top: 25px;
-            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.08);
+            box-shadow: 0 10px 30px rgba(3, 105, 161, 0.08);
             display: none;
             border-right: 5px solid var(--primary-color);
             position: relative;
@@ -427,7 +427,7 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            background: #ffedd5;
+            background: #e0f2fe;
             border-radius: 50%;
             width: 36px;
             height: 36px;
@@ -453,7 +453,7 @@
             gap: 15px;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #ffedd5;
+            border-bottom: 1px solid #e0f2fe;
             padding-left: 40px;
         }
 
@@ -477,10 +477,10 @@
         }
 
         .info-box {
-            background: #fff7ed;
+            background: #f0f9ff;
             padding: 20px;
             border-radius: 12px;
-            border: 1px solid #ffedd5;
+            border: 1px solid #e0f2fe;
             width: 100%; 
         }
 
@@ -551,11 +551,11 @@
             border-radius: 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             overflow: hidden;
-            border: 1px solid #ffedd5;
+            border: 1px solid #e0f2fe;
         }
 
         .case-header {
-            background: #fff7ed;
+            background: #f0f9ff;
             padding: 20px 15px;
             cursor: pointer;
             display: flex;
@@ -565,7 +565,7 @@
         }
 
         .case-header:hover, .case-header:active {
-            background: #ffedd5;
+            background: #e0f2fe;
         }
 
         .case-title {
@@ -614,14 +614,14 @@
         .case-card.open .case-body {
             padding: 20px 15px;
             max-height: 2000px;
-            border-top: 1px solid #ffedd5;
+            border-top: 1px solid #e0f2fe;
         }
 
         .scenario-text {
             font-size: 16px;
             margin-bottom: 20px;
             padding: 15px;
-            background: #fff7ed;
+            background: #f0f9ff;
             border-radius: 10px;
             border-right: 4px solid var(--primary-color);
         }
@@ -635,7 +635,7 @@
 
         .option-btn {
             background: #ffffff;
-            border: 2px solid #fed7aa;
+            border: 2px solid #bae6fd;
             padding: 15px;
             border-radius: 10px;
             font-size: 16px;
@@ -651,7 +651,7 @@
 
         .option-btn:hover, .option-btn:active:not(:disabled) {
             border-color: var(--primary-color);
-            background: #fff7ed;
+            background: #f0f9ff;
         }
 
         .option-btn.selected-correct {
@@ -857,7 +857,7 @@
             </div>
             
             <div style="display: flex; justify-content: center; margin-top: 20px;">
-                <button style="background: var(--primary-color); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);" onclick="document.querySelectorAll('.tab-btn')[1].click()" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(249, 115, 22, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(249, 115, 22, 0.3)';">
+                <button style="background: var(--primary-color); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(3, 105, 161, 0.3);" onclick="document.querySelectorAll('.tab-btn')[1].click()" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(3, 105, 161, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(3, 105, 161, 0.3)';">
                     הבא <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
@@ -905,8 +905,8 @@
                     <p style="color: var(--text-muted); font-size: 15px;">בירור היפוגליקמיה עקשנית</p>
                 </div>
 
-                <div class="type-card" style="border: 2px dashed #8b5cf6;" onclick="showDetail('pharma')">
-                    <i class="fa-solid fa-pills type-icon" style="color: #8b5cf6;"></i>
+                <div class="type-card" style="border: 2px dashed #3b82f6;" onclick="showDetail('pharma')">
+                    <i class="fa-solid fa-pills type-icon" style="color: #3b82f6;"></i>
                     <h3 class="type-title">טיפול תרופתי</h3>
                     <p style="color: var(--text-muted); font-size: 15px;">דיאזוקסיד, גלוקגון ועוד</p>
                 </div>
@@ -1272,7 +1272,7 @@
                         </svg>
 
                         <!-- Top Left: D50% -->
-                        <div style="position: absolute; top: 10px; left: 10px; z-index: 2; border: 3px solid #f97316; border-radius: 8px; background: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <div style="position: absolute; top: 10px; left: 10px; z-index: 2; border: 3px solid #1d4ed8; border-radius: 8px; background: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                             <div style="font-size:24px; font-weight:bold; color:#0f172a;">D50%</div>
                         </div>
 
@@ -1288,7 +1288,7 @@
                         </div>
 
                         <!-- Bottom Left: 2.5 ml -->
-                        <div style="position: absolute; bottom: 10px; left: 10px; z-index: 2; background: #f97316; border-radius: 8px; color: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+                        <div style="position: absolute; bottom: 10px; left: 10px; z-index: 2; background: #1d4ed8; border-radius: 8px; color: white; padding: 10px; text-align: center; width: 100px; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
                             <div style="font-size:26px; font-weight:bold;">2.5</div>
                             <div style="font-size:16px;">מ"ל</div>
                         </div>
@@ -1304,7 +1304,7 @@
                     <div dir="rtl" style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 20px;">
                         <h4 style="color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; margin-top: 0;">חישוב "שיטת השמש" להכנת גלוקוז D12.5%</h4>
                         
-                        <strong style="color: #ea580c;">שלב 1: הצבת הנתונים וחיסור באלכסון</strong><br>
+                        <strong style="color: #0c4a6e;">שלב 1: הצבת הנתונים וחיסור באלכסון</strong><br>
                         מציבים בשתי הפינות העליונות את הריכוזים הנתונים שלנו: D50% ו-D10%.<br>
                         באמצע רושמים את ריכוז היעד המבוקש: D12.5%.<br>
                         כעת, מחסרים באלכסון (תמיד בערך מוחלט, מתעלמים ממספרים שליליים) ורושמים את התוצאות למטה:<br>
@@ -1313,7 +1313,7 @@
                             • 10 פחות 12.5 (בערך מוחלט) = <strong>2.5</strong>
                         </div>
 
-                        <strong style="color: #ea580c;">שלב 2: קריאת היחס שהתקבל</strong><br>
+                        <strong style="color: #0c4a6e;">שלב 2: קריאת היחס שהתקבל</strong><br>
                         קוראים את התוצאות כלפי מטה, כך שכל עמודה מייצגת את התמיסה שמעליה:<br>
                         <div style="margin-right: 15px; margin-bottom: 10px;">
                             • תחת ה-D50% קיבלנו 2.5.<br>
@@ -1321,7 +1321,7 @@
                         </div>
                         המסקנה ביחס: על כל 2.5 מ"ל של גלוקוז D50%, נצטרך להוסיף 37.5 מ"ל של גלוקוז D10%.<br><br>
 
-                        <strong style="color: #ea580c;">שלב 3: התאמה לשקית שלנו ("ערך משולש")</strong><br>
+                        <strong style="color: #0c4a6e;">שלב 3: התאמה לשקית שלנו ("ערך משולש")</strong><br>
                         מאחר ויש לנו שקית המכילה 500 מ"ל של גלוקוז D10% (ולא 37.5 מ"ל), נשתמש בערך משולש כדי לגלות כמה בדיוק לשאוב מהבקבוקון של ה-D50%:<br>
                         
                         <div style="background: white; padding: 12px; border-radius: 6px; margin: 10px 0; border: 1px solid #cbd5e1; display: inline-block;">
@@ -1341,7 +1341,7 @@
 
                         <strong>החישוב:</strong> (2.5 כפול 500) לחלק ל-37.5 = <strong>33.33 מ"ל</strong>.<br><br>
 
-                        <div style="background: #fff7ed; border-right: 4px solid #f97316; padding: 12px; border-radius: 6px; font-size: 17px;">
+                        <div style="background: #f0f9ff; border-right: 4px solid #0369a1; padding: 12px; border-radius: 6px; font-size: 17px;">
                             <strong>השורה התחתונה:</strong><br>
                             יש לשאוב <strong>33.33 מ"ל</strong> של D50% ולהוסיף אותם לשקית ה-500 מ"ל של ה-D10% כדי לקבל תמיסה בריכוז מדויק של D12.5%.
                         </div>
