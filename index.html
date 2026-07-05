@@ -680,18 +680,6 @@
         }
 
         @media (max-width: 560px) {
-            .top-nav {
-                justify-content: center;
-            }
-
-            .hero {
-                text-align: center;
-            }
-
-            .hero-actions {
-                justify-content: center;
-            }
-
             .content-wrap {
                 padding: 35px 12px 20px;
             }
@@ -728,7 +716,7 @@
         </a>
         <div class="nav-links">
             <a href="#top">ראשי</a>
-            <a href="#modules" onclick="showModules(event)">לומדות</a>
+            <a href="modules.html">לומדות</a>
             <a href="#features">סרטוני הדרכה</a>
             <a href="#features">נהלים ועדכונים</a>
         </div>
@@ -738,15 +726,12 @@
     <section class="hero" id="top">
         <div class="hero-inner">
             <div class="hero-text">
-                <h2><span class="hl">מרכז הלמידה</span> - הבית המקצועי שלך ב-NICU</h2>
-                <p>לומדות מקצועיות, ידע עדכני וכלים מעשיים - כדי להמשיך ללמוד, להתפתח ולהעניק את הטיפול הטוב ביותר לפגים ולמשפחותיהם.</p>
+                <h2>ברוכה הבאה!</h2>
+                <p>האתר נבנה במיוחד עבור צוות אחיות הפגייה, מתוך רצון להנגיש ידע מקצועי, לרענן מיומנויות ולתמוך בלמידה מתמשכת.</p>
                 <div class="hero-actions">
-                    <a class="btn btn-light" href="#modules" onclick="showModules(event)">
+                    <a class="btn btn-light" href="modules.html">
                         <i class="fa-solid fa-book-open"></i>
                         התחלת הלמידה
-                    </a>
-                    <a class="btn btn-outline" href="#welcome">
-                        ברוכות הבאות
                     </a>
                 </div>
             </div>
@@ -759,7 +744,7 @@
             <div class="feature-icon"><i class="fa-solid fa-laptop-medical"></i></div>
             <h3>לומדות אינטראקטיביות</h3>
             <p>לומדות מקצועיות ומעודכנות לאחיות הפגייה - תוכן, תרגול ובוחן ידע בכל לומדה.</p>
-            <a class="feature-btn" href="#modules" onclick="showModules(event)">לצפייה בלומדות</a>
+            <a class="feature-btn" href="modules.html">לצפייה בלומדות</a>
         </div>
         <div class="feature-card">
             <span class="soon-chip">בקרוב</span>
@@ -784,83 +769,17 @@
     <!-- Content: main + sidebar -->
     <div class="content-wrap">
         <main>
-            <!-- Welcome -->
+            <!-- About -->
             <section class="welcome-card" id="welcome">
                 <div class="welcome-icon">
                     <i class="fa-solid fa-hand-holding-heart"></i>
                 </div>
-                <h2>ברוכות הבאות!</h2>
-                <p>האתר נבנה במיוחד עבור צוות אחיות הפגייה, מתוך רצון להנגיש ידע מקצועי, לרענן מיומנויות ולתמוך בלמידה מתמשכת.</p>
-                <p>כאן תוכלו למצוא לומדות, סרטוני הדרכה, נהלים, מבחני ידע וחומרי עזר במגוון נושאים הקשורים לטיפול בפגים וביילודים.</p>
+                <h2>מה תמצאי כאן?</h2>
+                <p>כאן תוכלי למצוא לומדות, סרטוני הדרכה, נהלים, מבחני ידע וחומרי עזר במגוון נושאים הקשורים לטיפול בפגים וביילודים.</p>
                 <p>אנו מאמינים שלמידה היא חלק בלתי נפרד מהעשייה היומיומית, ושכל ידע חדש מחזק את הביטחון המקצועי ומשפר את איכות הטיפול שאנו מעניקות לפגים ולבני משפחותיהם.</p>
-            </section>
-
-            <!-- Modules -->
-            <section id="modules">
-                <div class="section-head">
-                    <h2>הלומדות שלנו</h2>
-                    <div class="head-line"></div>
-                    <p>בחרי לומדה מהרשימה כדי להתחיל ללמוד. כל לומדה כוללת תוכן מקצועי, תרגול ובוחן ידע.</p>
-                </div>
-
-                <div class="modules-grid">
-                    <a class="module-card card-hypo" href="hypoglicemia.html">
-                        <div class="card-banner">
-                            <i class="fa-solid fa-droplet"></i>
-                        </div>
-                        <div class="card-body">
-                            <h3>היפוגליקמיה בפגים</h3>
-                            <p>זיהוי, ניטור וטיפול בהיפוגליקמיה ביילוד ובפג - ערכי סוכר, גורמי סיכון ופרוטוקול טיפול.</p>
-                            <span class="card-cta">
-                                כניסה ללומדה
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </span>
-                        </div>
-                    </a>
-
-                    <a class="module-card card-vent" href="mechnicalvent.html">
-                        <div class="card-banner">
-                            <i class="fa-solid fa-lungs"></i>
-                        </div>
-                        <div class="card-body">
-                            <h3>הנשמה פולשנית בפגים</h3>
-                            <p>עקרונות ההנשמה המכנית הפולשנית - מצבי הנשמה, פרמטרים, טיפול בחולה המונשם וגמילה.</p>
-                            <span class="card-cta">
-                                כניסה ללומדה
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </span>
-                        </div>
-                    </a>
-
-                    <a class="module-card card-nasal" href="nasal_ventilationnicu.html">
-                        <div class="card-banner">
-                            <i class="fa-solid fa-wind"></i>
-                        </div>
-                        <div class="card-body">
-                            <h3>הנשמה נזאלית בפגים</h3>
-                            <p>תמיכה נשימתית לא פולשנית - CPAP, NIPPV והיי-פלואו, התוויות, טיפול ומעקב.</p>
-                            <span class="card-cta">
-                                כניסה ללומדה
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </span>
-                        </div>
-                    </a>
-
-                    <a class="module-card card-withdraw" href="withdraw_nicu.html">
-                        <span class="new-ribbon">חדש</span>
-                        <div class="card-banner">
-                            <i class="fa-solid fa-baby"></i>
-                        </div>
-                        <div class="card-body">
-                            <h3>תסמונת גמילה ביילוד (NAS)</h3>
-                            <p>זיהוי וטיפול בתסמונת גמילה ביילוד - סרגל פינגן, טיפול תומך ותרופתי ופרוטוקול מתאדון.</p>
-                            <span class="card-cta">
-                                כניסה ללומדה
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </span>
-                        </div>
-                    </a>
-                </div>
+                <a class="feature-btn" href="modules.html" style="margin-top: 8px;">
+                    לכל הלומדות
+                </a>
             </section>
         </main>
 
@@ -913,17 +832,5 @@
         <div class="footer-copy">© פגיית הדסה הר הצופים · רעות לאופר כהן BSN</div>
     </footer>
 
-    <script>
-        function showModules(e) {
-            e.preventDefault();
-            const section = document.getElementById('modules');
-            section.classList.add('show');
-            setTimeout(() => {
-                const navHeight = document.querySelector('.top-nav').offsetHeight;
-                const top = section.getBoundingClientRect().top + window.scrollY - navHeight - 10;
-                window.scrollTo({ top, behavior: 'smooth' });
-            }, 60);
-        }
-    </script>
 </body>
 </html>
