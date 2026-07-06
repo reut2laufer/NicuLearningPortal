@@ -9,6 +9,11 @@
  *
  * To change the footer: edit this file and commit. The GitHub Actions
  * workflow compiles it automatically on deploy (locally: npx tsc).
+ *
+ * Optional configuration via data attributes on the script tag:
+ *     data-bg  CSS background (color/gradient) - use the same value as
+ *              the page header to keep them visually consistent.
+ *              Defaults to the site's navy gradient.
  */
 
 interface FooterContent {
@@ -42,13 +47,16 @@ const FOOTER_STYLES: string = `
 }
 `;
 
-function renderSiteFooter(content: FooterContent): void {
+function renderSiteFooter(content: FooterContent, background?: string): void {
     const style: HTMLStyleElement = document.createElement('style');
     style.textContent = FOOTER_STYLES;
     document.head.appendChild(style);
 
     const footer: HTMLElement = document.createElement('footer');
     footer.className = 'site-footer';
+    if (background) {
+        footer.style.background = background;
+    }
 
     const slogan: HTMLDivElement = document.createElement('div');
     slogan.className = 'footer-slogan';
@@ -63,4 +71,5 @@ function renderSiteFooter(content: FooterContent): void {
     document.body.appendChild(footer);
 }
 
-renderSiteFooter(FOOTER_CONTENT);
+const footerScript = document.currentScript as HTMLScriptElement | null;
+renderSiteFooter(FOOTER_CONTENT, footerScript?.dataset.bg);

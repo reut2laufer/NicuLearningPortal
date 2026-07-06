@@ -44,55 +44,11 @@
             color: #0f172a;
         }
 
-        /* Header Styling */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 15px 20px;
-            box-shadow: 0 4px 15px rgba(21, 94, 117, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
 
-        header h1, header p {
-             color: white;
-        }
 
-        .header-title {
-            flex: 1;
-            min-width: 200px;
-        }
 
-        .header-title h1 {
-            font-size: clamp(20px, 4vw, 28px);
-            font-weight: 800;
-            margin-bottom: 2px;
-            line-height: 1.2;
-        }
 
-        .header-title p {
-            font-size: clamp(12px, 2.5vw, 16px);
-            opacity: 0.9;
-        }
 
-        .author-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: clamp(12px, 2.5vw, 14px);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            backdrop-filter: blur(5px);
-            white-space: nowrap;
-        }
 
         /* Main Container */
         .app-container {
@@ -263,18 +219,7 @@
             transition: var(--transition);
         }
 
-        .intro-accordion-header {
-            background: #ecfeff;
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 18px;
-            color: var(--accent-color);
-            transition: background 0.3s ease;
-        }
+        .intro-accordion-
 
         .intro-accordion-header:hover {
             background: #cffafe;
@@ -778,16 +723,6 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-title">
-            <h1>תסמונת גמילה ביילוד (NAS)</h1>
-            <p>פגיה הדסה הר הצופים</p>
-        </div>
-        <a href="../index.html" style="background: rgba(255,255,255,0.25); color: white; padding: 6px 14px; border-radius: 20px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px; white-space: nowrap; font-size: clamp(12px, 2.5vw, 14px);">
-            <i class="fa-solid fa-house"></i>
-            דף הבית
-        </a>
-    </header>
 
     <div class="app-container">
 
@@ -1461,6 +1396,9 @@
             }, 100);
         }
     </script>
-    <script src="../dist/footer.js" defer></script>
+    <script src="../dist/header.js" defer
+            data-title="תסמונת גמילה ביילוד (NAS)"
+            data-bg="linear-gradient(135deg, #0e7490, #155e75)"></script>
+    <script src="../dist/footer.js" defer data-bg="linear-gradient(135deg, #0e7490, #155e75)"></script>
 </body>
 </html>
