@@ -42,51 +42,10 @@
             font-family: 'Heebo', sans-serif;
         }
 
-        /* Header Styling */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 15px 20px; /* הוקטן קצת למובייל */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            flex-wrap: wrap; /* מאפשר שבירת שורות במסכים קטנים */
-            gap: 10px;
-        }
 
-        .header-title {
-            flex: 1;
-            min-width: 200px;
-        }
 
-        .header-title h1 {
-            font-size: clamp(20px, 4vw, 28px); /* גודל פונט רספונסיבי */
-            font-weight: 800;
-            margin-bottom: 2px;
-            line-height: 1.2;
-        }
 
-        .header-title p {
-            font-size: clamp(12px, 2.5vw, 16px);
-            opacity: 0.9;
-        }
 
-        .author-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: clamp(12px, 2.5vw, 14px);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            backdrop-filter: blur(5px);
-            white-space: nowrap;
-        }
 
         /* Main Container */
         .app-container {
@@ -339,15 +298,7 @@
             background: #fee2e2;
         }
 
-        .detail-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-left: 40px; /* מקום לכפתור הסגירה */
-        }
+        .detail-
 
         .detail-header i {
             font-size: 32px;
@@ -639,16 +590,6 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-title">
-            <h1>הנשמה נזאלית בפגים</h1>
-            <p>פגיית הדסה הר הצופים</p>
-        </div>
-        <a href="../index.html" style="background: rgba(255,255,255,0.25); color: white; padding: 6px 14px; border-radius: 20px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px; white-space: nowrap; font-size: clamp(12px, 2.5vw, 14px);">
-            <i class="fa-solid fa-house"></i>
-            דף הבית
-        </a>
-    </header>
 
     <div class="app-container">
         
@@ -1189,6 +1130,9 @@
             }, 100);
         }
     </script>
-    <script src="../dist/footer.js" defer></script>
+    <script src="../dist/header.js" defer
+            data-title="הנשמה נזאלית בפגים"
+            data-bg="linear-gradient(135deg, #0284c7, #38bdf8)"></script>
+    <script src="../dist/footer.js" defer data-bg="linear-gradient(135deg, #0284c7, #38bdf8)"></script>
 </body>
 </html>
