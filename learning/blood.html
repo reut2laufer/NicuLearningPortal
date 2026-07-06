@@ -34,6 +34,12 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* RTL bullet fix: the global reset removes the browser's default
+           list padding; without it Safari renders markers on the wrong side */
+        ul:not([class]) {
+            padding-right: 20px;
+        }
+
         body {
             font-family: 'Assistant', sans-serif;
             background-color: var(--bg-light);
