@@ -1,0 +1,3 @@
+# Compiled output (built by the deploy workflow)
+dist/
+node_modules/
