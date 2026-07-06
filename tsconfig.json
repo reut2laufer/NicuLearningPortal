@@ -2,12 +2,12 @@
     "compilerOptions": {
         "target": "ES2017",
         "lib": ["ES2017", "DOM"],
-        "rootDir": "src",
-        "outDir": ".",
+        "rootDir": "components",
+        "outDir": "dist",
         "strict": true,
         "noEmitOnError": true,
         "removeComments": false
     },
-    "include": ["src/**/*.ts"],
+    "include": ["components/**/*.ts"],
     "exclude": ["node_modules"]
 }

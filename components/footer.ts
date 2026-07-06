@@ -2,12 +2,13 @@
  * Shared site footer component (TypeScript source).
  *
  * This is the single source of truth for the footer on every page.
- * The compiled output (footer.js at the repo root) is what the pages load:
- *     <script src="footer.js" defer></script>
+ * The compiled output (dist/footer.js, built by the deploy workflow) is
+ * what the pages load:
+ *     root pages:     <script src="dist/footer.js" defer></script>
+ *     learning pages: <script src="../dist/footer.js" defer></script>
  *
- * To change the footer: edit this file, then rebuild with:
- *     npx tsc
- * and commit both this file and the regenerated footer.js.
+ * To change the footer: edit this file and commit. The GitHub Actions
+ * workflow compiles it automatically on deploy (locally: npx tsc).
  */
 
 interface FooterContent {
