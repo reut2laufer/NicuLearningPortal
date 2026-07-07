@@ -119,9 +119,12 @@
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
 
-        .card-cooling .card-banner {
-            background: linear-gradient(135deg, #0c4a6e, #06b6d4);
-        }
+        .pc-1 .card-banner { background: linear-gradient(135deg, #0c4a6e, #0369a1); }
+        .pc-2 .card-banner { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+        .pc-3 .card-banner { background: linear-gradient(135deg, #0284c7, #38bdf8); }
+        .pc-4 .card-banner { background: linear-gradient(135deg, #0e7490, #06b6d4); }
+        .pc-5 .card-banner { background: linear-gradient(135deg, #1e40af, #0ea5e9); }
+        .pc-6 .card-banner { background: linear-gradient(135deg, #1e3a8a, #60a5fa); }
 
         .card-body {
             padding: 20px;
@@ -132,7 +135,7 @@
         }
 
         .card-body h3 {
-            font-size: clamp(18px, 3.5vw, 22px);
+            font-size: clamp(16.5px, 3.3vw, 19px);
             font-weight: 800;
         }
 
@@ -158,7 +161,12 @@
             font-size: clamp(14px, 3vw, 16px);
         }
 
-        .card-cooling .card-cta { color: #0e7490; }
+        .pc-1 .card-cta { color: #0369a1; }
+        .pc-2 .card-cta { color: #1d4ed8; }
+        .pc-3 .card-cta { color: #0284c7; }
+        .pc-4 .card-cta { color: #0e7490; }
+        .pc-5 .card-cta { color: #1e40af; }
+        .pc-6 .card-cta { color: #1d4ed8; }
 
         .protocol-card:hover .card-cta i {
             transform: translateX(-5px);
@@ -175,7 +183,7 @@
         <p class="page-intro">נהלים, הנחיות קליניות והנחיות עבודה לצוות הפגייה - זמינים לצפייה ולהורדה בכל עת.</p>
 
         <div class="protocols-grid">
-            <a class="protocol-card card-cooling" href="hypothermia.pdf" target="_blank" rel="noopener">
+            <a class="protocol-card pc-1" href="view.html?file=hypothermia.pdf&amp;title=טיפול בהיפותרמיה בינונית (קירור) ביילודים">
                 <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
                 <div class="card-banner">
                     <i class="fa-solid fa-temperature-arrow-down"></i>
@@ -183,7 +191,183 @@
                 <div class="card-body">
                     <h3>טיפול בהיפותרמיה בינונית (קירור) ביילודים</h3>
                     <span class="card-source">הנחיה קלינית - האיגוד הישראלי לניאונטולוגיה</span>
-                    <p>טיפול ביילודים (שבוע 36 ומעלה) הסובלים מאנצפלופתיה היפוקסית-איסכמית לאחר תשניק סב-לידתי: קריטריונים לאבחון, עקרונות הקירור ל-33-34 מעלות למשך 72 שעות, מעקב, חימום והנחיות להמשך.</p>
+                    <p>טיפול ביילודים (שבוע 36 ומעלה) עם אנצפלופתיה היפוקסית-איסכמית: קריטריונים, קירור ל-33-34 מעלות למשך 72 שעות, מעקב וחימום.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-2" href="view.html?file=Minimal Handling.pdf&amp;title=מניעת דימום מוחי בפגים - Minimal Handling">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div class="card-body">
+                    <h3>מניעת דימום מוחי בפגים - Minimal Handling</h3>
+                    <span class="card-source">פרוטוקול קליני - המרכז הרפואי הדסה</span>
+                    <p>עקרונות המגע המזערי למניעת דימום תוך-חדרי (IVH) בפגים בימי החיים הראשונים - תנוחה, טיפול מקובץ והגבלת גירויים.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-3" href="view.html?file=alarms.pdf&amp;title=סימנים חיוניים והתרעות מוניטור">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-wave-square"></i>
+                </div>
+                <div class="card-body">
+                    <h3>סימנים חיוניים והתרעות מוניטור</h3>
+                    <span class="card-source">נוהל - המרכז הרפואי הדסה</span>
+                    <p>טווחי ערכים תקינים בפגים וביילודים, כיוון גבולות התרעה במוניטור ואופן התגובה להתרעות בטיפול נמרץ.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-4" href="view.html?file=bradicardia.pdf&amp;title=גישה לטיפול ובירור ברדיקרדיה ביילוד">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-heart-circle-exclamation"></i>
+                </div>
+                <div class="card-body">
+                    <h3>גישה לטיפול ובירור ברדיקרדיה ביילוד</h3>
+                    <span class="card-source">פרוטוקול - המרכז הרפואי הדסה</span>
+                    <p>הערכה, בירור וטיפול באירועי ברדיקרדיה ביילוד ובפג - סיבות, ניטור ומדרג ההתערבות.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-5" href="view.html?file=dietray.pdf&amp;title=הזנת פגים ויילודים">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-bottle-droplet"></i>
+                </div>
+                <div class="card-body">
+                    <h3>הזנת פגים ויילודים</h3>
+                    <span class="card-source">פרוטוקול קליני - המרכז הרפואי הדסה</span>
+                    <p>פרוטוקול ההזנה - התחלת הזנה, קצב העלאה, העשרה, מעקב סבילות והזנה בהתאם לגיל ולמשקל.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-6" href="view.html?file=infusion.pdf&amp;title=הכנסת עירוי לווריד היקפי ותחזוקתו">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-syringe"></i>
+                </div>
+                <div class="card-body">
+                    <h3>הכנסת עירוי לווריד היקפי ותחזוקתו</h3>
+                    <span class="card-source">נוהל סיעוד - המרכז הרפואי הדסה</span>
+                    <p>הכנסת עירוי היקפי, תחזוקה שוטפת, נטילת דגימות דם ומניעת סיבוכים.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-1" href="view.html?file=insulin.pdf&amp;title=טיפול באינסולין בהיפרגליקמיה בפגים">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-vial-circle-check"></i>
+                </div>
+                <div class="card-body">
+                    <h3>טיפול באינסולין בהיפרגליקמיה בפגים</h3>
+                    <span class="card-source">פרוטוקול - המרכז הרפואי הדסה</span>
+                    <p>התוויות לטיפול באינסולין בפג עם היפרגליקמיה - הכנת העירוי, מינון, טיטרציה וניטור סוכר.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-2" href="view.html?file=milk.pdf&amp;title=שימוש וטיפול בחלב אם בבית החולים">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-jar"></i>
+                </div>
+                <div class="card-body">
+                    <h3>שימוש וטיפול בחלב אם בבית החולים</h3>
+                    <span class="card-source">נוהל - המרכז הרפואי הדסה</span>
+                    <p>שאיבה, סימון, אחסון, הפשרה והגשה בטוחה של חלב אם - כולל מניעת טעויות בזיהוי.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-3" href="view.html?file=nacl.pdf&amp;title=ניהול מאזן הנתרן ביילודים חולים ופגים">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <div class="card-body">
+                    <h3>ניהול מאזן הנתרן ביילודים חולים ופגים</h3>
+                    <span class="card-source">פרוטוקול - המרכז הרפואי הדסה</span>
+                    <p>ניטור רמות נתרן, חישוב צריכה ותוספות, ותיקון היפונתרמיה והיפרנתרמיה ביילוד ובפג.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-4" href="view.html?file=pain.pdf&amp;title=מניעה וטיפול בכאב ביילודים ופגים">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-hand-holding-medical"></i>
+                </div>
+                <div class="card-body">
+                    <h3>מניעה וטיפול בכאב ביילודים ופגים</h3>
+                    <span class="card-source">נוהל - המרכז הרפואי הדסה</span>
+                    <p>הערכת כאב בסרגלים ייעודיים, אמצעים לא-תרופתיים (סוכרוז, עטיפה, הנקה) וטיפול תרופתי בכאב.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-5" href="view.html?file=paliative.pdf&amp;title=טיפול פליאטיבי בתינוק הנוטה למות">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                </div>
+                <div class="card-body">
+                    <h3>טיפול פליאטיבי בתינוק הנוטה למות</h3>
+                    <span class="card-source">נוהל - המרכז הרפואי הדסה</span>
+                    <p>ליווי התינוק ומשפחתו בסוף החיים - הקלה על סבל, טיפול תומך וכבוד המטופל בטיפול נמרץ.</p>
+                    <span class="card-cta">
+                        לצפייה בנוהל
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a class="protocol-card pc-6" href="view.html?file=skin.pdf&amp;title=שמירה וטיפול בעור פגים ויילודים">
+                <span class="pdf-badge"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-spa"></i>
+                </div>
+                <div class="card-body">
+                    <h3>שמירה וטיפול בעור פגים ויילודים</h3>
+                    <span class="card-source">פרוטוקול - המרכז הרפואי הדסה</span>
+                    <p>הערכת עור, מניעת פגיעות עור ופצעי לחץ, טיפול בעור הפג הצעיר והגנה מפני נזקי קיבוע.</p>
                     <span class="card-cta">
                         לצפייה בנוהל
                         <i class="fa-solid fa-arrow-left"></i>
