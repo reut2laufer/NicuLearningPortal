@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>לומדת החייאת יילודים בפגים - פגיית הר הצופים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Blue Palette */
+            --primary-color: #1e40af; /* Deep Blue */
+            --secondary-color: #3b82f6; /* Bright Blue */
+            --accent-color: #0ea5e9; /* Cyan */
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --bg-light: #f0f9ff; /* Very light blue background */
+            --card-bg: #ffffff;
+            --text-main: #0f172a; /* Slate 900 */
+            --text-muted: #334155; /* Slate 700 */
+            --border-color: #bae6fd; /* Light blue border */
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Heebo', sans-serif; }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-title h1 {
+            font-size: clamp(20px, 4vw, 28px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .header-title p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            opacity: 0.9;
+        }
+
+        .school-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Main Container & Tabs */
+        .app-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px 15px 100px 15px;
+            width: 100%;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(30, 64, 175, 0.05);
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .tabs-nav::-webkit-scrollbar { display: none; }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            font-size: clamp(14px, 3vw, 17px);
+            font-family: 'Heebo', sans-serif;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tab-btn:hover {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(30, 64, 175, 0.3);
+        }
+
+        /* Content Sections */
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 5px rgba(30, 64, 175, 0.3)); }
+            50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 15px rgba(30, 64, 175, 0.6)); }
+        }
+        
+        .animate-breathe {
+            animation: breathe 1.5s ease-in-out infinite; 
+        }
+
+        .section-title {
+            font-size: clamp(24px, 6vw, 32px);
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: clamp(16px, 4vw, 20px);
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Intro Section Layout */
+        .intro-hero {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.08);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .intro-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            order: -1; 
+        }
+
+        .intro-text h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .intro-text p {
+            font-size: clamp(16px, 3.5vw, 22px);
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .hero-icon-container {
+            position: relative;
+            width: min(200px, 60vw);
+            height: min(200px, 60vw);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(30, 64, 175, 0.2);
+            margin: 0 auto;
+        }
+
+        .hero-icon-container::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 28px;
+            border: 3px solid var(--secondary-color);
+            animation: pulse 1.5s infinite ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+
+        .main-icon-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 28px;
+            z-index: 2;
+        }
+
+        @media (min-width: 768px) {
+            .intro-hero {
+                grid-template-columns: 1.5fr 1fr;
+            }
+            .intro-image {
+                order: 1;
+            }
+            .intro-text {
+                padding-left: 30px;
+            }
+        }
+
+        /* Interactive Glossary / Accordion Buttons */
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column for accordions */
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        .term-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(30, 64, 175, 0.05);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            height: max-content;
+        }
+
+        .term-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.12);
+            border-color: var(--secondary-color);
+        }
+
+        .term-card h4 {
+            font-size: 20px;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .term-card h4 .icon-and-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .term-card h4 .icon-and-title i {
+            color: var(--secondary-color);
+            font-size: 24px;
+        }
+
+        .term-def {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.4s ease, padding 0.4s ease;
+            color: var(--text-main);
+            font-size: 16px;
+        }
+
+        .term-card.open .term-def {
+            max-height: 500px;
+            margin-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 15px;
+        }
+
+        .term-card .term-def ul {
+            list-style-type: none;
+            padding-right: 0;
+        }
+
+        .term-card .term-def li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+        }
+
+        .term-card .term-def li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+
+        .term-icon {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+        .term-card.open .term-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Practice Cases */
+        .case-studies { display: flex; flex-direction: column; gap: 15px; }
+        
+        .case-wrap {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(30, 64, 175, 0.05);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .case-header {
+            background: var(--bg-light);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .case-header:hover { background: #e0f2fe; }
+        
+        .case-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .case-icon {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .expand-icon {
+            font-size: 18px;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .case-wrap.open .expand-icon { transform: rotate(180deg); }
+
+        .case-body {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: white;
+        }
+
+        .case-wrap.open .case-body {
+            padding: 25px 20px;
+            max-height: 2500px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .scenario-box {
+            background: #eff6ff;
+            border-right: 4px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            background: var(--bg-light);
+            border: 2px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: right;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary-color);
+            background: #e0f2fe;
+        }
+
+        .option-btn.selected-correct {
+            background: #d1fae5;
+            border-color: var(--success-color);
+            color: #065f46;
+        }
+
+        .option-btn.selected-wrong {
+            background: #fef2f2;
+            border-color: var(--danger-color);
+            color: #991b1b;
+        }
+        
+        .option-btn:disabled { cursor: default; }
+
+        .feedback-box {
+            display: none;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            animation: fadeIn 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .feedback-box.show { display: block; }
+        .feedback-box.success { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+        .feedback-box.error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+
+        /* Next Button Styling */
+        .nav-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .next-tab-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(30, 64, 175, 0.3);
+        }
+
+        .next-tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(30, 64, 175, 0.4);
+            background: var(--secondary-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>החייאת יילודים ופגים (NRP)</h1>
+            <p>פגיית הדסה הר הצופים</p>
+        </div>
+        <div class="school-badge">
+            <i class="fa-solid fa-user-nurse"></i>
+            רעות לאופר כהן BSN
+        </div>
+    </header>
+
+    <div class="app-container">
+        
+        <!-- Navigation -->
+        <nav class="tabs-nav" id="main-nav">
+            <button class="tab-btn active" data-target="intro" onclick="switchTab('intro')">
+                <i class="fa-solid fa-book-medical"></i> מבוא 
+            </button>
+            <button class="tab-btn" data-target="step1" onclick="switchTab('step1')">
+                <i class="fa-solid fa-temperature-arrow-up"></i> צעדים ראשוניים
+            </button>
+            <button class="tab-btn" data-target="ppv" onclick="switchTab('ppv')">
+                <i class="fa-solid fa-mask-ventilator"></i> הנשמה בלחץ חיובי
+            </button>
+            <button class="tab-btn" data-target="comp" onclick="switchTab('comp')">
+                <i class="fa-solid fa-hands-bubbles"></i> עיסויים
+            </button>
+            <button class="tab-btn" data-target="drugs" onclick="switchTab('drugs')">
+                <i class="fa-solid fa-syringe"></i> תרופות
+            </button>
+            <button class="tab-btn" data-target="practice" onclick="switchTab('practice')">
+                <i class="fa-solid fa-laptop-medical"></i> שאלות תרגול
+            </button>
+        </nav>
+
+        <!-- TAB 1: Intro -->
+        <section id="intro" class="tab-content active">
+            <div class="intro-hero">
+                <div class="intro-text">
+                    <h2>החייאת יילודים ופגים (NRP)</h2>
+                    <p>תוכנית החייאת היילודים (Neonatal Resuscitation Program) מבוססת על הבנה פיזיולוגית, עבודת צוות ושיתוף פעולה יעיל.</p>
+                    <p>בניגוד למבוגרים (אצלם דום לב נובע לרוב מבעיה לבבית), ביילודים הגורם המרכזי למצוקה ודום לב הוא <strong>כשל נשימתי וחסר חמצן</strong>. לכן, ביסוס נתיב אוויר והנשמה יעילה הם לב ליבה של החייאת היילוד.</p>
+                    <p>בלומדה זו נסקור את שלבי האלגוריתם בסדר כרונולוגי: החל מדקת הזהב, דרך הנשמה בלחץ חיובי, עיסויי חזה ועד למתן תרופות, ולבסוף נתרגל יחד תרחישים קליניים מחדר הלידה והפגייה.</p>
+                </div>
+                <div class="intro-image">
+                    <div class="hero-icon-container animate-breathe">
+                        <img src="image_93c740.png" alt="לוגו NRP" class="main-icon-img">
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-title text-center" style="text-align: center; margin-top: 40px;">מושגי יסוד בהחייאה</h3>
+            <p class="section-subtitle text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">לחצי על כל כרטיסייה להרחבה:</p>
+
+            <div class="glossary-grid">
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-stopwatch"></i> דקת הזהב
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">60 השניות הראשונות לחיים. בפרק זמן זה יש להשלים את ההערכה הראשונית (חימום, ייבוש, גירוי, פינוי הפרשות), ואם הילד אינו נושם או שהדופק מתחת ל-100 – להתחיל <strong>מיד</strong> בהנשמה בלחץ חיובי (PPV).</div>
+                </div>
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-clipboard-list"></i> APGAR
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">הערכת מצב היילוד בדקה 1 ו-5. מדדים: Appearance (צבע), Pulse (דופק), Grimace (תגובה לגירוי), Activity (טונוס), Respiration (מאמץ נשימתי).<br><strong style="color: var(--danger-color);">ההחייאה אינה ממתינה לאפגר של דקה 1!</strong></div>
+                </div>
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-percent"></i> יעדי סטורציה
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">ליילוד לוקח זמן להגיע לסטורציה תקינה. היעדים הם (תמיד ביד ימין - Pre-ductal):<br>דקה 1: 60-65%<br>דקה 3: 70-75%<br>דקה 5: 80-85%<br>דקה 10: 85-95%.</div>
+                </div>
+            </div>
+
+            <div class="nav-button-container">
+                <button class="next-tab-btn" onclick="switchTab('step1')">
+                    הבא <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 2: Initial Steps -->
+        <section id="step1" class="tab-content">
+            <h2 class="section-title text-center" style="text-align: center;">הכנה וצעדים ראשונים (דקת הזהב)</h2>
+            <p class="section-subtitle text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">ההיערכות לפני הלידה וההערכה המהירה מיד עם יציאת היילוד יקבעו את המשך הטיפול.</p>
+
+            <div class="glossary-grid">
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-clipboard-question"></i> 4 שאלות לפני הלידה
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        על מנת להיערך נכון ולהכין ציוד, יש לשאול את הצוות המיילדותי טרם הלידה:
+                        <ul>
+                            <li>מהו שבוע ההיריון?</li>
+                            <li>האם מי השפיר נקיים?</li>
+                            <li>האם יש גורמי סיכון נוספים?</li>
+                            <li>מהו תכנון ניתוק חבל הטבור / מהו מספר העוברים?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-person-circle-question"></i> 3 שאלות מיד לאחר הלידה
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        הערכה מהירה מיד עם יציאת היילוד לקביעת מיקום הטיפול:
+                        <ul>
+                            <li>האם היילוד במועד?</li>
+                            <li>האם טונוס השרירים טוב?</li>
+                            <li>האם היילוד נושם או בוכה?</li>
+                        </ul>
+                        <strong>אם התשובה חיובית להכל:</strong> התינוק יישאר על האם (Skin-to-Skin) לחימום, ייבוש והערכה שגרתית.<br>
+                        <strong style="color: var(--danger-color);">אם התשובה שלילית לאחת מהשאלות:</strong> יש להעבירו לעמדת החימום לביצוע צעדים ראשונים.
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-fire"></i> חימום וייבוש תחת תנור
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        אם הילד הועבר לעמדת ההחייאה:
+                        <ul>
+                            <li>הנחת הילד תחת תנור חימום. טמפ' חדר מומלצת: 25-26 מעלות.</li>
+                            <li>ייבוש במגבות חמות משמש כגירוי לעידוד נשימה.</li>
+                            <li><strong>דגש פגים:</strong> אין לייבש פגים מתחת לשבוע 32! עור רטוב מגביר אובדן חום באידוי. יש להכניסם מיד לשקית פלסטיק.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-head-side-cough"></i> נתיב אוויר והפרשות
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li>מיקום הראש בתנוחת "הרחפה" (Sniffing position).</li>
+                            <li>פינוי הפרשות רק במידת הצורך: קודם מהפה ואז מהאף (M before N).</li>
+                            <li>אין אינדיקציה לשאיבה שגרתית של מים מקוניאליים, אלא אם נדרשת פתיחת נתיב אוויר.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-stethoscope"></i> הערכה ראשונית חוזרת
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        לאחר הצעדים הראשונים, יש להעריך:
+                        <ul>
+                            <li>האם הילד נושם? האם יש אפניאה או גספינג?</li>
+                            <li>הערכת דופק (קצב הלב): האזנה עם סטטוסקופ או מישוש בטבור (ספירת 6 שניות X 10).</li>
+                            <li>אם למרות גירוי הילד אפנאי או הדופק מתחת ל-100 - התחילי מיד בהנשמה בלחץ חיובי (PPV)!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-button-container">
+                <button class="next-tab-btn" onclick="switchTab('ppv')">
+                    הבא <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 3: PPV -->
+        <section id="ppv" class="tab-content">
+            <h2 class="section-title text-center" style="text-align: center;">הנשמה בלחץ חיובי (PPV)</h2>
+            <p class="section-subtitle text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">ההתערבות החשובה והשכיחה ביותר בהחייאת יילודים.</p>
+
+            <div class="glossary-grid">
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-mask-ventilator"></i> עקרונות ההנשמה
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li><strong>אינדיקציות:</strong> דופק < 100, אפניאה, או גספינג.</li>
+                            <li><strong>קצב:</strong> 40-60 הנשמות בדקה (ספירה: "Breathe, Two, Three").</li>
+                            <li><strong>חמצן:</strong> פגים (< 35 שבועות) מתחילים ב-21%-30%. במועד ב-21%.</li>
+                            <li><strong>יעילות:</strong> הסימן הברור והמהיר ביותר להנשמה יעילה הוא <strong>עלייה בקצב הלב של היילוד</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-screwdriver-wrench"></i> MR. SOPA
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        אם הדופק לא עולה ובית החזה <strong>אינו מתרומם</strong>, ההנשמה אינה מגיעה לריאות. יש לבצע:
+                        <ul>
+                            <li><strong>M</strong>ask: אטימה מחדש של המסכה.</li>
+                            <li><strong>R</strong>eposition: שינוי קל של תנוחת הראש.</li>
+                            <li><strong>S</strong>uction: שאיבת הפרשות (פה ואז אף).</li>
+                            <li><strong>O</strong>pen Mouth: פתיחת הפה קלות.</li>
+                            <li><strong>P</strong>ressure: העלאת לחץ ההנשמה (PIP) בהדרגה עד מקסימום 40.</li>
+                            <li><strong>A</strong>lternative: נתיב אוויר חלופי (טובוס/LMA).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-pump-medical"></i> מכשירי הנשמה
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li><strong>T-Piece (Neopuff):</strong> המומלץ ביותר. מספק לחצים קבועים (PIP ו-PEEP) מדויקים ודורש מקור חמצן.</li>
+                            <li><strong>אמבו (Self-inflating):</strong> מתנפח עצמאית, לא דורש מקור חמצן, אך ללא שסתום מיוחד לא מספק PEEP או חמצן חופשי (CPAP).</li>
+                            <li><strong>Flow-inflating:</strong> דורש מקור חמצן. הבלון מתרוקן אם אין אטימה למסכה.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-button-container">
+                <button class="next-tab-btn" onclick="switchTab('comp')">
+                    הבא <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 4: Compressions -->
+        <section id="comp" class="tab-content">
+            <h2 class="section-title text-center" style="text-align: center;">עיסויי חזה</h2>
+            <p class="section-subtitle text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">עיסויים מבוצעים כדי לספק סירקולציה כאשר ישנו כשל קרדיאלי משני למצוקה נשימתית קשה.</p>
+
+            <div class="glossary-grid">
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-heart-pulse"></i> מתי מתחילים?
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <p>עיסויי חזה יתחילו <strong>אך ורק</strong> אם קצב הלב נותר <strong>נמוך מ-60</strong> פעימות בדקה, <strong>לאחר</strong> שהתינוק קיבל לפחות 30 שניות של הנשמה (PPV) יעילה שבה בית החזה התרומם בבירור.</p>
+                        <p style="margin-top: 10px; color: var(--danger-color); font-weight: bold;">דגש: עם תחילת העיסויים חובה להעלות את ריכוז החמצן ל-100% ומומלץ לבצע אינטובציה.</p>
+                    </div>
+                </div>
+                
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-hands-bubbles"></i> טכניקה ומיקום
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li><strong>מיקום:</strong> שני אגודלים על השליש התחתון של הסטרנום, ממש מתחת לקו הדמיוני של הפטמות, תוך הקפת הבטן עם שאר האצבעות לתמיכה בגב.</li>
+                            <li><strong>עומק:</strong> לחיצה לעומק של שליש מהקוטר הקדמי-אחורי של בית החזה.</li>
+                            <li>יש לאפשר לבית החזה להתרחב חזרה במלואו לאחר כל לחיצה (משך השחרור ארוך ממשך הלחיצה).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-stopwatch-20"></i> יחס וקצב
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li><strong>יחס:</strong> 3 עיסויים להנשמה אחת (3:1).</li>
+                            <li><strong>קצב כולל:</strong> 90 עיסויים ו-30 הנשמות בדקה (סה"כ 120 אירועים).</li>
+                            <li><strong>ספירה בקול:</strong> "אחת ושתיים ושלוש - הנשמה!" ("One-and-Two-and-Three-and-Breathe").</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-button-container">
+                <button class="next-tab-btn" onclick="switchTab('drugs')">
+                    הבא <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 5: Drugs -->
+        <section id="drugs" class="tab-content">
+            <h2 class="section-title text-center" style="text-align: center;">תרופות בהחייאה</h2>
+            <p class="section-subtitle text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">אדרנלין ומרחיבי נפח. מתי ניתנים ובאילו מינונים?</p>
+
+            <div class="glossary-grid">
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-syringe"></i> אדרנלין
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <p>מותווה כאשר הדופק נותר נמוך מ-60 פעימות בדקה לאחר דקה מלאה (60 שניות) של עיסויים מתואמים עם הנשמה ו-100% חמצן.</p>
+                        <ul>
+                            <li><strong>הריכוז המהול:</strong> 1:10,000 (0.1 mg/ml).</li>
+                            <li><strong>וריד טבורי (UVC):</strong> 0.01 עד 0.03 mg/kg. בפועל: שואבים 0.1-0.3 מ"ל/ק"ג במזרק 1 מ"ל. תמיד לשטוף עם 3 מ"ל סליין.</li>
+                            <li><strong>תוך-קני (טובוס):</strong> ניתן זמנית עד לביסוס וריד. מינון גבוה בהרבה: 0.05 עד 0.1 mg/kg (שואבים 0.5-1 מ"ל/ק"ג במזרק גדול). יש להנשים אחרי הזרקה לפיזור.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-droplet"></i> מרחיבי נפח
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li><strong>אינדיקציה:</strong> תינוק שאינו מגיב להחייאה ונראה במצב שוק (דפקים חלשים, חיוורון למרות חמצון) או היסטוריה של אובדן דם (למשל היפרדות שליה).</li>
+                            <li><strong>מה נותנים:</strong> Normal Saline (0.9%) או דם סוג O מינוס.</li>
+                            <li><strong>מינון:</strong> 10 מ"ל לקילוגרם (10 ml/kg).</li>
+                            <li><strong>אופן מתן:</strong> לאט, לאורך 5 עד 10 דקות (במיוחד בפגים למניעת דימום מוחי - IVH).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-button-container">
+                <button class="next-tab-btn" onclick="switchTab('prac')">
+                    הבא לתרגול! <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 6: Practice Cases -->
+        <section id="prac" class="tab-content">
+            <h2 class="section-title">שאלות תרגול ב-NRP</h2>
+            <p class="section-subtitle">קראי את התרחיש הקליני ובחרי את ההתערבות המיידית המתאימה ביותר.</p>
+
+            <div class="case-studies">
+                
+                <!-- Question 1 -->
+                <div class="case-wrap" id="case1">
+                    <div class="case-header" onclick="toggleCase('case1')">
+                        <div class="case-title">
+                            <div class="case-icon">1</div>
+                            תרחיש קליני 1
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> יילוד נולד בשבוע 38. לאחר החיתוך, הוא נמסר לצוות. הוא רפוי לחלוטין (Floppy) ואינו נושם (Apnea).
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהי הפעולה הראשונה והמיידית שעלייך לבצע?</h4>
+                        <div class="options-list" id="opts-case1">
+                            <button class="option-btn" onclick="checkAnswer('case1', 0, this)">
+                                א. להתחיל עיסויי חזה באופן מיידי בשילוב 100% חמצן.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case1', 1, this)">
+                                ב. להעביר למיטת חימום, לייבש, לספק גירוי, לפנות הפרשות, ואם עדיין אינו נושם - להתחיל הנשמה בלחץ חיובי (PPV).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case1', 2, this)">
+                                ג. להניח על חזה האם ל-Skin to Skin ולהמתין לדקה 1 כדי לקחת ציון אפגר.
+                            </button>
+                        </div>
+                        <div id="feed-case1" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="case-wrap" id="case2">
+                    <div class="case-header" onclick="toggleCase('case2')">
+                        <div class="case-title">
+                            <div class="case-icon">2</div>
+                            תרחיש קליני 2
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> פג נולד. בוצעו הצעדים הראשוניים של חימום, ייבוש וגירוי. לאחר פעולות אלו, הפג עדיין מתנשם בכבדות (Gasping) ומד הדופק מראה קצב לב של 80 פעימות בדקה.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מה תהיה הפעולה הנכונה הבאה?</h4>
+                        <div class="options-list" id="opts-case2">
+                            <button class="option-btn" onclick="checkAnswer('case2', 0, this)">
+                                א. לתת חמצן חופשי (Free Flow Oxygen) מול פני התינוק.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case2', 1, this)">
+                                ב. להתחיל הנשמה בלחץ חיובי (PPV) בעזרת T-Piece או אמבו.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case2', 2, this)">
+                                ג. להתחיל עיסויי חזה מכיוון שהדופק מתחת ל-100.
+                            </button>
+                        </div>
+                        <div id="feed-case2" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="case-wrap" id="case3">
+                    <div class="case-header" onclick="toggleCase('case3')">
+                        <div class="case-title">
+                            <div class="case-icon">3</div>
+                            תרחיש קליני 3
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> התחלת הנשמה בלחץ חיובי (PPV) לתינוק עם דופק 70. לאחר 15 שניות של הנשמה, הדופק נותר 70, ובית החזה של התינוק אינו מתרומם כלל בכל הנשמה.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מה הצעד הבא ההכרחי?</h4>
+                        <div class="options-list" id="opts-case3">
+                            <button class="option-btn" onclick="checkAnswer('case3', 0, this)">
+                                א. להתחיל עיסויי חזה.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case3', 1, this)">
+                                ב. לבצע את צעדי תיקון ההנשמה - MR. SOPA.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case3', 2, this)">
+                                ג. להכין מנת אדרנלין למתן דרך הווריד הטבורי.
+                            </button>
+                        </div>
+                        <div id="feed-case3" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="case-wrap" id="case4">
+                    <div class="case-header" onclick="toggleCase('case4')">
+                        <div class="case-title">
+                            <div class="case-icon">4</div>
+                            תרחיש קליני 4
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> לאחר ביצוע צעדי התיקון, בית החזה של התינוק מתרומם היטב בכל הנשמה. חלפו 30 שניות מלאות של הנשמה יעילה (PPV שמזיזה את בית החזה), אך קצב הלב (HR) הוא 50 פעימות בדקה בלבד.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהי ההתערבות הנדרשת כעת?</h4>
+                        <div class="options-list" id="opts-case4">
+                            <button class="option-btn" onclick="checkAnswer('case4', 0, this)">
+                                א. להתחיל עיסויי חזה (בשליש התחתון של הסטרנום) תוך סנכרון עם ההנשמה, ולהעלות חמצן ל-100%. (מומלץ גם לבצע אינטובציה).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case4', 1, this)">
+                                ב. להמשיך הנשמה (PPV) בלבד לעוד 30 שניות.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case4', 2, this)">
+                                ג. לתת אדרנלין מיד, עוד לפני התחלת העיסויים.
+                            </button>
+                        </div>
+                        <div id="feed-case4" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="case-wrap" id="case5">
+                    <div class="case-header" onclick="toggleCase('case5')">
+                        <div class="case-title">
+                            <div class="case-icon">5</div>
+                            תרחיש קליני 5
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> הצוות מתחיל לבצע עיסויי חזה יחד עם ההנשמה בעקבות כשל נשימתי ודופק נמוך.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהו היחס הנכון בין עיסויים להנשמות בהחייאת יילוד (NRP)?</h4>
+                        <div class="options-list" id="opts-case5">
+                            <button class="option-btn" onclick="checkAnswer('case5', 0, this)">
+                                א. 15 עיסויים ל-2 הנשמות (15:2).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case5', 1, this)">
+                                ב. 3 עיסויים ל-1 הנשמה (3:1).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case5', 2, this)">
+                                ג. 5 עיסויים ל-1 הנשמה (5:1).
+                            </button>
+                        </div>
+                        <div id="feed-case5" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                 <!-- Question 6 -->
+                 <div class="case-wrap" id="case6">
+                    <div class="case-header" onclick="toggleCase('case6')">
+                        <div class="case-title">
+                            <div class="case-icon">6</div>
+                            תרחיש קליני 6
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> אתם מטפלים בתינוק עם דופק 40, למרות דקה מלאה (60 שניות) של עיסויי חזה איכותיים המשולבים בהנשמה (PPV) ו-100% חמצן, כשהטובוס במקום.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהי התרופה שניתן כעת ומהו המינון המועדף במתן ורידי (UVC)?</h4>
+                        <div class="options-list" id="opts-case6">
+                            <button class="option-btn" onclick="checkAnswer('case6', 0, this)">
+                                א. אדרנלין במינון של 0.01 עד 0.03 מ"ג/ק"ג (mg/kg).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case6', 1, this)">
+                                ב. אדרנלין במינון של 0.1 עד 0.3 מ"ג/ק"ג (mg/kg).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case6', 2, this)">
+                                ג. סליין (Normal Saline) למילוי נפח מהיר.
+                            </button>
+                        </div>
+                        <div id="feed-case6" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="case-wrap" id="case7">
+                    <div class="case-header" onclick="toggleCase('case7')">
+                        <div class="case-title">
+                            <div class="case-icon">7</div>
+                            תרחיש קליני 7
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> את מבצעת הנשמה בלחץ חיובי (PPV) ליילוד שזה עתה נולד לאחר שלא נשם עצמאית. הצוות בוחן את מצבו.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהו האינדיקטור (הסמן) המובהק והראשוני ביותר לכך שההנשמה (PPV) יעילה ומשפיעה?</h4>
+                        <div class="options-list" id="opts-case7">
+                            <button class="option-btn" onclick="checkAnswer('case7', 0, this)">
+                                א. עלייה בסטורציה (SpO2).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case7', 1, this)">
+                                ב. עלייה מהירה בקצב הלב (HR) של התינוק.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case7', 2, this)">
+                                ג. שיפור בצבע העור של התינוק לורוד.
+                            </button>
+                        </div>
+                        <div id="feed-case7" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="case-wrap" id="case8">
+                    <div class="case-header" onclick="toggleCase('case8')">
+                        <div class="case-title">
+                            <div class="case-icon">8</div>
+                            תרחיש קליני 8
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> תינוק נולד דרך מים מקוניאליים סמיכים. לאחר יציאתו הוא רפוי לחלוטין (Non-vigorous) ולא נושם כלל.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">לפי פרוטוקול NRP המעודכן, מה עלייך לעשות?</h4>
+                        <div class="options-list" id="opts-case8">
+                            <button class="option-btn" onclick="checkAnswer('case8', 0, this)">
+                                א. לבצע אינטובציה (הכנסת טובוס) שגרתית מיידית לצורך שאיבת המקוניום מקנה הנשימה.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case8', 1, this)">
+                                ב. להעביר לפינת חימום, לבצע צעדים ראשוניים (חימום, פינוי הפרשות עם סקשן/פומפה, גירוי), ולהתחיל PPV אם אינו נושם. (אין אינטובציה שגרתית לשאיבה).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case8', 2, this)">
+                                ג. לבצע עיסויי חזה לפני פינוי ההפרשות.
+                            </button>
+                        </div>
+                        <div id="feed-case8" class="feedback-box"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // --- Interactivity & Tab Navigation ---
+        function switchTab(tabId) {
+            // Update nav buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if(btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleGlossary(element) {
+            element.classList.toggle('open');
+        }
+
+        // --- Practice Cases Logic ---
+        const casesSolutions = {
+            'case1': 1, // Option B
+            'case2': 2, // Option C (PPV)
+            'case3': 1, // Option B (MR. SOPA)
+            'case4': 0, // Option A (Compressions)
+            'case5': 1, // Option B (3:1)
+            'case6': 0, // Option A (0.01-0.03)
+            'case7': 1, // Option B (HR up)
+            'case8': 1  // Option B (No routine intubation)
+        };
+
+        const casesExplanations = {
+            'case1': "לפי פרוטוקול NRP, השלב הראשון (בדקת הזהב) הוא לחמם, לייבש ולגרות את התינוק תוך פינוי הפרשות. אם התינוק נותר באפניאה - יש להתחיל מיד הנשמה (PPV). עיסויי חזה אינם השלב הראשון.",
+            'case2': "כאשר קצב הלב נמוך מ-100 פעימות בדקה (או שיש אפניאה/גספינג), ההתערבות המרכזית וההכרחית בהחייאת יילוד היא התחלת הנשמה בלחץ חיובי (PPV). חמצן חופשי אינו מספיק למצב זה, ועיסויים שמורים לדופק מתחת ל-60 בלבד.",
+            'case3': "אם דופק התינוק לא עולה ובית החזה אינו מתרומם, הרי שההנשמה אינה יעילה (האוויר לא מגיע לריאות). לפני שעולים לשלב העיסויים, חובה לבצע את צעדי תיקון ההנשמה - MR. SOPA - כדי לוודא שבית החזה אכן עולה.",
+            'case4': "כאשר קצב הלב יורד מתחת ל-60 פעימות בדקה <strong>לאחר</strong> 30 שניות של הנשמה יעילה (שמזיזה את בית החזה!), האינדיקציה היא להתחיל עיסויי חזה (על החלק התחתון של הסטרנום לעומק של שליש), להעלות חמצן ל-100%, ומומלץ לבצע אינטובציה.",
+            'case5': "יחס העיסויים להנשמות בהחייאת יילוד הוא 3:1. כלומר, 3 עיסויי חזה ואז הנשמה אחת. פעולה זו מתבצעת בקצב של 120 אירועים בדקה (90 עיסויים ו-30 הנשמות).",
+            'case6': "המינון המומלץ למתן אדרנלין ורידי (UVC) הוא 0.01 עד 0.03 מ\"ג/ק\"ג. ניתן לתת מינון גבוה יותר (0.05-0.1) רק אם ניתן דרך הטובוס.",
+            'case7': "המטרה העיקרית של הנשמה בלחץ חיובי (PPV) בהחייאת יילוד היא לשפר את שחלוף הגזים והסירקולציה. האינדיקטור הקליני הברור, המהיר והראשוני ביותר לכך שההנשמה פועלת היטב הוא <strong>עלייה בקצב הלב (HR) של התינוק</strong>.",
+            'case8': "על פי העדכונים האחרונים בהנחיות NRP, <strong>אין</strong> לבצע יותר אינטובציה שגרתית רק לצורך שאיבת מקוניום ביילוד רפוי. הטיפול הוא רגיל: צעדים ראשוניים תחת החימום, ואם הילד אפנאי או הדופק מתחת 100 - התחלת PPV רגיל."
+        };
+
+        function toggleCase(caseId) {
+            const wrap = document.getElementById(caseId);
+            const isOpen = wrap.classList.contains('open');
+            
+            document.querySelectorAll('.case-wrap').forEach(w => w.classList.remove('open'));
+            
+            if (!isOpen) {
+                wrap.classList.add('open');
+                setTimeout(() => {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const pos = wrap.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({ top: pos - headerHeight - 10, behavior: 'smooth' });
+                }, 300);
+            }
+        }
+
+        function checkAnswer(caseId, selectedIdx, btnElem) {
+            const correctIdx = casesSolutions[caseId];
+            const feedbackBox = document.getElementById(`feedback-${caseId}`);
+            
+            const optionsContainer = document.getElementById(`opts-${caseId}`);
+            const buttons = optionsContainer.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected-correct', 'selected-wrong');
+                btn.disabled = true; // Disable after selection
+            });
+
+            if (selectedIdx === correctIdx) {
+                btnElem.classList.add('selected-correct');
+                feedbackBox.className = 'feedback-box show success';
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong style="font-size: 18px;">כל הכבוד, תשובה נכונה!</strong><br><br>${casesExplanations[caseId]}`;
+            } else {
+                btnElem.classList.add('selected-wrong');
+                buttons[correctIdx].classList.add('selected-correct');
+                feedbackBox.className = 'feedback-box show error';
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <strong style="font-size: 18px;">תשובה שגויה.</strong><br><br>${casesExplanations[caseId]}`;
+            }
+            
+            setTimeout(() => {
+                 feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
