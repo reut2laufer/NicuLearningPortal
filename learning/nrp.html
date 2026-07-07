@@ -6,6 +6,9 @@
     <title>לומדת החייאת יילודים בפגים - פגיית הר הצופים</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <style>
         :root {
             /* Blue Palette */
@@ -29,6 +32,12 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* RTL bullet fix: the global reset removes the browser's default
+           list padding; without it Safari renders markers on the wrong side */
+        ul:not([class]) {
+            padding-right: 20px;
+        }
+
         body {
             font-family: 'Assistant', sans-serif;
             background-color: var(--bg-light);
@@ -43,44 +52,9 @@
         h1, h2, h3, h4 { font-family: 'Heebo', sans-serif; }
 
         /* Header Styling */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.15);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
 
-        .header-title h1 {
-            font-size: clamp(20px, 4vw, 28px);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 5px;
-        }
 
-        .header-title p {
-            font-size: clamp(14px, 2.5vw, 16px);
-            opacity: 0.9;
-        }
 
-        .school-badge {
-            background: rgba(255,255,255,0.15);
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(5px);
-        }
 
         /* Main Container & Tabs */
         .app-container {
@@ -227,11 +201,9 @@
             100% { transform: scale(1.25); opacity: 0; }
         }
 
-        .main-icon-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 28px;
+        .main-icon {
+            font-size: min(85px, 24vw);
+            color: var(--primary-color);
             z-index: 2;
         }
 
@@ -502,16 +474,6 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-title">
-            <h1>החייאת יילודים ופגים (NRP)</h1>
-            <p>פגיית הדסה הר הצופים</p>
-        </div>
-        <div class="school-badge">
-            <i class="fa-solid fa-user-nurse"></i>
-            רעות לאופר כהן BSN
-        </div>
-    </header>
 
     <div class="app-container">
         
@@ -525,6 +487,9 @@
             </button>
             <button class="tab-btn" data-target="ppv" onclick="switchTab('ppv')">
                 <i class="fa-solid fa-mask-ventilator"></i> הנשמה בלחץ חיובי
+            </button>
+            <button class="tab-btn" data-target="tube" onclick="switchTab('tube')">
+                <i class="fa-solid fa-lungs-virus"></i> אינטובציה
             </button>
             <button class="tab-btn" data-target="comp" onclick="switchTab('comp')">
                 <i class="fa-solid fa-hands-bubbles"></i> עיסויים
@@ -548,7 +513,7 @@
                 </div>
                 <div class="intro-image">
                     <div class="hero-icon-container animate-breathe">
-                        <img src="image_93c740.png" alt="לוגו NRP" class="main-icon-img">
+                        <i class="fa-solid fa-heart-pulse main-icon"></i>
                     </div>
                 </div>
             </div>
@@ -612,7 +577,7 @@
                             <li>מהו שבוע ההיריון?</li>
                             <li>האם מי השפיר נקיים?</li>
                             <li>האם יש גורמי סיכון נוספים?</li>
-                            <li>מהו תכנון ניתוק חבל הטבור / מהו מספר העוברים?</li>
+                            <li>מה התוכנית לגבי ניתוק מושהה של חבל הטבור (DCC)?</li>
                         </ul>
                     </div>
                 </div>
@@ -681,7 +646,24 @@
                         <ul>
                             <li>האם הילד נושם? האם יש אפניאה או גספינג?</li>
                             <li>הערכת דופק (קצב הלב): האזנה עם סטטוסקופ או מישוש בטבור (ספירת 6 שניות X 10).</li>
-                            <li>אם למרות גירוי הילד אפנאי או הדופק מתחת ל-100 - התחילי מיד בהנשמה בלחץ חיובי (PPV)!</li>
+                            <li>אם למרות גירוי הילד אפנאי או הדופק מתחת ל-100 - יש להתחיל הנשמה בלחץ חיובי (PPV) בקצב של 40-60 הנשמות בדקה!</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-wind"></i> מתן חמצן סביבתי (Free-Flow)
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        מה עושים אם התינוק נושם והדופק מעל 100, אך הוא נראה כחול? יש לחבר מד סטורציה (יד ימין) להערכת החמצון, לבצע שאיבת הפרשות לפי הצורך, לתת חמצן סביבתי ולשקול מתן CPAP.
+                        <ul>
+                            <li><strong>התוויה:</strong> רק לתינוק נושם! (לא לתינוק באפניאה או גספינג - שם נדרשת הנשמה).</li>
+                            <li><strong>איך:</strong> דרך בלנדר של חמצן ואוויר, בזרימה של 10 ליטר לדקה.</li>
+                            <li><strong>דרכי מתן:</strong> צינור חמצן קרוב לאף ולפה, מסכת חמצן (לא צמודה לפנים), T-Piece, בלון Flow-inflating, או זנב הרזרבואר של האמבו.</li>
+                            <li><strong>טיטרציה:</strong> יש לכוון את ריכוז החמצן לפי יעדי הסטורציה לגיל בדקות.</li>
                         </ul>
                     </div>
                 </div>
@@ -740,7 +722,7 @@
                 <div class="term-card" onclick="toggleGlossary(this)">
                     <h4>
                         <div class="icon-and-title">
-                            <i class="fa-solid fa-pump-medical"></i> מכשירי הנשמה
+                            <i class="fa-solid fa-pump-medical"></i> שיטות הנשמה בלחץ חיובי
                         </div>
                         <i class="fa-solid fa-chevron-down term-icon"></i>
                     </h4>
@@ -755,13 +737,144 @@
             </div>
 
             <div class="nav-button-container">
+                <button class="next-tab-btn" onclick="switchTab('tube')">
+                    הבא <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 4: Intubation -->
+        <section id="tube" class="tab-content">
+            <h2 class="section-title text-center" style="text-align: center;">אינטובציה ונתיב אוויר חלופי</h2>
+            <p class="section-subtitle text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">כאשר הנשמה במסכה אינה יעילה או נדרש נתיב אוויר מאובטח - עוברים לטובוס או למסכה לרינגיאלית.</p>
+
+            <div class="glossary-grid">
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-circle-question"></i> מתי נשקול נתיב אוויר חלופי?
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li>כשההנשמה עם אמבו ומסכה אינה יעילה (בית החזה אינו מתרומם למרות MR. SOPA).</li>
+                            <li>כשיש צורך להנשים זמן ממושך יותר ממספר דקות.</li>
+                            <li>כשיש צורך לשלב הנשמות עם עיסויי לב.</li>
+                            <li>נסיבות מיוחדות: חשד ל-CDH (בקע סרעפתי), מתן סורפקטנט, או שאיבה ישירה של הפרשות סמיכות מקנה הנשימה.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-ruler"></i> בחירת גודל טובוס ולהב
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <strong>גודל טובוס לפי שבוע/משקל:</strong>
+                        <ul>
+                            <li>מתחת לשבוע 28 (מתחת ל-1 ק"ג): טובוס 2.5</li>
+                            <li>שבועות 28-34 (1-2 ק"ג): טובוס 3</li>
+                            <li>מעל שבוע 34 (מעל 2 ק"ג): טובוס 3.5</li>
+                        </ul>
+                        <strong>גודל להב לרינגוסקופ:</strong>
+                        <ul>
+                            <li>להב 1 - ליילודים במועד.</li>
+                            <li>להב 0 - לפגים.</li>
+                            <li>להב 00 - לפגים קטנים מאוד.</li>
+                        </ul>
+                        טובוס קטן מדי מעלה תנגודת ועלול להיחסם; טובוס גדול מדי עלול להזיק לנתיב האוויר. יש לשקול שימוש בגייד (מוליך) בבטיחות.
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-list-ol"></i> ביצוע האינטובציה
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        הלרינגוסקופ תמיד ביד שמאל!
+                        <ul>
+                            <li><strong>צעד 1:</strong> מיקום הראש בתנוחת Sniffing ופתיחת הפה בעדינות.</li>
+                            <li><strong>צעד 2:</strong> הכנסת הלהב מעבר לצד ימין של הלשון, דחיפתה שמאלה, והתקדמות עד הוולקולה (בסיס הלשון).</li>
+                            <li><strong>צעד 3:</strong> הרמת הלהב כולו (לא בתנועת נדנוד!) לחשיפת האזור הלרינגיאלי.</li>
+                            <li><strong>צעד 4:</strong> זיהוי מיתרי הקול (בצורת V הפוך). ניתן להפעיל לחץ על הקריקואיד ולבצע שאיבה לפי הצורך.</li>
+                            <li><strong>צעד 5:</strong> הכנסת הטובוס מצד ימין של הפה עד שמכוון מיתרי הקול ממוקם בגובהם. אם המיתרים סגורים - ממתינים, לעולם לא עוברים בכוח.</li>
+                            <li><strong>הגבלת זמן:</strong> כל ניסיון אינטובציה מוגבל לכ-30 שניות. בין ניסיונות - הנשמה במסכה.</li>
+                            <li><strong>עומק הכנסה:</strong> משקל בק"ג + 6 (בס"מ, בזווית הפה).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-circle-check"></i> איך מוודאים שהטובוס במקום?
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li><strong>גלאי CO2:</strong> משנה צבע מסגול לצהוב בנוכחות CO2 לאחר 8-10 הנשמות (הבדיקה המרכזית).</li>
+                            <li>שיפור בדופק.</li>
+                            <li>בהאזנה: כניסת אוויר שווה בשתי הריאות, ללא כניסת אוויר מעל הקיבה.</li>
+                            <li>הבטן אינה מתנפחת בעת ההנשמה.</li>
+                            <li>התרוממות שווה של שני צדי בית החזה.</li>
+                            <li>נוכחות אדים בטובוס בזמן נשיפה.</li>
+                        </ul>
+                        <strong>קיבוע:</strong> חיתוך הטובוס למניעת Dead Space גדול, וקיבוע בגשר ייעודי או "פלסטר מכנסיים".
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-triangle-exclamation"></i> תינוק מונשם שמתדרדר - DOPE
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li><strong>D</strong>isplacement - האם הטובוס זז ממקומו?</li>
+                            <li><strong>O</strong>bstruction - חסימת נתיב אוויר: לבצע שאיבה.</li>
+                            <li><strong>P</strong>neumothorax - חזה אוויר: לאתר סימנים (כולל צניחת לחץ דם).</li>
+                            <li><strong>E</strong>quipment - בעיות ציוד: ניתוק מהמנשם וכדומה.</li>
+                        </ul>
+                        בהפרשות סמיכות (מקוניום/דם) החוסמות את נתיב האוויר: חיבור הטובוס למתאם שאיבת מקוניום, חסימת הפתח ל-3-5 שניות והוצאה הדרגתית של הטובוס תוך שאיבה.
+                    </div>
+                </div>
+
+                <div class="term-card" onclick="toggleGlossary(this)">
+                    <h4>
+                        <div class="icon-and-title">
+                            <i class="fa-solid fa-head-side-mask"></i> מסכה לרינגיאלית (LMA)
+                        </div>
+                        <i class="fa-solid fa-chevron-down term-icon"></i>
+                    </h4>
+                    <div class="term-def">
+                        <ul>
+                            <li>מסכה רכה עם שוליים מתנפחים על צינור גמיש - נתיב אוויר חלופי ללא לרינגוסקופ.</li>
+                            <li><strong>מידה 1</strong> מתאימה לתינוקות מעל 1.5 ק"ג.</li>
+                            <li>מוכנסת לאורך החיך עם האצבע המורה עד הוושט, ואז מנפחים את השוליים.</li>
+                            <li><strong>מתי:</strong> לאחר ניסיונות אינטובציה כושלים, או כאשר צפוי קושי באינטובציה - לסת קטנה ולשון גדולה (פייר רובין, תסמונת דאון) או עיוותים בפנים/חיך/צוואר.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-button-container">
                 <button class="next-tab-btn" onclick="switchTab('comp')">
                     הבא <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
         </section>
 
-        <!-- TAB 4: Compressions -->
+        <!-- TAB 5: Compressions -->
         <section id="comp" class="tab-content">
             <h2 class="section-title text-center" style="text-align: center;">עיסויי חזה</h2>
             <p class="section-subtitle text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">עיסויים מבוצעים כדי לספק סירקולציה כאשר ישנו כשל קרדיאלי משני למצוקה נשימתית קשה.</p>
@@ -862,14 +975,14 @@
             </div>
 
             <div class="nav-button-container">
-                <button class="next-tab-btn" onclick="switchTab('prac')">
+                <button class="next-tab-btn" onclick="switchTab('practice')">
                     הבא לתרגול! <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
         </section>
 
         <!-- TAB 6: Practice Cases -->
-        <section id="prac" class="tab-content">
+        <section id="practice" class="tab-content">
             <h2 class="section-title">שאלות תרגול ב-NRP</h2>
             <p class="section-subtitle">קראי את התרחיש הקליני ובחרי את ההתערבות המיידית המתאימה ביותר.</p>
 
@@ -1107,6 +1220,94 @@
                     </div>
                 </div>
 
+
+                <!-- Question 9 -->
+                <div class="case-wrap" id="case9">
+                    <div class="case-header" onclick="toggleCase('case9')">
+                        <div class="case-title">
+                            <div class="case-icon">9</div>
+                            תרחיש קליני 9
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> יילוד נולד במועד (שבוע 39). הוא נושם באופן ספונטני והדופק שלו 140, אך הוא נראה כחול באופן מרכזי גם לאחר מספר דקות.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מה הפעולה המתאימה?</h4>
+                        <div class="options-list" id="opts-case9">
+                            <button class="option-btn" onclick="checkAnswer('case9', 0, this)">
+                                א. להתחיל מיד הנשמה בלחץ חיובי (PPV).
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case9', 1, this)">
+                                ב. לחבר מד סטורציה ליד ימין, ולתת חמצן סביבתי (Free-Flow) בזרימה של 10 ליטר לדקה לפי הצורך.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case9', 2, this)">
+                                ג. לא לעשות דבר - כחלון תמיד תקין ביילוד.
+                            </button>
+                        </div>
+                        <div id="feed-case9" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="case-wrap" id="case10">
+                    <div class="case-header" onclick="toggleCase('case10')">
+                        <div class="case-title">
+                            <div class="case-icon">10</div>
+                            תרחיש קליני 10
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> הצוות מתכונן לבצע אינטובציה לפג שנולד בשבוע 30 במשקל 1.5 ק"ג, לאחר שההנשמה במסכה לא הייתה יעילה.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">איזה גודל טובוס יש להכין?</h4>
+                        <div class="options-list" id="opts-case10">
+                            <button class="option-btn" onclick="checkAnswer('case10', 0, this)">
+                                א. טובוס 2.5
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case10', 1, this)">
+                                ב. טובוס 3
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case10', 2, this)">
+                                ג. טובוס 3.5
+                            </button>
+                        </div>
+                        <div id="feed-case10" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 11 -->
+                <div class="case-wrap" id="case11">
+                    <div class="case-header" onclick="toggleCase('case11')">
+                        <div class="case-title">
+                            <div class="case-icon">11</div>
+                            תרחיש קליני 11
+                        </div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            <strong>תרחיש:</strong> בוצעה אינטובציה ליילוד במהלך החייאה. הצוות רוצה לוודא שהטובוס אכן נמצא בקנה הנשימה.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהו הסימן המרכזי המאשר מיקום תקין של הטובוס?</h4>
+                        <div class="options-list" id="opts-case11">
+                            <button class="option-btn" onclick="checkAnswer('case11', 0, this)">
+                                א. גלאי ה-CO2 משנה את צבעו מסגול לצהוב לאחר 8-10 הנשמות, יחד עם שיפור בדופק.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case11', 1, this)">
+                                ב. הבטן מתנפחת בכל הנשמה.
+                            </button>
+                            <button class="option-btn" onclick="checkAnswer('case11', 2, this)">
+                                ג. שמיעת כניסת אוויר מעל הקיבה בלבד.
+                            </button>
+                        </div>
+                        <div id="feed-case11" class="feedback-box"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -1137,13 +1338,16 @@
         // --- Practice Cases Logic ---
         const casesSolutions = {
             'case1': 1, // Option B
-            'case2': 2, // Option C (PPV)
+            'case2': 1, // Option B (PPV)
             'case3': 1, // Option B (MR. SOPA)
             'case4': 0, // Option A (Compressions)
             'case5': 1, // Option B (3:1)
             'case6': 0, // Option A (0.01-0.03)
             'case7': 1, // Option B (HR up)
-            'case8': 1  // Option B (No routine intubation)
+            'case8': 1, // Option B (No routine intubation)
+            'case9': 1, // Option B (Free-flow oxygen)
+            'case10': 1, // Option B (Tube 3)
+            'case11': 0  // Option A (CO2 detector)
         };
 
         const casesExplanations = {
@@ -1154,7 +1358,10 @@
             'case5': "יחס העיסויים להנשמות בהחייאת יילוד הוא 3:1. כלומר, 3 עיסויי חזה ואז הנשמה אחת. פעולה זו מתבצעת בקצב של 120 אירועים בדקה (90 עיסויים ו-30 הנשמות).",
             'case6': "המינון המומלץ למתן אדרנלין ורידי (UVC) הוא 0.01 עד 0.03 מ\"ג/ק\"ג. ניתן לתת מינון גבוה יותר (0.05-0.1) רק אם ניתן דרך הטובוס.",
             'case7': "המטרה העיקרית של הנשמה בלחץ חיובי (PPV) בהחייאת יילוד היא לשפר את שחלוף הגזים והסירקולציה. האינדיקטור הקליני הברור, המהיר והראשוני ביותר לכך שההנשמה פועלת היטב הוא <strong>עלייה בקצב הלב (HR) של התינוק</strong>.",
-            'case8': "על פי העדכונים האחרונים בהנחיות NRP, <strong>אין</strong> לבצע יותר אינטובציה שגרתית רק לצורך שאיבת מקוניום ביילוד רפוי. הטיפול הוא רגיל: צעדים ראשוניים תחת החימום, ואם הילד אפנאי או הדופק מתחת 100 - התחלת PPV רגיל."
+            'case8': "על פי העדכונים האחרונים בהנחיות NRP, <strong>אין</strong> לבצע יותר אינטובציה שגרתית רק לצורך שאיבת מקוניום ביילוד רפוי. הטיפול הוא רגיל: צעדים ראשוניים תחת החימום, ואם הילד אפנאי או הדופק מתחת 100 - התחלת PPV רגיל.",
+            'case9': "חמצן סביבתי (Free-Flow) מיועד <strong>רק לתינוק נושם</strong> עם חשד לכחלון מרכזי מתמשך. יש לחבר מד סטורציה ליד ימין (פרה-דוקטלית) להערכת החמצון, לתת חמצן דרך בלנדר בזרימה של 10 ליטר לדקה (צינור קרוב לאף ולפה, מסכה לא צמודה, T-Piece או זנב הרזרבואר של האמבו), ולשקול CPAP. הנשמה בלחץ חיובי שמורה לאפניאה, גספינג או דופק מתחת ל-100.",
+            'case10': "בחירת גודל הטובוס נעשית לפי שבוע ההיריון והמשקל: מתחת לשבוע 28 (פחות מ-1 ק\"ג) - טובוס 2.5; שבועות 28-34 (1-2 ק\"ג) - טובוס 3; מעל שבוע 34 (מעל 2 ק\"ג) - טובוס 3.5. פג בשבוע 30 במשקל 1.5 ק\"ג נמצא בטווח האמצעי - טובוס 3. עומק ההכנסה: משקל + 6.",
+            'case11': "הבדיקה המרכזית לאישור מיקום הטובוס היא <strong>גלאי CO2</strong> - שינוי צבע מסגול לצהוב לאחר 8-10 הנשמות, לצד שיפור בדופק. סימנים תומכים: כניסת אוויר שווה בשתי הריאות ללא כניסת אוויר מעל הקיבה, בטן שאינה מתנפחת, התרוממות שווה של בית החזה ואדים בטובוס. התנפחות הבטן או אוויר מעל הקיבה מעידים דווקא על טובוס בוושט!"
         };
 
         function toggleCase(caseId) {
@@ -1175,7 +1382,7 @@
 
         function checkAnswer(caseId, selectedIdx, btnElem) {
             const correctIdx = casesSolutions[caseId];
-            const feedbackBox = document.getElementById(`feedback-${caseId}`);
+            const feedbackBox = document.getElementById(`feed-${caseId}`);
             
             const optionsContainer = document.getElementById(`opts-${caseId}`);
             const buttons = optionsContainer.querySelectorAll('.option-btn');
@@ -1200,5 +1407,9 @@
             }, 100);
         }
     </script>
+    <script src="../dist/header.js" defer
+            data-title="החייאת יילודים ופגים (NRP)"
+            data-bg="linear-gradient(135deg, #1e40af, #3b82f6)"></script>
+    <script src="../dist/footer.js" defer data-bg="linear-gradient(135deg, #1e40af, #3b82f6)"></script>
 </body>
 </html>
