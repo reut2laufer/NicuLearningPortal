@@ -9,13 +9,18 @@
  *             data-title="כותרת העמוד"
  *             data-bg="linear-gradient(135deg, #0369a1, #0c4a6e)"
  *             data-subtitle="כותרת משנה (אופציונלי)"
- *             data-home="../index.html (אופציונלי)"></script>
+ *             data-home="../index.html (אופציונלי)"
+ *             data-back="עמוד יעד לכפתור חזרה (אופציונלי)"></script>
  *
  * data-title    required - the page title.
  * data-bg       required - CSS background for the header (color/gradient).
  * data-subtitle optional - small text under the title; omitted -> no subtitle.
  * data-home     optional - home button target, defaults to ../index.html.
- * The home button is identical on all pages.
+ * data-back     optional - back button target. When set it is used as-is;
+ *                          otherwise the button goes back in the browser
+ *                          history, falling back to the home target when
+ *                          there is no history (e.g. opened in a new tab).
+ * The home and back buttons are identical on all pages.
  */
 
 interface HeaderConfig {
@@ -23,6 +28,7 @@ interface HeaderConfig {
     background: string;
     subtitle?: string;
     homeHref: string;
+    backHref?: string;
 }
 
 const HEADER_STYLES: string = `
@@ -57,6 +63,11 @@ const HEADER_STYLES: string = `
     opacity: 0.9;
     margin: 0;
 }
+.site-header .header-btns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 .site-header .home-btn {
     background: rgba(255, 255, 255, 0.25);
     color: white;
@@ -78,6 +89,7 @@ function readHeaderConfig(script: HTMLScriptElement): HeaderConfig {
         background: script.dataset.bg ?? 'linear-gradient(135deg, #082f49, #0c4a6e)',
         subtitle: script.dataset.subtitle,
         homeHref: script.dataset.home ?? '../index.html',
+        backHref: script.dataset.back,
     };
 }
 
@@ -104,13 +116,32 @@ function renderSiteHeader(config: HeaderConfig): void {
         titleWrap.appendChild(subtitle);
     }
 
+    const btns: HTMLDivElement = document.createElement('div');
+    btns.className = 'header-btns';
+
+    const backBtn: HTMLAnchorElement = document.createElement('a');
+    backBtn.className = 'home-btn';
+    backBtn.href = config.backHref ?? config.homeHref;
+    backBtn.innerHTML = '<i class="fa-solid fa-arrow-right"></i> חזרה';
+    if (!config.backHref) {
+        backBtn.addEventListener('click', (event: MouseEvent): void => {
+            if (window.history.length > 1) {
+                event.preventDefault();
+                window.history.back();
+            }
+        });
+    }
+
     const homeBtn: HTMLAnchorElement = document.createElement('a');
     homeBtn.className = 'home-btn';
     homeBtn.href = config.homeHref;
     homeBtn.innerHTML = '<i class="fa-solid fa-house"></i> דף הבית';
 
+    btns.appendChild(backBtn);
+    btns.appendChild(homeBtn);
+
     header.appendChild(titleWrap);
-    header.appendChild(homeBtn);
+    header.appendChild(btns);
     document.body.insertBefore(header, document.body.firstChild);
 }
 
