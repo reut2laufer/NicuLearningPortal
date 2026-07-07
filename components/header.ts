@@ -16,10 +16,13 @@
  * data-bg       required - CSS background for the header (color/gradient).
  * data-subtitle optional - small text under the title; omitted -> no subtitle.
  * data-home     optional - home button target, defaults to ../index.html.
- * data-back     optional - back button target. When set it is used as-is;
- *                          otherwise the button goes back in the browser
- *                          history, falling back to the home target when
- *                          there is no history (e.g. opened in a new tab).
+ * data-back     optional - back button target: the page one level up in
+ *                          the site hierarchy (e.g. a learning page goes
+ *                          back to the modules list). Defaults to the home
+ *                          target. Always an explicit link - browser
+ *                          history is deliberately not used, so repeated
+ *                          "back" clicks walk up to the home page instead
+ *                          of bouncing between two pages.
  * The home and back buttons are identical on all pages.
  */
 
@@ -123,14 +126,6 @@ function renderSiteHeader(config: HeaderConfig): void {
     backBtn.className = 'home-btn';
     backBtn.href = config.backHref ?? config.homeHref;
     backBtn.innerHTML = '<i class="fa-solid fa-arrow-right"></i> חזרה';
-    if (!config.backHref) {
-        backBtn.addEventListener('click', (event: MouseEvent): void => {
-            if (window.history.length > 1) {
-                event.preventDefault();
-                window.history.back();
-            }
-        });
-    }
 
     const homeBtn: HTMLAnchorElement = document.createElement('a');
     homeBtn.className = 'home-btn';
