@@ -11,6 +11,7 @@
  *                              warning? }, ... };
  *     window.moduleQuiz = { answers: { case1: 0, ... },
  *                           explanations: { case1: '...', ... } };
+ *     window.moduleLabels = { warning: '...', ... };   // optional
  *
  * Expected markup (same conventions as the existing modules):
  *   tabs:    .tab-btn buttons calling switchTab('<id>', this),
@@ -45,6 +46,20 @@ function getModuleQuiz(): ModuleQuiz {
     return (window as any).moduleQuiz ?? { answers: {}, explanations: {} };
 }
 
+/* Section titles differ slightly between modules; pages override via
+ * window.moduleLabels = { mechanism?, indications?, warning?, explanation? } */
+const MODULE_LABEL_DEFAULTS: { [key: string]: string } = {
+    mechanism: 'מנגנון ורציונל',
+    indications: 'התוויות / פעולה',
+    warning: 'דגש קליני וסיעודי',
+    explanation: 'הסבר מקצועי',
+};
+
+function moduleLabel(key: string): string {
+    const labels = (window as any).moduleLabels ?? {};
+    return labels[key] ?? MODULE_LABEL_DEFAULTS[key];
+}
+
 function headerOffset(): number {
     const header = document.querySelector('header');
     return header ? (header as HTMLElement).offsetHeight : 0;
@@ -75,7 +90,7 @@ function showDetail(typeId: string, card: HTMLElement): void {
         <div class="warning-box" style="grid-column: 1 / -1;">
             <i class="fa-solid fa-triangle-exclamation"></i>
             <div>
-                <strong>דגש קליני וסיעודי:</strong><br>
+                <strong>${moduleLabel('warning')}:</strong><br>
                 ${data.warning}
             </div>
         </div>` : '';
@@ -84,7 +99,7 @@ function showDetail(typeId: string, card: HTMLElement): void {
     if (data.indications.length > 0) {
         indicationsHtml = `
             <div class="info-box">
-                <h4><i class="fa-solid fa-user-check"></i> התוויות / פעולה</h4>
+                <h4><i class="fa-solid fa-user-check"></i> ${moduleLabel('indications')}</h4>
                 <ul>
                     ${data.indications.map(item => `<li>${item}</li>`).join('')}
                 </ul>
@@ -102,7 +117,7 @@ function showDetail(typeId: string, card: HTMLElement): void {
         </div>
         <div class="detail-body" style="${data.customHtml ? 'grid-template-columns: 1fr;' : ''}">
             <div class="info-box">
-                <h4><i class="fa-solid fa-cogs"></i> מנגנון ורציונל</h4>
+                <h4><i class="fa-solid fa-cogs"></i> ${moduleLabel('mechanism')}</h4>
                 <ul>
                     ${data.mechanism.map(item => `<li>${item}</li>`).join('')}
                 </ul>
@@ -175,12 +190,12 @@ function checkAnswer(caseId: string, selectedIndex: number, btnElement: HTMLElem
     if (selectedIndex === correctIndex) {
         btnElement.classList.add('selected-correct');
         feedbackArea.className = 'feedback-area show success';
-        feedbackArea.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong style="font-size: 18px;">תשובה נכונה!</strong><br><br><strong>הסבר מקצועי:</strong><br>${explanation}`;
+        feedbackArea.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong style="font-size: 18px;">תשובה נכונה!</strong><br><br><strong>${moduleLabel('explanation')}:</strong><br>${explanation}`;
     } else {
         btnElement.classList.add('selected-wrong');
         buttons[correctIndex].classList.add('selected-correct');
         feedbackArea.className = 'feedback-area show error';
-        feedbackArea.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <strong style="font-size: 18px;">תשובה שגויה. התשובה הנכונה הודגשה בירוק.</strong><br><br><strong>הסבר מקצועי:</strong><br>${explanation}`;
+        feedbackArea.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <strong style="font-size: 18px;">תשובה שגויה. התשובה הנכונה הודגשה בירוק.</strong><br><br><strong>${moduleLabel('explanation')}:</strong><br>${explanation}`;
     }
 
     setTimeout(() => {
