@@ -9,6 +9,7 @@
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../assets/module.css">
     <style>
         :root {
             --primary-color: #0284c7;
@@ -30,12 +31,6 @@
             -webkit-tap-highlight-color: transparent; /* מונע הבהוב לחיצה במובייל */
         }
 
-        /* RTL bullet fix: the global reset removes the browser's default
-           list padding; without it Safari renders markers on the wrong side */
-        ul:not([class]) {
-            padding-right: 20px;
-        }
-
         body {
             font-family: 'Assistant', sans-serif;
             background-color: var(--bg-light);
@@ -51,12 +46,6 @@
             font-family: 'Heebo', sans-serif;
         }
 
-
-
-
-
-
-        /* Main Container */
         .app-container {
             flex: 1;
             max-width: 1200px;
@@ -65,7 +54,6 @@
             width: 100%;
         }
 
-        /* Navigation Tabs */
         .tabs-nav {
             display: flex;
             gap: 10px;
@@ -78,7 +66,7 @@
             -webkit-overflow-scrolling: touch; /* גלילה חלקה באייפון */
             scrollbar-width: none; /* מסתיר פס גלילה (פיירפוקס) */
         }
-        
+
         .tabs-nav::-webkit-scrollbar {
             display: none; /* מסתיר פס גלילה (כרום/ספארי) */
         }
@@ -112,22 +100,6 @@
             box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
         }
 
-        /* Content Sections */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Intro Section */
         .intro-hero {
             background: var(--card-bg);
             border-radius: 20px;
@@ -146,12 +118,6 @@
             line-height: 1.2;
         }
 
-        .intro-text p {
-            font-size: clamp(16px, 3.5vw, 20px);
-            margin-bottom: 15px;
-        }
-
-        /* Hero Icon Animation & Styling */
         .intro-image {
             display: flex;
             align-items: center;
@@ -183,18 +149,12 @@
             animation: pulse 2.5s infinite ease-out;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.25); opacity: 0; }
-        }
-
         .main-icon {
             font-size: min(90px, 25vw);
             color: var(--primary-color);
             z-index: 2;
         }
 
-        /* Interactive Grid for Ventilation Types */
         .types-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* הוקטן המינימום למובייל */
@@ -215,39 +175,15 @@
             overflow: hidden;
         }
 
-        .type-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--primary-color);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-            transform-origin: right;
-        }
-
         .type-card:hover, .type-card:active {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border-color: var(--secondary-color);
         }
 
-        .type-card:hover::before, .type-card:active::before {
-            transform: scaleX(1);
-        }
-
         .type-card.active {
             border-color: var(--primary-color);
             background: #f8fafc;
-        }
-
-        .type-icon {
-            font-size: 40px;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            transition: var(--transition);
         }
 
         .type-card:hover .type-icon, .type-card:active .type-icon {
@@ -261,7 +197,6 @@
             margin-bottom: 8px;
         }
 
-        /* Detail Modal / Panel */
         .detail-panel {
             background: var(--card-bg);
             border-radius: 16px;
@@ -271,16 +206,6 @@
             display: none;
             border-right: 5px solid var(--primary-color);
             position: relative;
-        }
-
-        .detail-panel.show {
-            display: block;
-            animation: slideDown 0.4s ease;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .close-btn {
@@ -344,19 +269,11 @@
             gap: 8px;
         }
 
-        .info-box ul {
-            list-style: none;
-        }
-
         .info-box li {
             margin-bottom: 12px;
             padding-right: 25px;
             position: relative;
             font-size: 16px;
-        }
-
-        .info-box li:last-child {
-            margin-bottom: 0;
         }
 
         .info-box li::before {
@@ -367,33 +284,6 @@
             position: absolute;
             right: 0;
             top: 2px;
-        }
-
-        /* Warning Box */
-        .warning-box {
-            background: #fef2f2;
-            border-right: 4px solid var(--danger-color);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-size: 16px;
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-        }
-
-        .warning-box i {
-            color: var(--danger-color);
-            font-size: 20px;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-
-        /* Practice Section */
-        .case-studies {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
         }
 
         .case-card {
@@ -427,38 +317,6 @@
             color: var(--text-main);
             flex: 1;
             line-height: 1.3;
-        }
-
-        .case-icon {
-            background: var(--primary-color);
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            flex-shrink: 0;
-        }
-
-        .expand-icon {
-            font-size: 18px;
-            color: var(--text-muted);
-            transition: transform 0.3s ease;
-            margin-right: 10px;
-        }
-
-        .case-card.open .expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .case-body {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-            background: white;
         }
 
         .case-card.open .case-body {
@@ -504,68 +362,13 @@
             background: var(--bg-light);
         }
 
-        .option-btn.selected-correct {
-            background: #ecfdf5;
-            border-color: var(--success-color);
-            color: #065f46;
-        }
-
-        .option-btn.selected-wrong {
-            background: #fef2f2;
-            border-color: var(--danger-color);
-            color: #991b1b;
-        }
-        
-        .option-btn:disabled {
-            cursor: default;
-            opacity: 0.8;
-        }
-
-        .feedback-area {
-            display: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 16px;
-            animation: fadeIn 0.3s ease;
-            margin-top: 15px;
-        }
-
-        .feedback-area.show {
-            display: block;
-        }
-
-        .feedback-area.success {
-            background: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            color: #065f46;
-        }
-
-        .feedback-area.error {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #991b1b;
-        }
-
-        .feedback-area i {
-            margin-left: 8px;
-            font-size: 20px;
-        }
-        
-        /* Utility classes for layout */
         .section-title {
             font-size: clamp(24px, 6vw, 30px);
             margin-bottom: 10px;
             color: var(--primary-color);
             line-height: 1.2;
         }
-        
-        .section-subtitle {
-            font-size: clamp(16px, 4vw, 20px);
-            color: var(--text-muted);
-            margin-bottom: 25px;
-        }
 
-        /* Responsive Media Queries (Tablets and Desktops) */
         @media (min-width: 768px) {
             .intro-hero {
                 grid-template-columns: 1fr 1fr;
@@ -604,13 +407,13 @@
         
         <!-- Navigation Tabs -->
         <nav class="tabs-nav">
-            <button class="tab-btn active" onclick="switchTab('intro')">
+            <button class="tab-btn active" onclick="switchTab('intro', this)">
                 <i class="fa-solid fa-house"></i> מבוא
             </button>
-            <button class="tab-btn" onclick="switchTab('types')">
+            <button class="tab-btn" onclick="switchTab('types', this)">
                 <i class="fa-solid fa-mask-ventilator"></i> סוגי תמיכה
             </button>
-            <button class="tab-btn" onclick="switchTab('practice')">
+            <button class="tab-btn" onclick="switchTab('practice', this)">
                 <i class="fa-solid fa-stethoscope"></i> שאלות תרגול
             </button>
         </nav>
@@ -654,7 +457,7 @@
             </div>
             
             <div style="display: flex; justify-content: center; margin-top: 20px;">
-                <button style="background: var(--primary-color); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);" onclick="switchTab('types')" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(2, 132, 199, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(2, 132, 199, 0.3)';">
+                <button style="background: var(--primary-color); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);" onclick="switchTab('types', this)" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(2, 132, 199, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(2, 132, 199, 0.3)';">
                     הבא <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
@@ -666,31 +469,31 @@
             <p class="section-subtitle">לחצי על כל אחד מהכרטיסים כדי לחשוף את ההסבר הקליני המלא, מנגנון הפעולה ודגשים סיעודיים.</p>
             
             <div class="types-grid">
-                <div class="type-card" onclick="showDetail('lowflow')">
+                <div class="type-card" onclick="showDetail('lowflow', this)">
                     <i class="fa-solid fa-wind type-icon"></i>
                     <h3 class="type-title">Low Flow</h3>
                     <p style="color: var(--text-muted); font-size: 15px;">זרימת חמצן במינון נמוך</p>
                 </div>
                 
-                <div class="type-card" onclick="showDetail('highflow')">
+                <div class="type-card" onclick="showDetail('highflow', this)">
                     <i class="fa-solid fa-temperature-arrow-up type-icon"></i>
                     <h3 class="type-title">High Flow (HFNC)</h3>
                     <p style="color: var(--text-muted); font-size: 15px;">זרימה גבוהה, מחוממת ומלוחחת</p>
                 </div>
 
-                <div class="type-card" onclick="showDetail('cpap')">
+                <div class="type-card" onclick="showDetail('cpap', this)">
                     <i class="fa-solid fa-gauge type-icon"></i>
                     <h3 class="type-title">nCPAP</h3>
                     <p style="color: var(--text-muted); font-size: 15px;">לחץ חיובי רציף (בסיס הטיפול)</p>
                 </div>
 
-                <div class="type-card" onclick="showDetail('nippv')">
+                <div class="type-card" onclick="showDetail('nippv', this)">
                     <i class="fa-solid fa-wave-square type-icon"></i>
                     <h3 class="type-title">NIPPV</h3>
                     <p style="color: var(--text-muted); font-size: 15px;">לחץ משתנה (CPAP + פעימות)</p>
                 </div>
 
-                <div class="type-card" onclick="showDetail('nhfov')">
+                <div class="type-card" onclick="showDetail('nhfov', this)">
                     <i class="fa-solid fa-water type-icon"></i>
                     <h3 class="type-title">nHFOV</h3>
                     <p style="color: var(--text-muted); font-size: 15px;">הנשמה נזאלית בתדר גבוה</p>
@@ -896,8 +699,8 @@
     </div>
 
     <script>
-        // Data for the Types of Ventilation
-        const ventilationData = {
+        // Page content only - the interactive engine lives in dist/module.js
+        window.moduleDetails = {
             lowflow: {
                 icon: "fa-wind",
                 title: "Low Flow",
@@ -975,170 +778,33 @@
             }
         };
 
-        // Tab Switching Logic
-        function switchTab(tabId) {
-            // Update buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            // צובע את הכפתור הנכון בתפריט העליון בהתאם לטאב שנבחר
-            const targetBtn = document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
-            if (targetBtn) {
-                targetBtn.classList.add('active');
-            }
-
-            // Update content
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.getElementById(tabId).classList.add('active');
-            
-            // Close detail panel if moving away from types
-            if(tabId !== 'types') {
-                closeDetail();
-            }
-            
-            // Scroll to top of content in mobile
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Show/Hide Detail Panel Logic
-        function showDetail(typeId) {
-            const data = ventilationData[typeId];
-            if (!data) return;
-
-            // Highlight active card
-            document.querySelectorAll('.type-card').forEach(card => card.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-
-            // Build content
-            let warningHtml = data.warning ? `
-                <div class="warning-box" style="grid-column: 1 / -1;">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    <div>
-                        <strong>דגש סיעודי קריטי:</strong><br>
-                        ${data.warning}
-                    </div>
-                </div>` : '';
-
-            const contentHtml = `
-                <div class="detail-header">
-                    <i class="fa-solid ${data.icon}"></i>
-                    <div>
-                        <h3>${data.title}</h3>
-                        <p style="color: var(--text-muted); font-size: clamp(14px, 3.5vw, 18px); margin-top: 5px;">${data.subtitle}</p>
-                    </div>
-                </div>
-                <div class="detail-body">
-                    <div class="info-box">
-                        <h4><i class="fa-solid fa-cogs"></i> איך זה עובד? (מנגנון)</h4>
-                        <ul>
-                            ${data.mechanism.map(item => `<li>${item}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <div class="info-box">
-                        <h4><i class="fa-solid fa-user-check"></i> למי זה מתאים? (התוויות)</h4>
-                        <ul>
-                            ${data.indications.map(item => `<li>${item}</li>`).join('')}
-                        </ul>
-                    </div>
-                    ${warningHtml}
-                </div>
-            `;
-
-            document.getElementById('detailContent').innerHTML = contentHtml;
-            document.getElementById('detailPanel').classList.add('show');
-            
-            // Scroll to panel on mobile so it's fully visible
-            setTimeout(() => {
-                // Adjust scroll position accounting for sticky header
-                const panel = document.getElementById('detailPanel');
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const panelPosition = panel.getBoundingClientRect().top + window.scrollY;
-                
-                window.scrollTo({
-                    top: panelPosition - headerHeight - 20, 
-                    behavior: 'smooth'
-                });
-            }, 100);
-        }
-
-        function closeDetail() {
-            document.getElementById('detailPanel').classList.remove('show');
-            document.querySelectorAll('.type-card').forEach(card => card.classList.remove('active'));
-        }
-
-        // Practice Cases Logic
-        const correctAnswers = {
+        window.moduleQuiz = {
+            answers: {
             'case1': 1, // Option B is correct
             'case2': 2, // Option C is correct
             'case3': 1, // Option B is correct
             'case4': 2, // Option C is correct
             'case5': 0, // Option A is correct
             'case6': 2  // Option C is correct
-        };
-
-        const explanations = {
+        },
+            explanations: {
             'case1': "הערכים בבדיקת הגזים מצביעים על חמצת נשימתית (pH נמוך ו-CO2 גבוה) שמעידה על אוורור לקוי. יחד עם ההחמרה במאמץ הנשימתי, מובן שה-CPAP אינו מספיק עוד. עלייה ל-NIPPV תספק פעימות לחץ שיעזרו לפנות את הפחמן הדו-חמצני ויקלו על התינוק, בניסיון למנוע אינטובציה.",
             'case2': "זוהי הגישה הסיעודית המדויקת ביותר. אסור להדק ציוד רפואי על עור שכבר התחיל להיפגע, ואסור להפסיק טיפול חיוני על דעת עצמנו. השילוב של שחרור לחץ, הגנת העור, והתייעצות עם מומחי פצעים - שומר על הפג מכל הכיוונים.",
             'case3': "הנשמה נזאלית בתדר גבוה (nHFOV) דורשת אטימה (Seal) כמעט הרמטית כדי שהתנודות המהירות יגיעו לריאות. אם אין רטט בבית החזה, המשמעות היא שהאנרגיה 'בורחת' החוצה עקב דליפה סביב האף או חסימה פיזית.",
             'case4': "בדיקת הגזים מציגה ערכים תקינים לחלוטין. יחד עם היציבות הקלינית, הפג מאותת שהוא בשל להפחתת התמיכה. ירידה מבוקרת ל-High Flow תאפשר לו להמשיך להתחזק לקראת נשימה עצמאית.",
             'case5': "הפג מתעייף, לא מצליח לפנות CO2, והדבר מתבטא בהפסקות נשימה. High Flow אינו מספק מספיק לחץ. חובה להעלות את התמיכה חזרה ללחץ קבוע או משתנה (CPAP/NIPPV) שישמור על נתיב אוויר פתוח ויזכיר לו לנשום.",
             'case6': "ב-nCPAP, המערכת חייבת להיות 'סגורה'. כשהתינוק פותח פה, האוויר בורח החוצה דרך הפה במקום לרדת לריאות (Leak). סגירת הפה מחזירה מיד את הלחץ (PEEP) לריאות ומייצבת סטורציה."
+        },
         };
 
-        function toggleCase(caseId) {
-            const caseEl = document.getElementById(caseId);
-            const isOpen = caseEl.classList.contains('open');
-            
-            // Close all others
-            document.querySelectorAll('.case-card').forEach(c => c.classList.remove('open'));
-            
-            if (!isOpen) {
-                caseEl.classList.add('open');
-                
-                // Scroll to it on mobile to ensure visibility
-                setTimeout(() => {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const elementPosition = caseEl.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({
-                        top: elementPosition - headerHeight - 10,
-                        behavior: 'smooth'
-                    });
-                }, 350); // מחכה לסיום האנימציה של הפתיחה
-            }
-        }
-
-        function checkAnswer(caseId, selectedIndex, btnElement) {
-            const correctIndex = correctAnswers[caseId];
-            const feedbackArea = document.getElementById(`feedback-${caseId}`);
-            
-            // Reset all buttons in this case
-            const optionsContainer = document.getElementById(`options-${caseId}`);
-            const buttons = optionsContainer.querySelectorAll('.option-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('selected-correct', 'selected-wrong');
-                btn.disabled = true; // Disable after selection
-            });
-
-            // Mark correct/wrong
-            if (selectedIndex === correctIndex) {
-                btnElement.classList.add('selected-correct');
-                feedbackArea.className = 'feedback-area show success';
-                feedbackArea.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong style="font-size: 18px;">תשובה נכונה!</strong><br><br><strong>הסבר קליני:</strong><br>${explanations[caseId]}`;
-            } else {
-                btnElement.classList.add('selected-wrong');
-                // Highlight the correct one too
-                buttons[correctIndex].classList.add('selected-correct');
-                feedbackArea.className = 'feedback-area show error';
-                feedbackArea.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <strong style="font-size: 18px;">תשובה שגויה. התשובה הנכונה הודגשה בירוק.</strong><br><br><strong>הסבר קליני:</strong><br>${explanations[caseId]}`;
-            }
-            
-            // Scroll a bit down to show feedback on small screens
-            setTimeout(() => {
-                 feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 100);
-        }
+        window.moduleLabels = {
+            mechanism: 'איך זה עובד? (מנגנון)',
+            indications: 'למי זה מתאים? (התוויות)',
+            warning: 'דגש סיעודי קריטי',
+            explanation: 'הסבר קליני',
+        };
     </script>
+    <script src="../dist/module.js"></script>
     <script src="../dist/header.js" defer
             data-title="הנשמה נזאלית בפגים"
             data-bg="linear-gradient(135deg, #0284c7, #38bdf8)"
