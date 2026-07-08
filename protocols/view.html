@@ -66,6 +66,49 @@
             white-space: nowrap;
         }
 
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+            transition: background 0.2s ease;
+        }
+
+        .share-btn:hover {
+            background: var(--navy);
+        }
+
+        .share-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--navy);
+            color: white;
+            font-family: 'Heebo', sans-serif;
+            font-size: 14px;
+            padding: 9px 20px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .share-toast.show {
+            opacity: 1;
+        }
+
         .pdf-pages {
             flex: 1;
             width: 100%;
@@ -84,6 +127,9 @@
             background: white;
             border-radius: 6px;
             box-shadow: 0 3px 12px rgba(12, 74, 110, 0.15);
+            /* the canvas 2D context inherits CSS direction; on an RTL page
+               that garbles PDF.js text rendering - force LTR for drawing */
+            direction: ltr;
         }
 
         .pdf-loading {
@@ -142,7 +188,12 @@
     <div class="viewer-toolbar">
         <span class="viewer-title" id="pdf-title"></span>
         <span class="page-count" id="page-count"></span>
+        <button class="share-btn" id="share-btn" hidden>
+            <i class="fa-solid fa-share-nodes"></i>
+            שיתוף
+        </button>
     </div>
+    <div class="share-toast" id="share-toast"></div>
 
     <main class="pdf-pages" id="pdf-pages">
         <div class="pdf-loading" id="pdf-loading">
@@ -162,74 +213,120 @@
             data-bg="linear-gradient(135deg, #082f49, #0284c7)"
             data-home="../index.html"
             data-back="protocols.html"></script>
-    <script src="../assets/vendor/pdf.min.js"></script>
-    <script>
-        (function () {
-            const params = new URLSearchParams(window.location.search);
-            const file = params.get('file') || '';
-            const title = params.get('title') || 'צפייה בנוהל';
+    <script type="module">
+        import * as pdfjsLib from '../assets/vendor/pdf.min.mjs';
 
-            const pagesEl = document.getElementById('pdf-pages');
-            const loadingEl = document.getElementById('pdf-loading');
-            const errorEl = document.getElementById('pdf-error');
-            const errorMsg = document.getElementById('pdf-error-msg');
-            const titleEl = document.getElementById('pdf-title');
-            const countEl = document.getElementById('page-count');
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get('file') || '';
+        const title = params.get('title') || 'צפייה בנוהל';
 
-            function fail(message) {
-                loadingEl.remove();
-                pagesEl.hidden = true;
-                errorMsg.textContent = message;
-                errorEl.hidden = false;
-            }
+        const pagesEl = document.getElementById('pdf-pages');
+        const loadingEl = document.getElementById('pdf-loading');
+        const errorEl = document.getElementById('pdf-error');
+        const errorMsg = document.getElementById('pdf-error-msg');
+        const titleEl = document.getElementById('pdf-title');
+        const countEl = document.getElementById('page-count');
+        const shareBtn = document.getElementById('share-btn');
+        const toastEl = document.getElementById('share-toast');
 
-            // allow only a plain .pdf filename from this folder
-            const safe = /^[\w֐-׿ .()-]+\.pdf$/i.test(file)
-                && !file.includes('..') && !file.includes('/') && !file.includes('\\');
-            if (!safe) {
-                fail('הנוהל המבוקש לא נמצא.');
-                return;
-            }
+        function fail(message) {
+            loadingEl.remove();
+            pagesEl.hidden = true;
+            errorMsg.textContent = message;
+            errorEl.hidden = false;
+        }
 
+        // allow only a plain .pdf filename from this folder
+        const safe = /^[\w֐-׿ .()-]+\.pdf$/i.test(file)
+            && !file.includes('..') && !file.includes('/') && !file.includes('\\');
+
+        if (!safe) {
+            fail('הנוהל המבוקש לא נמצא.');
+        } else {
             titleEl.textContent = title;
             document.title = title + ' - מרכז הלמידה של אחיות הפגייה';
 
-            pdfjsLib.GlobalWorkerOptions.workerSrc = '../assets/vendor/pdf.worker.min.js';
-
-            async function renderDocument() {
-                const doc = await pdfjsLib.getDocument(encodeURIComponent(file)).promise;
-                countEl.textContent = doc.numPages + ' עמודים';
-
-                // fit the page width to the container, render sharp for the
-                // device pixel ratio (capped to keep huge PDFs responsive)
-                const containerWidth = Math.min(pagesEl.clientWidth - 20, 900);
-                const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-
-                for (let num = 1; num <= doc.numPages; num++) {
-                    const page = await doc.getPage(num);
-                    const baseViewport = page.getViewport({ scale: 1 });
-                    const scale = containerWidth / baseViewport.width;
-                    const viewport = page.getViewport({ scale: scale * dpr });
-
-                    const canvas = document.createElement('canvas');
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-                    canvas.style.width = Math.floor(viewport.width / dpr) + 'px';
-                    pagesEl.appendChild(canvas);
-
-                    await page.render({
-                        canvasContext: canvas.getContext('2d'),
-                        viewport: viewport,
-                    }).promise;
-
-                    if (num === 1) loadingEl.remove();
-                }
-            }
+            pdfjsLib.GlobalWorkerOptions.workerSrc = '../assets/vendor/pdf.worker.min.mjs';
 
             renderDocument().catch(function () {
                 fail('אירעה שגיאה בטעינת הנוהל. נסי לרענן את העמוד.');
             });
-        })();
+
+            shareBtn.hidden = false;
+            shareBtn.addEventListener('click', sharePdf);
+        }
+
+        async function renderDocument() {
+            const doc = await pdfjsLib.getDocument({
+                url: encodeURIComponent(file),
+                cMapUrl: '../assets/vendor/cmaps/',
+                cMapPacked: true,
+                standardFontDataUrl: '../assets/vendor/standard_fonts/',
+            }).promise;
+            countEl.textContent = doc.numPages + ' עמודים';
+
+            // fit the page width to the container, render sharp for the
+            // device pixel ratio (capped to keep huge PDFs responsive)
+            const containerWidth = Math.min(pagesEl.clientWidth - 20, 900);
+            const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+
+            for (let num = 1; num <= doc.numPages; num++) {
+                const page = await doc.getPage(num);
+                const baseViewport = page.getViewport({ scale: 1 });
+                const scale = containerWidth / baseViewport.width;
+                const viewport = page.getViewport({ scale: scale * dpr });
+
+                const canvas = document.createElement('canvas');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                canvas.style.width = Math.floor(viewport.width / dpr) + 'px';
+                pagesEl.appendChild(canvas);
+
+                await page.render({
+                    canvasContext: canvas.getContext('2d'),
+                    viewport: viewport,
+                }).promise;
+
+                if (num === 1) loadingEl.remove();
+            }
+        }
+
+        function showToast(message) {
+            toastEl.textContent = message;
+            toastEl.classList.add('show');
+            setTimeout(function () { toastEl.classList.remove('show'); }, 2500);
+        }
+
+        // share the PDF itself when the device supports file sharing
+        // (WhatsApp/mail on phones); otherwise share or copy the page link
+        async function sharePdf() {
+            const pageUrl = window.location.href;
+            try {
+                const response = await fetch(encodeURIComponent(file));
+                const blob = await response.blob();
+                const pdfFile = new File([blob], file, { type: 'application/pdf' });
+                if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+                    await navigator.share({ files: [pdfFile], title: title });
+                    return;
+                }
+            } catch (err) {
+                if (err && err.name === 'AbortError') return;
+            }
+            try {
+                if (navigator.share) {
+                    await navigator.share({ title: title, url: pageUrl });
+                    return;
+                }
+            } catch (err) {
+                if (err && err.name === 'AbortError') return;
+            }
+            try {
+                await navigator.clipboard.writeText(pageUrl);
+                showToast('הקישור לנוהל הועתק');
+            } catch (err) {
+                showToast('לא ניתן לשתף במכשיר זה');
+            }
+        }
     </script>
 </body>
 </html>
