@@ -46,6 +46,11 @@ const HEADER_STYLES: string = `
     top: 0;
     z-index: 100;
     gap: 10px;
+    /* pin typography so button sizes are identical on every page,
+       regardless of the page's own body styles */
+    font-family: 'Assistant', sans-serif;
+    line-height: 1.6;
+    box-sizing: border-box;
 }
 .site-header .header-title {
     flex: 1;
