@@ -45,12 +45,11 @@ const HEADER_STYLES: string = `
     position: sticky;
     top: 0;
     z-index: 100;
-    flex-wrap: wrap;
     gap: 10px;
 }
 .site-header .header-title {
     flex: 1;
-    min-width: 200px;
+    min-width: 0;
 }
 .site-header h1 {
     color: white;
@@ -78,11 +77,30 @@ const HEADER_STYLES: string = `
     border-radius: 20px;
     font-weight: 600;
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
     gap: 6px;
     white-space: nowrap;
     font-size: clamp(12px, 2.5vw, 14px);
+}
+@media (max-width: 520px) {
+    .site-header {
+        padding: 12px 14px;
+        gap: 8px;
+    }
+    .site-header h1 {
+        font-size: 17px;
+    }
+    .site-header .home-btn {
+        padding: 5px 11px;
+        font-size: 12px;
+        gap: 5px;
+    }
+    .site-header .header-btns {
+        gap: 6px;
+    }
 }
 `;
 

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סרטוני הדרכה קליניים - מרכז הלמידה של אחיות הפגייה</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <style>
+        :root {
+            --navy: #0c4a6e;
+            --navy-deep: #082f49;
+            --blue: #0284c7;
+            --cyan: #06b6d4;
+            --bg-soft: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .app-container {
+            flex: 1;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 15px 30px;
+        }
+
+        .page-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            color: var(--text-muted);
+            font-size: clamp(15px, 3.2vw, 17px);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .video-card:active {
+            transform: translateY(-2px);
+        }
+
+        .video-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: white;
+            color: var(--navy);
+            font-family: 'Heebo', sans-serif;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 3px 12px;
+            border-radius: 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-banner {
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: linear-gradient(135deg, #0c4a6e, #0284c7);
+        }
+
+        .card-banner i {
+            font-size: 52px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+
+        .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-body h3 {
+            font-size: clamp(17px, 3.4vw, 20px);
+            font-weight: 800;
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: clamp(14px, 3vw, 16px);
+            flex: 1;
+        }
+
+        .card-cta {
+            margin-top: 12px;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(14px, 3vw, 16px);
+            color: var(--blue);
+        }
+
+        .video-card:hover .card-cta i {
+            transform: translateX(-5px);
+        }
+
+        .card-cta i {
+            transition: var(--transition);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="app-container">
+        <p class="page-intro">סרטוני הדרכה מעשיים למיומנויות קליניות בטיפול בפגים וביילודים - לצפייה בכל זמן ומכל מכשיר.</p>
+
+        <div class="videos-grid">
+            <a class="video-card" href="watch.html?file=cfm.MP4&amp;title=חיבור למכשיר CFM">
+                <span class="video-badge"><i class="fa-solid fa-circle-play"></i> וידאו</span>
+                <div class="card-banner">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div class="card-body">
+                    <h3>חיבור למכשיר CFM</h3>
+                    <p>הדרכה מעשית לחיבור יילוד למוניטור תפקוד מוחי (CFM) - הנחת האלקטרודות, חיבור המכשיר ותחילת ניטור.</p>
+                    <span class="card-cta">
+                        לצפייה בסרטון
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <script src="../dist/header.js" defer
+            data-title="סרטוני הדרכה קליניים"
+            data-bg="linear-gradient(135deg, #082f49, #0284c7)"
+            data-home="../index.html"></script>
+    <script src="../dist/footer.js" defer data-bg="linear-gradient(135deg, #082f49, #0284c7)"></script>
+</body>
+</html>
