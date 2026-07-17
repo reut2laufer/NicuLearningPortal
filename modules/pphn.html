@@ -2,27 +2,26 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>יתר לחץ דם ריאתי ביילוד (PPHN)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/module.css">
+    
     <style>
         :root {
-            /* Blue Palette */
-            --primary-color: #1d4ed8;
-            --secondary-color: #60a5fa;
-            --accent-color: #1e3a8a;
+            color-scheme: light; 
+            --primary-color: #1d4ed8; 
+            --secondary-color: #3b82f6; 
+            --accent-color: #0ea5e9; 
             --success-color: #10b981;
             --danger-color: #ef4444;
-            --bg-light: #eff6ff;
+            --bg-light: #eff6ff; 
             --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
+            --text-main: #1e3a8a; 
+            --text-muted: #1e40af; 
+            --border-color: #bfdbfe; 
             --transition: all 0.3s ease;
+            --hover-bg: #dbeafe; 
         }
 
         * {
@@ -32,10 +31,15 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html {
+            background-color: #eff6ff !important;
+            height: 100%;
+        }
+
         body {
             font-family: 'Assistant', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
+            background-color: #eff6ff !important;
+            color: #1e3a8a !important;
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -43,16 +47,60 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Heebo', sans-serif;
-            color: #0f172a;
+        h1, h2, h3, h4 { font-family: 'Heebo', sans-serif; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 4px 15px rgba(29, 78, 216, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+
+        @media (min-width: 600px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: right;
+            }
+        }
+
+        .header-title h1 {
+            font-size: clamp(22px, 6vw, 28px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 0;
+            word-break: keep-all;
+            color: white !important;
+        }
+
+        .school-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+            color: white !important;
         }
 
         .app-container {
             flex: 1;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 15px;
+            padding: 20px 15px 40px 15px;
             width: 100%;
         }
 
@@ -61,20 +109,21 @@
             gap: 10px;
             margin-bottom: 25px;
             background: var(--card-bg);
-            padding: 8px;
+            padding: 10px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(29, 78, 216, 0.05);
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            border: 1px solid #dbeafe;
+            -webkit-overflow-scrolling: touch;
         }
+        
+        .tabs-nav::-webkit-scrollbar { display: none; }
 
         .tab-btn {
             background: transparent;
             border: none;
-            padding: 12px 18px;
-            font-size: clamp(14px, 3vw, 18px);
+            padding: 12px 20px;
+            font-size: clamp(14px, 3vw, 17px);
             font-family: 'Heebo', sans-serif;
             font-weight: 600;
             color: var(--text-muted);
@@ -89,70 +138,220 @@
         }
 
         .tab-btn:hover {
-            background: #dbeafe;
-            color: var(--accent-color);
+            background: var(--hover-bg);
+            color: var(--primary-color);
         }
 
         .tab-btn.active {
             background: var(--primary-color);
-            color: white;
+            color: white !important;
             box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
         }
 
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse-drop {
+            0%, 100% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 5px rgba(29, 78, 216, 0.3)); }
+            50% { transform: scale(1.05) translateY(-5px); opacity: 1; filter: drop-shadow(0 0 15px rgba(29, 78, 216, 0.6)); }
+        }
+        
+        .animate-pulse {
+            animation: pulse-drop 3s ease-in-out infinite;
+        }
+
         .section-title {
-            font-size: clamp(24px, 6vw, 30px);
-            margin-bottom: 10px;
-            color: var(--accent-color);
+            font-size: clamp(22px, 6vw, 30px);
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .intro-hero {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 25px rgba(29, 78, 216, 0.08);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .intro-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            order: -1; 
+        }
+
+        .intro-text h2 {
+            font-size: clamp(26px, 6vw, 38px);
+            color: var(--primary-color);
+            margin-bottom: 15px;
             line-height: 1.2;
         }
 
-        .content-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #dbeafe;
-            padding: 25px 20px;
-        }
-
-        .lead-text {
+        .intro-text p {
             font-size: clamp(16px, 3.5vw, 18px);
+            margin-bottom: 15px;
+            color: var(--text-main);
         }
 
-        .treatment-list {
-            list-style: none;
+        .hero-icon-container {
+            position: relative;
+            width: min(150px, 45vw);
+            height: min(150px, 45vw);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #dbeafe, #93c5fd);
+            border-radius: 50%;
+            box-shadow: 0 15px 35px rgba(29, 78, 216, 0.15);
+            margin: 0 auto;
+        }
+
+        .hero-icon-container::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid #60a5fa;
+            animation: pulse-ring 2.5s infinite ease-out;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+
+        .main-icon {
+            font-size: min(60px, 20vw);
+            color: var(--primary-color);
+            z-index: 2;
+        }
+
+        @media (min-width: 768px) {
+            .intro-hero { grid-template-columns: 1.5fr 1fr; padding: 40px 30px; }
+            .intro-image { order: 1; }
+            .intro-text { padding-left: 30px; }
+            .hero-icon-container { width: 200px; height: 200px; }
+            .main-icon { font-size: 80px; }
+        }
+
+        .danger-card { background: #fef2f2; border: 2px solid var(--danger-color); color: #991b1b; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        .danger-card h4 { color: var(--danger-color); margin-bottom: 10px;}
+        
+        .info-card { background: #fffbeb; border: 2px solid #f59e0b; padding: 15px; border-radius: 8px; margin-top: 15px; color: #78350f;}
+        .info-card h4 { color: #d97706; margin-bottom: 5px;}
+        
+        .important-note {
+            background: #f0fdf4;
+            border-right: 4px solid var(--success-color);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #065f46;
+        }
+
+        .accordion-container {
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            margin-top: 10px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
-        .treatment-list li {
-            background: #eff6ff;
-            border: 1px solid #dbeafe;
-            border-radius: 12px;
-            padding: 15px 18px;
-            font-size: clamp(15px, 3.2vw, 17px);
-        }
-
-        .treatment-list li strong {
-            color: var(--accent-color);
-        }
-
-        .case-studies {
-            max-width: 850px;
-        }
-
-        .case-card {
+        .acc-item {
             background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.05);
+            border: 1px solid var(--border-color);
             overflow: hidden;
-            border: 1px solid #dbeafe;
+        }
+
+        .acc-header {
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            background: var(--bg-light);
+        }
+
+        .acc-header:hover { background: var(--hover-bg); }
+
+        .acc-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: clamp(16px, 4vw, 18px);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .acc-title i {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+
+        .acc-icon {
+            font-size: 16px;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .acc-item.open .acc-icon { transform: rotate(180deg); }
+
+        .acc-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: white;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .acc-item.open .acc-body {
+            padding: 20px;
+            max-height: 3500px; 
+            border-top: 1px solid var(--border-color);
+            overflow-y: auto;
+        }
+
+        .acc-body ul, .acc-body ol {
+            margin-right: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .acc-body li {
+            margin-bottom: 8px;
+        }
+        
+        .case-wrap {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.05);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-bottom: 15px;
         }
 
         .case-header {
-            background: #eff6ff;
-            padding: 20px 15px;
+            background: var(--bg-light);
+            padding: 15px 20px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -160,149 +359,841 @@
             transition: var(--transition);
         }
 
-        .case-header:hover, .case-header:active {
-            background: #dbeafe;
-        }
-
-        .case-card.open .case-body {
-            padding: 20px 15px;
-            max-height: 2000px;
-            border-top: 1px solid #dbeafe;
-        }
-
+        .case-header:hover { background: var(--hover-bg); }
+        
         .case-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: clamp(16px, 4vw, 20px);
-            font-weight: 600;
-            color: #0f172a;
-            flex: 1;
-            line-height: 1.3;
+            font-size: clamp(16px, 4vw, 18px);
+            font-weight: 700;
+            color: var(--text-main);
         }
 
-        .case-question {
-            font-weight: 600;
-            font-size: clamp(16px, 3.5vw, 18px);
-            margin-bottom: 15px;
+        .case-wrap.open .expand-icon { transform: rotate(180deg); }
+
+        .case-body {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: white;
+            color: var(--text-main);
+        }
+
+        .case-wrap.open .case-body {
+            padding: 20px;
+            max-height: 2500px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .scenario-box {
+            background: var(--bg-light);
+            border-right: 4px solid var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
         }
 
         .options-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
+            margin-bottom: 15px;
         }
 
         .option-btn {
-            background: #ffffff;
-            border: 2px solid #bfdbfe;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 15px;
             font-family: inherit;
             cursor: pointer;
             text-align: right;
             transition: var(--transition);
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
+            align-items: center;
+            gap: 12px;
             width: 100%;
+            color: var(--text-main);
         }
 
-        .option-btn:hover, .option-btn:active:not(:disabled) {
+        .option-btn:hover:not(:disabled) {
             border-color: var(--primary-color);
-            background: #eff6ff;
+            background: var(--hover-bg);
+        }
+
+        .option-btn.selected-correct {
+            background: #ecfdf5 !important;
+            border-color: var(--success-color) !important;
+            color: #065f46 !important;
+        }
+
+        .option-btn.selected-wrong {
+            background: #fef2f2 !important;
+            border-color: var(--danger-color) !important;
+            color: #991b1b !important;
+        }
+        
+        .option-btn:disabled { cursor: default; }
+
+        .feedback-box {
+            display: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 15px;
+            animation: fadeIn 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .feedback-box.show { display: block; }
+        .feedback-box.success { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+        .feedback-box.error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+
+        .nav-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .next-tab-btn {
+            background: var(--primary-color);
+            color: white !important;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+        }
+
+        .next-tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(29, 78, 216, 0.4);
+            background: var(--secondary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: auto;
         }
     </style>
 </head>
 <body>
 
-    <main class="app-container">
+    <header>
+        <div class="header-title">
+            <h1>יתר לחץ דם ריאתי ביילוד (PPHN)</h1>
+        </div>
+        <div class="school-badge">
+            <i class="fa-solid fa-hospital-user"></i>
+            רעות לאופר כהן BSN
+        </div>
+    </header>
+
+    <div class="app-container">
+        
         <nav class="tabs-nav">
-            <button class="tab-btn active" onclick="switchTab('intro', this)">
-                <i class="fa-solid fa-book-open"></i> מבוא
+            <button class="tab-btn active" onclick="switchTab('intro')">
+                <i class="fa-solid fa-house-medical"></i> מבוא
             </button>
-            <button class="tab-btn" onclick="switchTab('patho', this)">
-                <i class="fa-solid fa-heart-pulse"></i> פתופיזיולוגיה
+            <button class="tab-btn" onclick="switchTab('patho')">
+                <i class="fa-solid fa-lungs-virus"></i> פתופיזיולוגיה
             </button>
-            <button class="tab-btn" onclick="switchTab('treatment', this)">
-                <i class="fa-solid fa-lungs"></i> תמיכה וטיפול
+            <button class="tab-btn" onclick="switchTab('treatment')">
+                <i class="fa-solid fa-stethoscope"></i> תמיכה נשימתית והמודינמית
             </button>
-            <button class="tab-btn" onclick="switchTab('practice', this)">
-                <i class="fa-solid fa-clipboard-question"></i> שאלות תרגול
+            <button class="tab-btn" onclick="switchTab('drugs')">
+                <i class="fa-solid fa-pills"></i> טיפול תרופתי
+            </button>
+            <button class="tab-btn" onclick="switchTab('ecmo')">
+                <i class="fa-solid fa-heart-pulse"></i> ECMO
+            </button>
+            <button class="tab-btn" onclick="switchTab('practice')">
+                <i class="fa-solid fa-laptop-medical"></i> תרגול
             </button>
         </nav>
 
-        <!-- TAB 1: Intro -->
         <section id="intro" class="tab-content active">
-            <h2 class="section-title">מבוא</h2>
-            <div class="content-card">
-                <p class="lead-text">PPHN הוא מצב שבו התנגודת הריאתית נשארת גבוהה לאחר הלידה, מה שמוביל לדלף מימין לשמאל והיפוקסמיה קשה.</p>
-            </div>
-        </section>
-
-        <!-- TAB 2: Pathophysiology -->
-        <section id="patho" class="tab-content">
-            <h2 class="section-title">פתופיזיולוגיה</h2>
-            <div class="content-card">
-                <p class="lead-text">כישלון במעבר ממחזור דם עוברי לילוד. היפוקסמיה מובילה לכיווץ כלי דם ריאתי נוסף, מה שמחמיר את ה-PPHN.</p>
-            </div>
-        </section>
-
-        <!-- TAB 3: Treatment -->
-        <section id="treatment" class="tab-content">
-            <h2 class="section-title">תמיכה וטיפול</h2>
-            <div class="content-card">
-                <ul class="treatment-list">
-                    <li><strong>חמצן:</strong> סטורציה פרה-דוקטלית 90-95%. פוסט-דוקטלית 70-80% (מותנה בלקטט ותפוקת שתן).</li>
-                    <li><strong>הנשמה:</strong> גיוס ריאות (8-9 צלעות). מעבר ל-HFOV אם PIP &gt; 25-28 או נפח &gt; 6ml/kg.</li>
-                    <li><strong>סורפקטנט:</strong> Curosurf (2.5ml/kg) או Infasurf (3ml/kg).</li>
-                    <li><strong>iNO:</strong> התחלה ב-OI של 20-25. חישוב OI: ‏(MAP x FiO2 x 100) / PaO2.</li>
-                    <li><strong>פלולן:</strong> מתן בעירוי רציף (דריפ) בלבד.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- TAB 4: Practice -->
-        <section id="practice" class="tab-content">
-            <h2 class="section-title">שאלות תרגול</h2>
-            <div class="case-studies">
-                <div class="case-card open" id="case1">
-                    <div class="case-header" onclick="toggleCase('case1')">
-                        <div class="case-title">
-                            <i class="fa-solid fa-circle-question"></i>
-                            שאלה 1
-                        </div>
-                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+            <div class="intro-hero">
+                <div class="intro-text">
+                    <h2>יתר לחץ דם ריאתי ביילוד</h2>
+                    <p>PPHN - Persistent Pulmonary Hypertension of the Newborn הוא מצב מסכן חיים הנובע מכישלון של המעבר הנורמלי (Transition) של מחזור הדם מחיים עובריים לחיים מחוץ לרחם.</p>
+                    <p><strong>בלומדה זו נסקור את מנגנון המחלה, דגשים חשובים בהנשמה ובכיוון לחצים, אפשרויות הטיפול התרופתי, והשלכות ארוכות טווח.</strong></p>
+                    <div class="danger-card">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> הסכנה המרכזית ב-PPHN:</h4>
+                        <p style="font-size: 15px; font-weight: 600;">התנגודת הריאתית נשארת גבוהה באופן חריג, מה שמוביל לזרימת דם מופחתת לריאות ולדלף של דם לא מחומצן מימין לשמאל.</p>
+                        <ul style="margin-right: 20px; font-size: 15px; margin-top: 8px;">
+                            <li>התוצאה: היפוקסמיה (חוסר חמצן בדם) קשה ובלתי יציבה.</li>
+                            <li>תמותה במקרים חמורים יכולה להגיע ל-4% עד 33%.</li>
+                        </ul>
                     </div>
-                    <div class="case-body">
-                        <p class="case-question">מהו ה-Oxygenation Index (OI) המקובל להתחלת טיפול ב-iNO?</p>
-                        <div class="options-list" id="options-case1">
-                            <button class="option-btn" onclick="checkAnswer('case1', 0, this)">10-15</button>
-                            <button class="option-btn" onclick="checkAnswer('case1', 1, this)">20-25</button>
-                            <button class="option-btn" onclick="checkAnswer('case1', 2, this)">30-40</button>
-                        </div>
-                        <div class="feedback-area" id="feedback-case1"></div>
+                </div>
+                <div class="intro-image">
+                    <div class="hero-icon-container">
+                        <i class="fa-solid fa-lungs main-icon animate-pulse"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-button-container">
+                <button class="next-tab-btn" onclick="switchTab('patho')">
+                    הבא <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <section id="patho" class="tab-content">
+            <h2 class="section-title">פיזיולוגיה של מחזור הדם והפתולוגיה ב-PPHN</h2>
+            
+            <div class="accordion-container">
+                <div class="acc-item open" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-baby"></i> מחזור הדם העוברי</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <ul>
+                            <li>בעובר, יתר לחץ דם ריאתי עם זרימת דם מופחתת לריאות הוא <strong>מצב פיזיולוגי תקין</strong>.</li>
+                            <li>השליה (ולא הריאות) משמשת כאיבר חילוף הגזים.</li>
+                            <li>תנגודת כלי הדם הריאתיים (PVR) גבוהה מאוד עקב כיווץ כלי הדם, ולכן רק כ-13% עד 21% מתפוקת הלב מגיעה לריאות.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-lungs"></i> תהליך המעבר התקין (Transition)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        בלידה אמורה להתרחש שרשרת אירועים קריטית כדי לאפשר נשימה עצמאית:
+                        <ol>
+                            <li>חיתוך חבל הטבור מנתק את השליה (שהיא בעלת תנגודת נמוכה ומכילה את הדם המחומצן של העובר).</li>
+                            <li>הנשימה הראשונה של התינוק ממלאת את הריאות באוויר.</li>
+                            <li><strong>החמצן הוא מרחיב כלי הדם הריאתי החזק ביותר:</strong> כניסתו גורמת לירידה חדה ומהירה בתנגודת (PVR).</li>
+                            <li>כתוצאה מכך, זרימת הדם לריאות עולה משמעותית כדי לאפשר חמצון של הדם.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-virus"></i> הפתופיזיולוגיה - מה משתבש ב-PPHN?</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        ב-PPHN, מסיבות שונות (כמו תשניק סביב הלידה, שאיפת מקוניום, זיהום או בעיה בהתפתחות הריאה), המעבר נכשל.
+                        <br><br>
+                        <strong>מנגנון ההיפוקסמיה:</strong><br>
+                        כאשר התנגודת הריאתית נשארת גבוהה, הדם מחפש "דרך קלה יותר" (Path of least resistance) כדי להתקדם.<br>
+                        הוא עוקף את הריאות (שבהן הלחץ גבוה) וזורם <strong>מימין לשמאל</strong> דרך חיבורים עובריים שנשארו פתוחים:
+                        <ul>
+                            <li><strong>PDA (Ductus Arteriosus)</strong> - הצינור העורקי.</li>
+                            <li><strong>PFO (Foramen Ovale)</strong> - הנקב הסגלגל שבין העליות.</li>
+                        </ul>
+                        בצורה זו, דם עני בחמצן חוזר למחזור הדם הסיסטמי וגורם לכיחלון (כינחוש) ולהיפוקסמיה עקשנית (שלא תמיד מגיבה למתן חמצן בגלל המעקף).
                     </div>
                 </div>
             </div>
         </section>
-    </main>
+
+        <section id="treatment" class="tab-content">
+            <h2 class="section-title">תמיכה נשימתית, כיוון לחצים וטיפול תומך</h2>
+            
+            <div class="accordion-container">
+                
+                <div class="acc-item open" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-bed-pulse"></i> טיפול תומך (Supportive Care) - סביבה והרגעה</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        הבסיס לטיפול ב-PPHN הוא שמירה על סביבה אופטימלית ומינימום סטרס, שכן כל גירוי מעלה אדרנלין ואת התנגודת הריאתית, ומחמיר את הכיחלון באופן מידי:
+                        <ul>
+                            <li><strong>סביבה שקטה (Minimal Handling):</strong> ריכוז טיפולים, הפחתת רעש, עמעום אורות. יש להימנע משאיבת סקרציות מיותרת (סקשן) שכן היא מעוררת סטרס, ירידת חמצן והחמרת ה-PPHN.</li>
+                            <li><strong>סדציה ושיכוך כאב (Sedation & Analgesia):</strong> חובה למנוע כאב או אי שקט. התינוק חייב להיות מסונכרן לחלוטין עם מכונת ההנשמה. משתמשים בתרופות כגון Fentanyl, Morphine או Midazolam בעירוי מתמשך.</li>
+                            <li><strong>שיתוק שרירים (Muscle Relaxation):</strong> במקרים קשים בהם הסדציה אינה מספקת והתינוק מתנגד למנשם ("נלחם"), יינתנו משתקי שרירים (כגון Vecuronium או Rocuronium). זה מונע נשימה ספונטנית שמתחרה עם המכונה ומפחית משמעותית את צריכת החמצן המטבולית (VO2).</li>
+                            <li><strong>ניהול נוזלים:</strong> מעקב קפדני אחר מאזן נוזלים. יש למנוע עודף נוזלים (Volume overload) שעלול להחמיר בצקת ריאתית ולפגוע בחמצון.</li>
+                            <li><strong>שמירה על חום גוף וסוכר:</strong> מניעת היפותרמיה (סטרס קור מכווץ כלי דם) ומניעת היפוגליקמיה, אשר גם הם מחמירים את התנגודת הריאתית.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-wind"></i> הנשמה וכיוון לחצים (דגש קריטי - אסטרטגיות)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        הניהול הנשימתי ב-PPHN דורש מיומנות רבה. המטרה המרכזית היא <strong>גיוס ריאות אופטימלי (Optimal Lung Volume)</strong> ללא גרימת נזק. הריאות חייבות להיות פתוחות כדי שהחמצן יגיע לנאדיות וכדי להוריד תנגודת ריאתית, אך מתח יתר הוא הרסני.
+                        
+                        <div class="danger-card" style="margin-top:10px;">
+                            <strong>האיזון העדין בהנשמה:</strong><br>
+                            - <strong>מניעת תמט ריאתי (Atelectasis):</strong> אזורים לא מאווררים ("ריאות סגורות") גורמים לכיווץ כלי דם בגלל חוסר חמצן (Hypoxic pulmonary vasoconstriction) ומעלים תנגודת ריאתית.<br>
+                            - <strong>מניעת מתיחת יתר (Overdistention):</strong> מתן לחצים גבוהים מדי (נפח מוגזם) דוחס ומועך את נימי הריאה העוברים סביב הנאדיות. זה <strong>מעלה פיזית</strong> את התנגודת הריאתית (PVR) ומחמיר את הדלף (Shunt) וההיפוקסמיה. יש להקפיד לראות 8-9 צלעות בצילום חזה, לא יותר.
+                        </div>
+
+                        <h4 style="margin-top: 15px; color: var(--primary-color);">אסטרטגיות הנשמה מומלצות:</h4>
+                        <ul>
+                            <li><strong>הנשמה קונבנציונלית (CMV/SIMV/SIPPV):</strong>
+                                <ul>
+                                    <li><strong>PEEP (לחץ סוף נשיפתי):</strong> חיוני לשמירה על הריאה פתוחה ולמניעת תמט בסוף הנשיפה. לרוב מכוונים סביב 5-6 ס"מ מים (לעיתים מעט יותר במחלת רקע משמעותית).</li>
+                                    <li><strong>PIP (לחץ שיא בעת שאיפה):</strong> המטרה היא להשיג תזוזת חזה מספקת ונפח פה (Tidal Volume) תקין. יש לנסות להישאר מתחת ל- 25-28 ס"מ מים כדי למנוע טראומה (Barotrauma) ודחיסת נימים.</li>
+                                    <li><strong>קצב (Rate):</strong> לרוב נדרש קצב גבוה יחסית (40-60 נשימות לדקה) כדי לשמור על רמות CO2 תקינות.</li>
+                                </ul>
+                            </li>
+                            <li><strong>הנשמה בתדר גבוה (HFOV - High Frequency Oscillatory Ventilation):</strong>
+                                <ul>
+                                    <li>טיפול בחירה למקרים של PPHN עמיד או כשהלחצים ב-CMV גבוהים מדי.</li>
+                                    <li>השיטה מבוססת על השגת <strong>MAP (Mean Airway Pressure) גבוה ויציב (למשל 12-18 ס"מ מים)</strong> שפותח את הריאות באופן רציף.</li>
+                                    <li>הנפחים הניתנים בכל רטט (Delta P) הם זעירים, מה שמונע את שינויי הלחץ החדים (פתיחה וסגירה של הנאדיות) ובכך מגן מפני קרעים וטראומה ריאתית (VILI). לעיתים קרובות משולב עם גז iNO.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-vial"></i> יעדי גזים בדם וסטורציה</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        יעדי החמצון והאוורור ב-PPHN שונים מבפגים רגילים ומחייבים מעקב הדוק:
+                        
+                        <div class="important-note">
+                            <i class="fa-solid fa-bullseye"></i> <strong>סטורציה (SpO2):</strong> היעד הוא 90%-95% במדידה <strong>פרה-דוקטלית</strong> (יד ימין). 
+                            <br>חשוב למנוע היפוקסיה (שמכווצת כלי דם ריאתיים), אך יש למנוע גם עודף חמצן (היפראוקסיה, מעל 95%) שעלול לייצר רדיקלים חופשיים, לגרום לנזק חמצוני לרקמות הריאה ולפגוע בהשפעת ה-iNO!
+                        </div>
+                        <ul>
+                            <li><strong>PaO2 (לחץ חמצן עורקי):</strong> לרוב נשאף לטווח של 55 עד 80 mmHg. אין יתרון בהעלאת החמצן מעבר לכך.</li>
+                            <li><strong>PaCO2 (פחמן דו חמצני):</strong> היעד הוא <strong>40 עד 50 mmHg</strong>. <br>
+                            <span style="color:var(--danger-color); font-weight:bold;">דגש חשוב:</span> בניגוד לפגים שבהם מתירים היפרקפניה פרמיסיבית (רמות CO2 גבוהות), ביילוד עם PPHN <strong>רמת CO2 גבוהה (היפרקפניה) מכווצת כלי דם ריאתיים</strong> ומחמירה את המצב. חובה לדאוג לפינוי מספק של CO2, אך מבלי לגרום להיפו-קפניה (רמה נמוכה מדי) שעלולה לפגוע בזרימת הדם למוח.</li>
+                            <li><strong>pH (רמת חומציות בדם):</strong> נשאף לסביבה ניטרלית או מעט בסיסית (7.35 עד 7.45). <strong>חמצת (אסידוזיס, מתחת 7.25) מעלה משמעותית את התנגודת הריאתית ויש לתקנה מיד!</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="drugs" class="tab-content">
+            <h2 class="section-title">טיפול תרופתי ב-PPHN</h2>
+            <p style="text-align:center; margin-bottom: 20px; font-weight:600; color:var(--text-main);">ניהול PPHN דורש איזון עדין בין תרופות המרחיבות כלי דם ריאתיים לבין תרופות וואזופרסוריות התומכות בלחץ הדם הסיסטמי.</p>
+            
+            <div class="accordion-container">
+                
+                <div class="acc-item open" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-mask-ventilator"></i> גז NO בשאיפה (iNO)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <div class="info-card" style="border-color: var(--primary-color); background: var(--bg-light); margin-top: 0;">
+                            <h4 style="color: var(--primary-color);"><i class="fa-solid fa-star"></i> קו טיפול ראשון (Gold Standard) להרחבת כלי דם ריאתיים</h4>
+                            גז <strong>Nitric Oxide</strong> הניתן דרך מעגל מכונת ההנשמה ישירות לריאות.
+                        </div>
+                        <ul style="margin-top: 15px;">
+                            <li><strong>מנגנון:</strong> פועל דרך מסלול ה-cGMP וגורם להרפיית שריר חלק בכלי הדם. היתרון הגדול שלו הוא <strong>השפעה מקומית (Selective) בריאות</strong> בלבד - מרחיב את כלי הדם רק באזורים המאווררים, מבלי לגרום לירידת לחץ דם סיסטמית (הוא מתפרק מיד בדם).</li>
+                            <li><strong>מינון:</strong> מתחילים לרוב ב-20 ppm (חלקיקים למיליון). אין יתרון קליני למינונים גבוהים יותר, והם רק מגדילים רעילות.</li>
+                            <li><strong>מעקב וסכנות:</strong> חובה לעקוב אחר רמות <strong>מטהמוגלובין (Methemoglobin)</strong> בדם (NO מחמצן המוגלובין ופוגע בנשיאת חמצן), ואחר גז NO2 שעלול להיות רעיל לריאות. גמילה מהגז חייבת להיות הדרגתית ואיטית מאד למניעת Rebound (חזרה פתאומית של יתר הלחץ).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-spray-can"></i> סורפקטנט (Surfactant)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <ul>
+                            <li><strong>מתי נשתמש:</strong> כאשר PPHN משני למחלת ריאה פארנכימטית (שאיפת מקוניום MAS, רספירטורי דיסטרס, תמט, דלקת) שגורמת לחוסר או אינאקטיבציה של סורפקטנט טבעי.</li>
+                            <li><strong>מנגנון:</strong> מפחית מתח פנים בנאדיות הריאה, מונע תמט (Atelectasis), משפר חמצון, ובכך מסייע <strong>בעקיפין</strong> להוריד את התנגודת הריאתית ע"י שבירת מעגל ההיפוקסיה וגיוס הריאה.</li>
+                            <li><strong>דוגמאות למינונים:</strong> Poractant alfa (Curosurf) במינון התחלתי של 2.5 מ"ל/ק"ג, או Beractant (Survanta) במינון 4 מ"ל/ק"ג. ניתן ישירות לקנה הנשימה (אינטרא-טרכאלי) במנות.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-wind"></i> פלולן (Flolan / Epoprostenol)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <ul>
+                            <li><strong>מתי נשתמש:</strong> קו טיפול מתקדם למקרים עמידים ל-iNO או כתגובת הצלה (Rescue therapy).</li>
+                            <li><strong>מנגנון:</strong> פרוסטציקלין סינטטי (PGI2). גורם להרפיית שריר חלק בוורידים ובעורקים ומעכב אגרגציית טסיות. פועל דרך מסלול ה-cAMP, ולכן השפעתו היא סינרגיסטית ל-iNO (הפועל דרך cGMP).</li>
+                            <li><strong>אופן מתן:</strong> ניתן לרוב כתרסיס דרך משאף לתוך מעגל ההנשמה להשגת אפקט מקומי בריאות, למרות שניתן גם בעירוי.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-syringe"></i> מילרינון (Milrinone)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <ul>
+                            <li><strong>מתי נשתמש:</strong> כשיש PPHN המלווה בתפקוד לבבי ירוד (לרוב של חדר ימין או שמאל), או כדי להפחית לחץ ריאתי תוך שיפור תפוקת לב.</li>
+                            <li><strong>מנגנון:</strong> מעכב פוספודיאסטראז 3 (PDE3). פועל כ<strong>"אינודילטור"</strong> - מחזק התכווצות הלב (אינוטרופי), משפר הרפיית הלב (לוזיטרופי), ובמקביל <strong>מרחיב כלי דם ריאתיים וסיסטמיים</strong>.</li>
+                            <li><span style="color: var(--danger-color); font-weight: bold;">סכנה מרכזית:</span> מכיוון שהוא מרחיב כלי דם סיסטמיים, תופעת הלוואי העיקרית היא <strong>נפילת לחץ דם (Hypotension) סיסטמי קשה</strong>, במיוחד בזמן מתן מנת העמסה. מחייב מעקב קפדני ומוכנות של נוזלים או וואזופרסורים (כמו דופמין) ברקע.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-heart-pulse"></i> וואזופרסורים - דופמין (Dopamine)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <strong>חשיבות הוואזופרסורים ב-PPHN:</strong> אם לחץ הדם הסיסטמי יורד מתחת ללחץ הריאתי, יגבר דלף הדם הלא-מחומצן מימין לשמאל דרך פתחי הלב, והכיחלון יחמיר משמעותית! אנו שואפים ללחץ דם סיסטמי גבוה מעט מהלחץ הריאתי.
+                        <ul style="margin-top: 15px;">
+                            <li><strong>שימוש ב-PPHN:</strong> קו טיפול ראשון להלם או תת-לחץ דם שלא מגיבים למתן נוזלים (Fluid-refractory shock).</li>
+                            <li><strong>מנגנון:</strong> קטכולאמין המגרה קולטני בטא ואלפא (תלוי מינון). מעלה תפוקת לב (אינוטרופי) ובמינונים גבוהים יותר מכווץ כלי דם סיסטמיים (אפקט וואזופרסורי) להעלאת הלחץ.</li>
+                            <li><strong>מינון:</strong> עירוי ורידי רציף דרך צנתר מרכזי, לרוב בטווח של 5-20 מק"ג/ק"ג/דקה.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-bolt"></i> וואזופרסורים - אדרנלין (Epinephrine)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <ul>
+                            <li><strong>שימוש ב-PPHN:</strong> קו טיפול מתקדם. משמש כשהלם עמיד לטיפול במינונים גבוהים של דופמין (Dopamine-resistant shock) או כשיש כשל לבבי חמור הדורש תמיכה מסיבית.</li>
+                            <li><strong>מנגנון:</strong> אגוניסט חזק מאוד של קולטני אלפא ובטא. משפר ניכרת את התכווצות הלב (אינוטרופי חזק) ומעלה משמעותית את התנגודת הסיסטמית (וואזוקונסטריקטור עוצמתי).</li>
+                            <li><strong>סכנות ותופעות לוואי:</strong> במינונים גבוהים יגרום לטכיקרדיה קשה, הפרעות קצב, עליה ברמות לקטט, ועלול לפגוע באספקת דם לאיברים פריפריים (כליות, מעיים).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-droplet"></i> אלבומין ותמיכת נפח (Albumin)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <ul>
+                            <li><strong>שימוש ב-PPHN:</strong> מתן אלבומין משמש להרחבת נפח הדם (Volume expansion). נדרש כאשר התינוק סובל מתת-לחץ דם והיפוולמיה, במטרה להעלות את הלחץ הסיסטמי ולהקטין את הדלף מימין לשמאל.</li>
+                            <li><strong>מנגנון:</strong> קולואיד טבעי המעלה את הלחץ האונקוטי (Oncotic pressure) בכלי הדם. מסייע ב"משיכת" ושימור נוזלים בחלל התוך-כלי (הווסקולרי), ובכך משפר פרפוזיה סיסטמית.</li>
+                            <li><strong>תופעות לוואי וסכנות:</strong> עומס יתר במחזור הדם (Circulatory overload) שעלול להוביל לבצקת ריאות (המזיקה מאוד לחמצון). לעיתים רחוקות תגובות אלרגיות.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-vial-circle-check"></i> אלפרוסטדיל (Alprostadil / PGE1)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <ul>
+                            <li><strong>שימוש ב-PPHN:</strong> משמש באופן ספציפי לשמירה על פטנטיות (פתיחות) של הדוקטוס ארטריוזוס (PDA). קריטי במקרים בהם יתר לחץ דם ריאתי מלווה במום לבבי התלוי בדוקטוס (Ductal-dependent lesions) והישרדות התינוק תלויה במעבר דם דרכו.</li>
+                            <li><strong>מנגנון:</strong> וזודילטור עוצמתי הפועל ישירות על השריר החלק של הדוקטוס ארטריוזוס ומונע את סגירתו.</li>
+                            <li><strong>תופעת לוואי קריטית (Black Box):</strong> אפניאה (דום נשימה) המתרחשת בכ-10-12% מהמקרים, לרוב בשעה הראשונה לטיפול! מחייב השגחה צמודה ומוכנות להנשמה. בנוסף עלול לגרום לתת-לחץ דם, ברדיקרדיה, ובשימוש ממושך לעיבוי עצמות (היפראוסטוזיס).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-tablets"></i> פראצטמול (Acetaminophen)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        <ul>
+                            <li><strong>שימוש ב-PPHN:</strong> משמש לסגירת PDA סימפטומטי (הפוך מ-PGE1), במקרים בהם הדוקטוס הפתוח מחמיר את אי הספיקה הלבבית או את המצב ההמודינמי של התינוק (ולא מדובר במום התלוי בדוקטוס).</li>
+                            <li><strong>מנגנון:</strong> עיכוב אנזימי COX במערכת העצבים המרכזית ובפריפריה, מה שמוביל לירידה בסינתזת פרוסטגלנדינים (שהם אלו שמשאירים את הדוקטוס פתוח). בעקבות הירידה בפרוסטגלנדינים, הדוקטוס מתכווץ ונסגר.</li>
+                            <li><strong>תופעות לוואי וסכנות (Black Box):</strong> סכנה משמעותית לבלבול במינונים (בין מ"ג למ"ל) העלולה לגרום להרעלת כבד (Hepatotoxicity) חריפה וקטלנית. כמו כן, בשימוש ממושך סכנה לפריחות חמורות (SJS). חובה להשתמש במשאבות מזרק מדויקות לווריד.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecmo" class="tab-content">
+            <h2 class="section-title">ECMO והשלכות ארוכות טווח</h2>
+            
+            <div class="accordion-container">
+                <div class="acc-item open" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-bed-pulse"></i> טיפול ב-ECMO</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        ECMO (Extracorporeal Membrane Oxygenation) הוא מערכת חימצון חוץ-גופית המשמשת כתמיכה מתקדמת ביותר, כאשר הלב והריאות כושלים ואינם מגיבים לטיפול שמרני ולתרופות שתוארו בפרק הקודם.<br><br>
+                        <div class="danger-card" style="padding: 15px; border-radius: 8px;">
+                            <h4><i class="fa-solid fa-list-check"></i> אינדיקציות (קריטריונים להתחלה):</h4>
+                            כאשר יש היפוקסמיה עקשנית וחוסר יציבות המודינמית למרות טיפול מקסימלי (הנשמה מלאה, HFOV ו-iNO):
+                            <ul style="margin-right: 20px;">
+                                <li>אינדקס חמצון <strong>(OI) גדול מ-40</strong>.</li>
+                                <li>מפל מכתשי-עורקי (AaDO2) גדול מ-600 למשך 4-12 שעות.</li>
+                                <li>חמצת קשה עמידה לטיפול או אי ספיקת לב קשה.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-brain"></i> השלכות נוירו-התפתחותיות (Outcomes)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        יילודים ששורדים PPHN קשה ומשתחררים לביתם נמצאים בסיכון גבוה להשלכות ארוכות טווח. הפגיעה נובעת ברובה מההיפוקסמיה הקשה שחוו, מהתשניק סביב הלידה ומהתנודות בלחץ הדם המוחי.
+                        <br><br>
+                        <strong>במעקבים ארוכי טווח נמצא כי:</strong>
+                        <ul>
+                            <li>כ-<strong>25%</strong> מהיילודים יסבלו מלקות או פגיעה נוירו-התפתחותית / קוגניטיבית.</li>
+                            <li>כ-<strong>23%</strong> יסבלו מלקויות שמיעה סנסו-נוירליות. <strong>בדיקות שמיעה חוזרות הן חובה!</strong></li>
+                            <li>שכיחות גבוהה יותר של מחלות ריאה כרוניות וצפצופים בילדות המוקדמת.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice" class="tab-content">
+            <h2 class="section-title">שאלות בוחן - PPHN ותרחישים</h2>
+
+            <div class="case-studies">
+                
+                <!-- Question 1 -->
+                <div class="case-wrap" id="case1">
+                    <div class="case-header" onclick="toggleCase('case1')">
+                        <div class="case-title">תרחיש מס' 1</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            מתקבל יילוד במועד (Term) עם כיחלון וקשיי נשימה. התינוק מאובחן עם PPHN וקיימת זרימת דם דרך פתחים עובריים.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהו המנגנון העיקרי הגורם להיפוקסמיה במצב זה?</h4>
+                        <div class="options-list" id="opts-case1">
+                            <button class="option-btn" onclick="checkCase('case1', 0, this)">א. תמט ריאתי נרחב כתוצאה מחוסר בסורפקטנט בלבד.</button>
+                            <button class="option-btn" onclick="checkCase('case1', 1, this)">ב. דלף דם מימין לשמאל (Right-to-Left Shunt) עקב התנגודת הריאתית הגבוהה.</button>
+                            <button class="option-btn" onclick="checkCase('case1', 2, this)">ג. חוסר התפתחות אנטומית של הריאות בגלל פגות קיצונית.</button>
+                            <button class="option-btn" onclick="checkCase('case1', 3, this)">ד. דלף דם משמאל לימין דרך ה-VSD הגורם לבצקת ריאות.</button>
+                        </div>
+                        <div id="feed-case1" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="case-wrap" id="case2">
+                    <div class="case-header" onclick="toggleCase('case2')">
+                        <div class="case-title">תרחיש מס' 2</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            יילוד עם PPHN מונשם ב-CMV. האחות שמה לב שלחץ השיא (PIP) הגיע ל-32 והתינוק מתחיל להציג מתיחת יתר של הריאות (Overdistention) בצילום החזה.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מדוע מתיחת יתר (Overdistention) היא מסוכנת במיוחד בתינוק עם PPHN?</h4>
+                        <div class="options-list" id="opts-case2">
+                            <button class="option-btn" onclick="checkCase('case2', 0, this)">א. הלחץ הגבוה דוחס את נימי הריאה ומעלה פיזית את התנגודת הריאתית (PVR), מה שמחמיר את הדלף וההיפוקסיה.</button>
+                            <button class="option-btn" onclick="checkCase('case2', 1, this)">ב. היא מורידה משמעותית את הלחץ הסיסטמי במוח.</button>
+                            <button class="option-btn" onclick="checkCase('case2', 2, this)">ג. היא גורמת באופן ישיר לסגירת הדוקטוס ארטריוזוס.</button>
+                            <button class="option-btn" onclick="checkCase('case2', 3, this)">ד. היא מאיצה את פירוק הסורפקטנט הטבעי בריאה.</button>
+                        </div>
+                        <div id="feed-case2" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="case-wrap" id="case3">
+                    <div class="case-header" onclick="toggleCase('case3')">
+                        <div class="case-title">תרחיש מס' 3</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            יילוד המאובחן עם PPHN אינו מתייצב למרות הנשמה מיטבית באחוז חמצן גבוה ומתן PEEP אופטימלי. הוחלט להתחיל טיפול תרופתי ספציפי להורדת הלחץ הריאתי.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהי תרופת הבחירה הראשונה (Gold Standard) למצב זה?</h4>
+                        <div class="options-list" id="opts-case3">
+                            <button class="option-btn" onclick="checkCase('case3', 0, this)">א. Nitric Oxide בשאיפה (iNO).</button>
+                            <button class="option-btn" onclick="checkCase('case3', 1, this)">ב. פלולן (Epoprostenol) בעירוי.</button>
+                            <button class="option-btn" onclick="checkCase('case3', 2, this)">ג. מילרינון (Milrinone) במתן אנטרלי.</button>
+                            <button class="option-btn" onclick="checkCase('case3', 3, this)">ד. אלפרוסטדיל (PGE1) לשמירת דוקטוס פתוח.</button>
+                        </div>
+                        <div id="feed-case3" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="case-wrap" id="case4">
+                    <div class="case-header" onclick="toggleCase('case4')">
+                        <div class="case-title">תרחיש מס' 4</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            בגז דם עורקי של יילוד עם PPHN קשה נצפו הערכים הבאים: pH 7.21, pCO2 62, pO2 45. 
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מדוע מצב זה של חמצת והיפרקפניה (עודף CO2) מסוכן במיוחד ויש לתקנו מיד ב-PPHN?</h4>
+                        <div class="options-list" id="opts-case4">
+                            <button class="option-btn" onclick="checkCase('case4', 0, this)">א. כי CO2 גבוה פוגע בתפקוד הכליות וגורם לבצקת.</button>
+                            <button class="option-btn" onclick="checkCase('case4', 1, this)">ב. כי חמצת ורמות CO2 גבוהות גורמות באופן ישיר לכיווץ כלי דם ריאתיים, מה שמעלה את ה-PVR ומחמיר את הכיחלון.</button>
+                            <button class="option-btn" onclick="checkCase('case4', 2, this)">ג. כי הן מונעות את פעילות הסורפקטנט בנאדיות.</button>
+                            <button class="option-btn" onclick="checkCase('case4', 3, this)">ד. אין סכנה מיוחדת, ביילודים מונשמים תמיד נאפשר היפרקפניה פרמיסיבית (Permissive Hypercapnia).</button>
+                        </div>
+                        <div id="feed-case4" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="case-wrap" id="case5">
+                    <div class="case-header" onclick="toggleCase('case5')">
+                        <div class="case-title">תרחיש מס' 5</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            באקו-לב של יילוד עם PPHN הודגם תפקוד ירוד של הלב. הוחלט להתחיל טיפול במילרינון (Milrinone) כאינודילטור.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">לצד שיפור התכווצות הלב והרחבת כלי דם ריאתיים, מהי הסכנה המרכזית בטיפול זה?</h4>
+                        <div class="options-list" id="opts-case5">
+                            <button class="option-btn" onclick="checkCase('case5', 0, this)">א. עלייה חדה בלחץ הדם שעלולה לגרום לדימום מוחי.</button>
+                            <button class="option-btn" onclick="checkCase('case5', 1, this)">ב. הרחבת כלי דם סיסטמיים הגורמת לנפילת לחץ דם (Hypotension) קשה.</button>
+                            <button class="option-btn" onclick="checkCase('case5', 2, this)">ג. עיכוב בייצור השתן ופגיעה כליתית אקוטית.</button>
+                            <button class="option-btn" onclick="checkCase('case5', 3, this)">ד. סגירה פתאומית של פתחי הלב (PDA, PFO).</button>
+                        </div>
+                        <div id="feed-case5" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="case-wrap" id="case6">
+                    <div class="case-header" onclick="toggleCase('case6')">
+                        <div class="case-title">תרחיש מס' 6</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            יילוד עם PPHN מפתח הלם ולחץ דם נמוך מאוד. לאחר מתן נוזלים ללא שיפור, הוחל עירוי דופמין שהועלה למינונים גבוהים של 15 מק"ג/ק"ג/דקה, אך הלחץ עדיין נמוך.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהי ההתערבות התרופתית המתאימה הבאה לפי הפרוטוקול לטיפול בהלם עמיד לדופמין?</h4>
+                        <div class="options-list" id="opts-case6">
+                            <button class="option-btn" onclick="checkCase('case6', 0, this)">א. מתן בולוס מהיר של מילרינון להעלאת הלחץ הסיסטמי.</button>
+                            <button class="option-btn" onclick="checkCase('case6', 1, this)">ב. מעבר למתן פלולן (Flolan) דרך הווריד.</button>
+                            <button class="option-btn" onclick="checkCase('case6', 2, this)">ג. מתן פראצטמול לווריד לסגירת ה-PDA.</button>
+                            <button class="option-btn" onclick="checkCase('case6', 3, this)">ד. התחלת עירוי רציף של אדרנלין (Epinephrine) להשגת תמיכה וואזופרסורית ואינוטרופית חזקה.</button>
+                        </div>
+                        <div id="feed-case6" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="case-wrap" id="case7">
+                    <div class="case-header" onclick="toggleCase('case7')">
+                        <div class="case-title">תרחיש מס' 7</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            הצוות הרפואי מחליט להעביר יילוד עם PPHN להנשמה בתדר גבוה (HFOV) לאחר שלא הצליח להשיג גיוס ריאות מספק בהנשמה קונבנציונלית (CMV) ולחצי השיא (PIP) היו מסוכנים.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהו היתרון העיקרי של HFOV במקרה של PPHN?</h4>
+                        <div class="options-list" id="opts-case7">
+                            <button class="option-btn" onclick="checkCase('case7', 0, this)">א. מאפשר שמירה על לחץ דרכי אוויר ממוצע (MAP) גבוה ויציב לפתיחת נאדיות, תוך מניעת תנודות לחץ חדות שגורמות לטראומה ריאתית.</button>
+                            <button class="option-btn" onclick="checkCase('case7', 1, this)">ב. ה-HFOV דורש הרבה פחות חמצן בגלל מהירות התדר.</button>
+                            <button class="option-btn" onclick="checkCase('case7', 2, this)">ג. מאפשר פינוי של חנקן מהיר יותר וכך מעלה באופן ישיר את לחץ הדם הסיסטמי.</button>
+                            <button class="option-btn" onclick="checkCase('case7', 3, this)">ד. מרדים את התינוק ובכך חוסך לחלוטין את הצורך בשימוש בתרופות סדציה או משתקי שרירים.</button>
+                        </div>
+                        <div id="feed-case7" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="case-wrap" id="case8">
+                    <div class="case-header" onclick="toggleCase('case8')">
+                        <div class="case-title">תרחיש מס' 8</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            יילוד המטופל עקב PPHN קשה נוטה לאי-שקט. כאשר הוא בוכה או מוטרד, נצפית ירידה חדה ופתאומית בסטורציה אל מתחת ל-70%.
+                        </div>
+                        <h4 style="margin-bottom: 15px;">כיצד "הטיפול התומך" (Supportive Care) יכול למנוע מצבים אלו?</h4>
+                        <div class="options-list" id="opts-case8">
+                            <button class="option-btn" onclick="checkCase('case8', 0, this)">א. מתן סטרואידים במינון גבוה כדי למנוע את תגובת הבכי.</button>
+                            <button class="option-btn" onclick="checkCase('case8', 1, this)">ב. שמירה על סביבה שקטה, ריכוז טיפולים (Minimal handling), ושימוש עקבי בתרופות סדציה ומשככי כאבים (ולעיתים משתקי שרירים) כדי למנוע סטרס שמזניק את התנגודת הריאתית.</button>
+                            <button class="option-btn" onclick="checkCase('case8', 2, this)">ג. ביצוע סקשן (שאיבת הפרשות) תכוף בכל פעם שהתינוק בוכה כדי לוודא שאין חסימה בקנה הנשימה.</button>
+                            <button class="option-btn" onclick="checkCase('case8', 3, this)">ד. הפחתת התמיכה הנשימתית כדי לעודד את התינוק לנשום באופן ספונטני ולהירגע בעצמו.</button>
+                        </div>
+                        <div id="feed-case8" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="case-wrap" id="case9">
+                    <div class="case-header" onclick="toggleCase('case9')">
+                        <div class="case-title">תרחיש מס' 9</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            מדוע יש צורך קריטי לתמוך בלחץ הדם הסיסטמי (למשל בעזרת מתן בולוס של נוזלים כגון אלבומין או עירוי וואזופרסורים) ביילוד הסובל מ-PPHN?
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהי הסיבה הפיזיולוגית העיקרית למתן הוואזופרסורים?</h4>
+                        <div class="options-list" id="opts-case9">
+                            <button class="option-btn" onclick="checkCase('case9', 0, this)">א. תרופות אלו פועלות באופן ישיר וממוקד להרחבת כלי הדם הריאתיים.</button>
+                            <button class="option-btn" onclick="checkCase('case9', 1, this)">ב. כי נוזלים ואלבומין מפנים את עודפי החמצן המיוצרים על ידי גז ה-iNO.</button>
+                            <button class="option-btn" onclick="checkCase('case9', 2, this)">ג. כדי להעלות את הלחץ הסיסטמי כך שיהיה מעט גבוה מהלחץ הריאתי - מה שיקטין או יהפוך את דלף הדם הלא מחומצן מימין לשמאל וישפר חמצון.</button>
+                            <button class="option-btn" onclick="checkCase('case9', 3, this)">ד. רק כדי לשפר את זרימת הדם הכליתית ולהגביר תפוקת שתן ביילוד המונשם.</button>
+                        </div>
+                        <div id="feed-case9" class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="case-wrap" id="case10">
+                    <div class="case-header" onclick="toggleCase('case10')">
+                        <div class="case-title">תרחיש מס' 10</div>
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="case-body">
+                        <div class="scenario-box">
+                            יילוד מאובחן עם PPHN קשה ויש חשד למום לבבי התלוי בדוקטוס (Ductal-dependent lesion). הרופא מורה על התחלת עירוי של Alprostadil (PGE1).
+                        </div>
+                        <h4 style="margin-bottom: 15px;">מהי תופעת הלוואי השכיחה והמסוכנת, המופיעה לרוב בשעה הראשונה למתן PGE1 ומחייבת מוכנות מצד האחות?</h4>
+                        <div class="options-list" id="opts-case10">
+                            <button class="option-btn" onclick="checkCase('case10', 0, this)">א. אפניאה (דום נשימה) הדורשת מוכנות מיידית להנשמה ולצנרור קנה.</button>
+                            <button class="option-btn" onclick="checkCase('case10', 1, this)">ב. פרכוסים טוניים-קלוניים העמידים לטיפול.</button>
+                            <button class="option-btn" onclick="checkCase('case10', 2, this)">ג. נמק חריף של המעי (NEC).</button>
+                            <button class="option-btn" onclick="checkCase('case10', 3, this)">ד. היפרגליקמיה (רמות סוכר גבוהות מאוד בדם).</button>
+                        </div>
+                        <div id="feed-case10" class="feedback-box"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; כל הזכויות שמורות לרעות לאופר כהן BSN
+    </footer>
 
     <script>
-        // Page content only - the interactive engine lives in dist/module.js
-        window.moduleQuiz = {
-            answers: { 'case1': 1 },
-            explanations: {
-                'case1': "מתחילים טיפול ב-iNO כאשר ה-OI מגיע ל-<strong>20-25</strong>. חישוב ה-OI: ‏(MAP x FiO2 x 100) חלקי PaO2.",
-            },
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if(btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            document.querySelectorAll('.acc-item').forEach(c => c.classList.remove('open'));
+            
+            const currentTab = document.getElementById(tabId);
+            const firstAcc = currentTab.querySelector('.acc-item');
+            if (firstAcc) firstAcc.classList.add('open');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleAcc(element) {
+            const isOpen = element.classList.contains('open');
+            
+            const container = element.parentElement;
+            container.querySelectorAll('.acc-item').forEach(item => {
+                item.classList.remove('open');
+            });
+
+            if (!isOpen) {
+                element.classList.add('open');
+                setTimeout(() => {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const pos = element.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({ top: pos - headerHeight - 15, behavior: 'smooth' });
+                }, 300);
+            }
+        }
+
+        const casesSolutions = {
+            'case1': 1, 
+            'case2': 0, 
+            'case3': 0, 
+            'case4': 1, 
+            'case5': 1, 
+            'case6': 3, 
+            'case7': 0, 
+            'case8': 1, 
+            'case9': 2, 
+            'case10': 0 
         };
+
+        const casesExplanations = {
+            'case1': 'ב-PPHN התנגודת הריאתית נשארת גבוהה באופן חריג, והדם "מוצא דרך קלה יותר" ועוקף את הריאות דרך ה-PDA וה-PFO היישר לזרם הדם הסיסטמי, מה שגורם להיפוקסמיה הקשה.',
+            'case2': 'מתיחת יתר (Overdistention) - מתן לחצים גבוהים או נפח מוגזם, דוחסת ומועכת פיזית את נימי הדם שעוברים מסביב לנאדיות הריאה. דבר זה מעלה משמעותית את התנגודת הווסקולרית הריאתית (PVR) ומחמיר את הדלף מימין לשמאל.',
+            'case3': 'הטיפול התרופתי קו ראשון (Gold Standard) להרחבת כלי דם ריאתיים הוא מתן גז iNO (Nitric Oxide) בשאיפה. יתרונו בכך שהוא מרחיב ספציפית את כלי הדם בריאות (ואזודילציה מקומית) מבלי לגרום לנפילת לחץ דם סיסטמית כיוון שהוא מתפרק מיד בדם.',
+            'case4': 'יעדי ההנשמה ב-PPHN הם מחמירים יותר: CO2 גבוה (היפרקפניה) וחומציות בדם (אסידוזיס) הם טריגרים חזקים מאד לכיווץ כלי דם ריאתיים! הימצאותם תזניק את הלחץ הריאתי ותחמיר את הדלף ולכן יש לתקנם לטווחים התקינים (pCO2 40-50, pH 7.35-7.45).',
+            'case5': 'מילרינון מרחיב כלי דם (ואזודילטור) בצורה סיסטמית, ולכן תופעת הלוואי העיקרית והמסוכנת שלו ביילוד היא נפילה בלחץ הדם הסיסטמי (היפוטנשן), במיוחד בזמן מתן מנת העמסה. נפילת לחץ דם סיסטמי ב-PPHN תחמיר את הדלף.',
+            'case6': 'כאשר יילוד סובל מהלם שאינו מגיב לנוזלים (Fluid-refractory shock) ואינו מגיב למינונים גבוהים של דופמין, הפרוטוקול ממליץ לעבור לאדרנלין (Epinephrine) המספק תמיכה וואזופרסורית (מעלה תנגודת סיסטמית) ואינוטרופית חזקה יותר.',
+            'case7': 'מכונת הרטט (HFOV) מאפשרת השגת לחץ דרכי אוויר ממוצע (MAP) רצוף ויציב. זה פותח את הנאדיות ומשאיר אותן פתוחות כל הזמן, מה שמונע את שינויי הלחץ החדים (פתיחה וסגירה ב-CMV) שקורעים את הריאה וגורמים לטראומה.',
+            'case8': 'כל גירוי, כאב, בכי או התנגדות למנשם גורמים לעלייה באדרנלין ולעלייה מיידית בתנגודת הריאתית, וכך הדלף מימין לשמאל מתגבר והחמצן נופל. לכן טיפול תומך הכולל סדציה, שיכוך כאב וסביבה שקטה הוא קריטי ב-PPHN.',
+            'case9': 'ב-PPHN הלחץ בכלי הדם הריאתיים (ימין) גבוה מאוד. אם לחץ הדם הסיסטמי (שמאל) יירד, הדם ימשיך לזרום מימין לשמאל דרך הדוקטוס והכיחלון יחמיר. המטרה במתן וואזופרסורים/נוזלים היא להעלות את הלחץ הסיסטמי כך שיתנגד ללחץ הריאתי ואף יתגבר עליו.',
+            'case10': 'תרופת ה-PGE1 (אלפרוסטדיל) הניתנת במטרה לשמור על הדוקטוס פתוח, נושאת תופעת לוואי קריטית (Black Box warning) של אפניאה (דום נשימה) בכ-10-12% מהמקרים, לרוב בשעה הראשונה למתן. חובה להיות ערוכים להנשמה ולצנרור.'
+        };
+
+        function toggleCase(caseId) {
+            const wrap = document.getElementById(caseId);
+            const isOpen = wrap.classList.contains('open');
+            
+            document.querySelectorAll('.case-wrap').forEach(w => w.classList.remove('open'));
+            
+            if (!isOpen) {
+                wrap.classList.add('open');
+                setTimeout(() => {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const pos = wrap.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({ top: pos - headerHeight - 10, behavior: 'smooth' });
+                }, 300);
+            }
+        }
+
+        function checkCase(caseId, selectedIdx, btnElem) {
+            const correctIdx = casesSolutions[caseId];
+            const feedbackBox = document.getElementById(`feed-${caseId}`);
+            
+            const buttons = document.getElementById(`opts-${caseId}`).querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected-correct', 'selected-wrong');
+                btn.disabled = true;
+            });
+
+            if (selectedIdx === correctIdx) {
+                btnElem.classList.add('selected-correct');
+                feedbackBox.className = 'feedback-box show success';
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong>כל הכבוד, תשובה נכונה!</strong><br><br><span style="color: #059669; font-weight: bold;">הסבר קליני:</span> ${casesExplanations[caseId]}`;
+            } else {
+                btnElem.classList.add('selected-wrong');
+                buttons[correctIdx].classList.add('selected-correct');
+                feedbackBox.className = 'feedback-box show error';
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <strong>תשובה שגויה. התשובה הנכונה מסומנת בירוק.</strong><br><br><span style="color: #991b1b; font-weight: bold;">הסבר קליני:</span> ${casesExplanations[caseId]}`;
+            }
+        }
     </script>
-    <script src="../dist/module.js"></script>
-    <script src="../dist/header.js" defer
-            data-title="יתר לחץ דם ריאתי ביילוד (PPHN)"
-            data-bg="linear-gradient(135deg, #1e3a8a, #1d4ed8)"
-            data-back="modules.html"></script>
-    <script src="../dist/footer.js" defer data-bg="linear-gradient(135deg, #1e3a8a, #1d4ed8)"></script>
 </body>
 </html>
