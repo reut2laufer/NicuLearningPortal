@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>יתר לחץ דם ריאתי ביילוד (PPHN)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: sans-serif; background-color: #f3f4f6; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <header class="bg-blue-700 text-white p-6 rounded-2xl shadow-lg mb-8 text-center">
+        <h1 class="text-3xl font-bold mb-2">יתר לחץ דם ריאתי ביילוד (PPHN)</h1>
+        <p>רעות לאופר כהן BSN</p>
+    </header>
+
+    <div id="treatment" class="tab-content active bg-white p-6 rounded-xl shadow">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">תמיכה וטיפול</h2>
+        <ul class="list-disc pr-6 space-y-2">
+            <li><strong>סטורציה:</strong> פרה-דוקטלית 90-95%. פוסט-דוקטלית 70-80% (מותנה בלקטט ותפוקת שתן תקינים).</li>
+            <li><strong>הנשמה:</strong> גיוס ריאות (8-9 צלעות). מעבר ל-HFOV אם PIP > 25-28 או נפח > 6ml/kg.</li>
+            <li><strong>סורפקטנט:</strong> Curosurf (2.5ml/kg) או Infasurf (3ml/kg).</li>
+            <li><strong>iNO:</strong> התחלה ב-OI של 20-25. חישוב OI: (MAP x FiO2 x 100) / PaO2.</li>
+            <li><strong>פלולן:</strong> מתן בעירוי רציף (דריפ) בלבד.</li>
+        </ul>
+    </div>
+
+    <div id="practice" class="tab-content active bg-white p-6 rounded-xl shadow mt-4">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">תרגול</h2>
+        <div class="space-y-4">
+            <p><b>1. מהו ה-Oxygenation Index (OI) המקובל להתחלת טיפול ב-iNO?</b></p>
+            <button class="w-full p-3 border rounded font-bold" onclick="check(this, false)">10-15</button>
+            <button class="w-full p-3 border rounded font-bold" onclick="check(this, true)">20-25</button>
+            <button class="w-full p-3 border rounded font-bold" onclick="check(this, false)">30-40</button>
+        </div>
+    </div>
+
+    <script>
+        function check(btn, isCorrect) {
+            btn.style.backgroundColor = isCorrect ? '#bbf7d0' : '#fecaca';
+        }
+    </script>
+</body>
+</html>
