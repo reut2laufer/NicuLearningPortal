@@ -634,7 +634,7 @@
                         <i class="fa-solid fa-chevron-down acc-icon"></i>
                     </div>
                     <div class="acc-body">
-                        הניהול הנשימתי ב-PPHN דורש מיומנות רבה. המטרה המרכזית היא <strong>גיוס ריאות אופטימלי (Optimal Lung Volume)</strong> ללא גרימת נזק. הריאות חייבות להיות פתוחות כדי שהחמצן יגיע לנאדיות וכדי להוריד תנגודת ריאתית, אך מתח יתר הוא הרסני.
+                        הניהול הנשימתי ב-PPHN דורש מיומנות רבה. המטרה המרכזית היא <strong>גיוס ריאות אופטימלי (Optimal Lung Volume)</strong> ללא גרימת נזק. הריאות חייבות להיות פתוחות כדי שהחמצן יגיע לנאדיות וכדי להוריד תנגודת ריאתית, ומחמיר את הכיחלון באופן מידי:
                         
                         <div class="danger-card" style="margin-top:10px;">
                             <strong>האיזון העדין בהנשמה:</strong><br>
@@ -671,8 +671,8 @@
                         יעדי החמצון והאוורור ב-PPHN שונים מבפגים רגילים ומחייבים מעקב הדוק:
                         
                         <div class="important-note">
-                            <i class="fa-solid fa-bullseye"></i> <strong>סטורציה (SpO2):</strong> היעד הוא 90%-95% במדידה <strong>פרה-דוקטלית</strong> (יד ימין). 
-                            <br>חשוב למנוע היפוקסיה (שמכווצת כלי דם ריאתיים), אך יש למנוע גם עודף חמצן (היפראוקסיה, מעל 95%) שעלול לייצר רדיקלים חופשיים, לגרום לנזק חמצוני לרקמות הריאה ולפגוע בהשפעת ה-iNO!
+                            <i class="fa-solid fa-bullseye"></i> <strong>סטורציה (SpO2):</strong> היעד הוא 90%-95% במדידה <strong>פרה-דוקטלית</strong> (יד ימין), כאשר השאיפה היא לשמור על <strong>הבדל של פחות מ-5% בין המדידה הפרה-דוקטלית לפוסט-דוקטלית</strong> (רגל).
+                            <br>חשוב למנוע היפוקסיה (שמכווצת כלי דם ריאתיים), אך יש למנוע גם עודף חמצן (היפראוקסיה, מעל 95% במדידה הפרה-דוקטלית) שעלול לייצר רדיקלים חופשיים, לגרום לנזק חמצוני לרקמות הריאה ולפגוע בהשפעת ה-iNO!
                         </div>
                         <ul>
                             <li><strong>PaO2 (לחץ חמצן עורקי):</strong> לרוב נשאף לטווח של 55 עד 80 mmHg. אין יתרון בהעלאת החמצן מעבר לכך.</li>
@@ -680,6 +680,28 @@
                             <span style="color:var(--danger-color); font-weight:bold;">דגש חשוב:</span> בניגוד לפגים שבהם מתירים היפרקפניה פרמיסיבית (רמות CO2 גבוהות), ביילוד עם PPHN <strong>רמת CO2 גבוהה (היפרקפניה) מכווצת כלי דם ריאתיים</strong> ומחמירה את המצב. חובה לדאוג לפינוי מספק של CO2, אך מבלי לגרום להיפו-קפניה (רמה נמוכה מדי) שעלולה לפגוע בזרימת הדם למוח.</li>
                             <li><strong>pH (רמת חומציות בדם):</strong> נשאף לסביבה ניטרלית או מעט בסיסית (7.35 עד 7.45). <strong>חמצת (אסידוזיס, מתחת 7.25) מעלה משמעותית את התנגודת הריאתית ויש לתקנה מיד!</strong></li>
                         </ul>
+                    </div>
+                </div>
+
+                <div class="acc-item" onclick="toggleAcc(this)">
+                    <div class="acc-header">
+                        <div class="acc-title"><i class="fa-solid fa-calculator"></i> מדד חמצון - Oxygenation Index (OI)</div>
+                        <i class="fa-solid fa-chevron-down acc-icon"></i>
+                    </div>
+                    <div class="acc-body">
+                        מדד זה משמש כלי מרכזי להערכת חומרת הכשל הנשימתי ולתהליך קבלת ההחלטות לגבי התערבויות מתקדמות (כמו התחלת טיפול ב-iNO או הפניה ל-ECMO).<br><br>
+                        <strong>אופן החישוב:</strong>
+                        <div style="background: #f1f5f9; border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; text-align: center; font-size: 20px; font-weight: bold; margin: 15px 0; direction: ltr; color: var(--primary-color);">
+                            OI = (MAP × FiO₂ × 100) / PaO₂
+                        </div>
+                        <ul>
+                            <li><strong>MAP:</strong> לחץ דרכי אוויר ממוצע (Mean Airway Pressure) כפי שמוגדר/נמדד במנשם.</li>
+                            <li><strong>FiO₂:</strong> אחוז החמצן הנשאף (מושם כריכוז עשרוני, למשל 1.0 עבור 100% או 0.6 עבור 60%, אשר מוכפל ב-100 בנוסחה).</li>
+                            <li><strong>PaO₂:</strong> לחץ חמצן עורקי הנמדד בבדיקת גז דם (מומלץ גז דם ימני, פרה-דוקטלי, כדי לשקף נאמנה את הדם המגיע למוח).</li>
+                        </ul>
+                        <div class="important-note" style="margin-top: 15px;">
+                            <i class="fa-solid fa-circle-info"></i> ככל שה-OI <strong>גבוה יותר</strong>, כך יתר הלחץ הריאתי / הכשל הנשימתי חמורים יותר, מה שמעיד על כך שהתינוק דורש תמיכה גבוהה מאוד (לחצי הנשמה וריכוז חמצן) כדי להשיג מעט חמצון בדם.
+                        </div>
                     </div>
                 </div>
 
@@ -703,8 +725,10 @@
                             גז <strong>Nitric Oxide</strong> הניתן דרך מעגל מכונת ההנשמה ישירות לריאות.
                         </div>
                         <ul style="margin-top: 15px;">
+                            <li><strong>אינדיקציה (התוויה לטיפול):</strong> ההתוויה המקובלת להתחלת טיפול ב-iNO היא ביילודים (במועד או קרוב למועד) עם כשל נשימתי היפוקסי ו-<strong>מדד חמצון (OI) גבוה מ-15 עד 20</strong>.</li>
                             <li><strong>מנגנון:</strong> פועל דרך מסלול ה-cGMP וגורם להרפיית שריר חלק בכלי הדם. היתרון הגדול שלו הוא <strong>השפעה מקומית (Selective) בריאות</strong> בלבד - מרחיב את כלי הדם רק באזורים המאווררים, מבלי לגרום לירידת לחץ דם סיסטמית (הוא מתפרק מיד בדם).</li>
-                            <li><strong>מינון:</strong> מתחילים לרוב ב-20 ppm (חלקיקים למיליון). אין יתרון קליני למינונים גבוהים יותר, והם רק מגדילים רעילות.</li>
+                            <li><strong>מינון:</strong> מתחילים לרוב ב-20 ppm (חלקיקים למיליון). אין יתרון קליני למינונים גבוהים יותר, והם רק מגדילים רעילות.<br>
+                            <span style="color: var(--primary-color); font-weight: 600;">כלל 20-20-20:</span> התחלה ב-20 ppm, מצפים לראות שיפור של 20 ב-PaO2, וירידה משמעותית ביחס בין הלחץ הריאתי לסיסטמי.</li>
                             <li><strong>מעקב וסכנות:</strong> חובה לעקוב אחר רמות <strong>מטהמוגלובין (Methemoglobin)</strong> בדם (NO מחמצן המוגלובין ופוגע בנשיאת חמצן), ואחר גז NO2 שעלול להיות רעיל לריאות. גמילה מהגז חייבת להיות הדרגתית ואיטית מאד למניעת Rebound (חזרה פתאומית של יתר הלחץ).</li>
                         </ul>
                     </div>
@@ -719,23 +743,30 @@
                         <ul>
                             <li><strong>מתי נשתמש:</strong> כאשר PPHN משני למחלת ריאה פארנכימטית (שאיפת מקוניום MAS, רספירטורי דיסטרס, תמט, דלקת) שגורמת לחוסר או אינאקטיבציה של סורפקטנט טבעי.</li>
                             <li><strong>מנגנון:</strong> מפחית מתח פנים בנאדיות הריאה, מונע תמט (Atelectasis), משפר חמצון, ובכך מסייע <strong>בעקיפין</strong> להוריד את התנגודת הריאתית ע"י שבירת מעגל ההיפוקסיה וגיוס הריאה.</li>
-                            <li><strong>דוגמאות למינונים:</strong> Poractant alfa (Curosurf) במינון התחלתי של 2.5 מ"ל/ק"ג, או Beractant (Survanta) במינון 4 מ"ל/ק"ג. ניתן ישירות לקנה הנשימה (אינטרא-טרכאלי) במנות.</li>
+                            <li><strong>מינונים (לפי סוג התכשיר):</strong>
+                                <ul style="margin-right: 15px; margin-top: 5px;">
+                                    <li><strong>Infasurf:</strong> מופק מריאות עגל. ניתן במינון של 3 מ"ל/ק"ג.</li>
+                                    <li><strong>Curosurf:</strong> מופק מריאות חזיר (מרוכז יותר). מנה ראשונה של 2.5 מ"ל/ק"ג, ומנה נוספת (במידת הצורך) של 1.25 מ"ל/ק"ג.</li>
+                                </ul>
+                            </li>
+                            <li><strong>דגשים ב-CDH (הרניה סרעפתית):</strong> השימוש שנוי במחלוקת. אם ניתן, יש להשתמש רק בנוכחות עדות קלינית/רדיולוגית לחסר, ולתת רק 50% מהמינון בשל ההיפופלזיה הריאתית.</li>
+                            <li><strong>הגבלה:</strong> אין לתת מעבר ל-2 מנות, ולא יאוחר מגיל 48 שעות, עקב עליה בסיכון לסיבוכים.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="acc-item" onclick="toggleAcc(this)">
                     <div class="acc-header">
-                        <div class="acc-title"><i class="fa-solid fa-wind"></i> פלולן (Flolan / Epoprostenol)</div>
+                        <div class="acc-title"><i class="fa-solid fa-droplet"></i> פלולן (Flolan / Epoprostenol)</div>
                         <i class="fa-solid fa-chevron-down acc-icon"></i>
                     </div>
                     <div class="acc-body">
                         <ul>
                             <li><strong>מתי נשתמש:</strong> קו טיפול מתקדם למקרים עמידים ל-iNO או כתגובת הצלה (Rescue therapy).</li>
                             <li><strong>מנגנון:</strong> פרוסטציקלין סינטטי (PGI2). גורם להרפיית שריר חלק בוורידים ובעורקים ומעכב אגרגציית טסיות. פועל דרך מסלול ה-cAMP, ולכן השפעתו היא סינרגיסטית ל-iNO (הפועל דרך cGMP).</li>
-                            <li><strong>אופן מתן:</strong> ניתן לרוב כתרסיס דרך משאף לתוך מעגל ההנשמה להשגת אפקט מקומי בריאות, למרות שניתן גם בעירוי.</li>
+                            <li><strong>אופן מתן:</strong> בפגיה השימוש בתרופה נעשה אך ורק כ<strong>עירוי מתמשך לווריד (דריפ)</strong>.</li>
                         </ul>
-                    </div>
+    </div>
                 </div>
 
                 <div class="acc-item" onclick="toggleAcc(this)">
@@ -754,74 +785,32 @@
 
                 <div class="acc-item" onclick="toggleAcc(this)">
                     <div class="acc-header">
-                        <div class="acc-title"><i class="fa-solid fa-heart-pulse"></i> וואזופרסורים - דופמין (Dopamine)</div>
+                        <div class="acc-title"><i class="fa-solid fa-heart-pulse"></i> וואזופרסורים ואינוטרופים (Dopamine, Dobutamine, Epinephrine)</div>
                         <i class="fa-solid fa-chevron-down acc-icon"></i>
                     </div>
                     <div class="acc-body">
-                        <strong>חשיבות הוואזופרסורים ב-PPHN:</strong> אם לחץ הדם הסיסטמי יורד מתחת ללחץ הריאתי, יגבר דלף הדם הלא-מחומצן מימין לשמאל דרך פתחי הלב, והכיחלון יחמיר משמעותית! אנו שואפים ללחץ דם סיסטמי גבוה מעט מהלחץ הריאתי.
+                        <strong>מטרת העל ב-PPHN:</strong> נשתמש בוואזופרסורים ואינוטרופים כאשר יש צורך בהעלאת לחץ הדם הסיסטמי כך שיהיה גבוה מהלחץ הריאתי, וזאת כדי להפחית (ואף להפוך) את הדלף מימין לשמאל ולשפר חמצון. כמו כן, נשתמש בהם כדי לשפר את תפוקת הלב והפרפוזיה במקרה של כשל לבבי.
                         <ul style="margin-top: 15px;">
-                            <li><strong>שימוש ב-PPHN:</strong> קו טיפול ראשון להלם או תת-לחץ דם שלא מגיבים למתן נוזלים (Fluid-refractory shock).</li>
-                            <li><strong>מנגנון:</strong> קטכולאמין המגרה קולטני בטא ואלפא (תלוי מינון). מעלה תפוקת לב (אינוטרופי) ובמינונים גבוהים יותר מכווץ כלי דם סיסטמיים (אפקט וואזופרסורי) להעלאת הלחץ.</li>
-                            <li><strong>מינון:</strong> עירוי ורידי רציף דרך צנתר מרכזי, לרוב בטווח של 5-20 מק"ג/ק"ג/דקה.</li>
+                            <li><strong>דופמין (Dopamine):</strong> קו טיפול ראשון להלם או תת-לחץ דם. מעלה תפוקת לב (אינוטרופי) ובמינונים גבוהים מכווץ כלי דם סיסטמיים להעלאת הלחץ. לרוב בטווח של 5-20 מק"ג/ק"ג/דקה.</li>
+                            <li><strong>דובטמין (Dobutamine):</strong> תרופה אינוטרופית המשמשת לשיפור תפוקת הלב, תמיכה המודינמית וטיפול בפרפוזיה לקויה. מינון מקובל הוא 2-25 מק"ג/ק"ג/דקה בעירוי מתמשך. לעיתים משולבת יחד עם דופמין (למשל במקרים של הלם העמיד למתן נוזלים).</li>
+                            <li><strong>אדרנלין (Epinephrine):</strong> קו טיפול מתקדם כאשר ההלם עמיד לדופמין או שיש כשל לבבי חמור. משפר התכווצות לבבית ומעלה משמעותית את התנגודת הסיסטמית.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="acc-item" onclick="toggleAcc(this)">
                     <div class="acc-header">
-                        <div class="acc-title"><i class="fa-solid fa-bolt"></i> וואזופרסורים - אדרנלין (Epinephrine)</div>
+                        <div class="acc-title"><i class="fa-solid fa-tablets"></i> תרופות פומיות</div>
                         <i class="fa-solid fa-chevron-down acc-icon"></i>
                     </div>
                     <div class="acc-body">
                         <ul>
-                            <li><strong>שימוש ב-PPHN:</strong> קו טיפול מתקדם. משמש כשהלם עמיד לטיפול במינונים גבוהים של דופמין (Dopamine-resistant shock) או כשיש כשל לבבי חמור הדורש תמיכה מסיבית.</li>
-                            <li><strong>מנגנון:</strong> אגוניסט חזק מאוד של קולטני אלפא ובטא. משפר ניכרת את התכווצות הלב (אינוטרופי חזק) ומעלה משמעותית את התנגודת הסיסטמית (וואזוקונסטריקטור עוצמתי).</li>
-                            <li><strong>סכנות ותופעות לוואי:</strong> במינונים גבוהים יגרום לטכיקרדיה קשה, הפרעות קצב, עליה ברמות לקטט, ועלול לפגוע באספקת דם לאיברים פריפריים (כליות, מעיים).</li>
+                            <li><strong>שימוש:</strong> במצבים כרוניים של יתר לחץ דם ריאתי, כמו למשל ברונכופולמונרי דיספלזיה (BPD) או הרניה סרעפתית מולדת (CDH).</li>
+                            <li><strong>תרופות נפוצות:</strong> משתמשים בתרופות כגון <strong>סילדנפיל (Sildenafil)</strong> או <strong>בוסנטן (Bosentan)</strong> על מנת לשמור על הרחבת כלי דם ריאתיים לאורך זמן.</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="acc-item" onclick="toggleAcc(this)">
-                    <div class="acc-header">
-                        <div class="acc-title"><i class="fa-solid fa-droplet"></i> אלבומין ותמיכת נפח (Albumin)</div>
-                        <i class="fa-solid fa-chevron-down acc-icon"></i>
-                    </div>
-                    <div class="acc-body">
-                        <ul>
-                            <li><strong>שימוש ב-PPHN:</strong> מתן אלבומין משמש להרחבת נפח הדם (Volume expansion). נדרש כאשר התינוק סובל מתת-לחץ דם והיפוולמיה, במטרה להעלות את הלחץ הסיסטמי ולהקטין את הדלף מימין לשמאל.</li>
-                            <li><strong>מנגנון:</strong> קולואיד טבעי המעלה את הלחץ האונקוטי (Oncotic pressure) בכלי הדם. מסייע ב"משיכת" ושימור נוזלים בחלל התוך-כלי (הווסקולרי), ובכך משפר פרפוזיה סיסטמית.</li>
-                            <li><strong>תופעות לוואי וסכנות:</strong> עומס יתר במחזור הדם (Circulatory overload) שעלול להוביל לבצקת ריאות (המזיקה מאוד לחמצון). לעיתים רחוקות תגובות אלרגיות.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="acc-item" onclick="toggleAcc(this)">
-                    <div class="acc-header">
-                        <div class="acc-title"><i class="fa-solid fa-vial-circle-check"></i> אלפרוסטדיל (Alprostadil / PGE1)</div>
-                        <i class="fa-solid fa-chevron-down acc-icon"></i>
-                    </div>
-                    <div class="acc-body">
-                        <ul>
-                            <li><strong>שימוש ב-PPHN:</strong> משמש באופן ספציפי לשמירה על פטנטיות (פתיחות) של הדוקטוס ארטריוזוס (PDA). קריטי במקרים בהם יתר לחץ דם ריאתי מלווה במום לבבי התלוי בדוקטוס (Ductal-dependent lesions) והישרדות התינוק תלויה במעבר דם דרכו.</li>
-                            <li><strong>מנגנון:</strong> וזודילטור עוצמתי הפועל ישירות על השריר החלק של הדוקטוס ארטריוזוס ומונע את סגירתו.</li>
-                            <li><strong>תופעת לוואי קריטית (Black Box):</strong> אפניאה (דום נשימה) המתרחשת בכ-10-12% מהמקרים, לרוב בשעה הראשונה לטיפול! מחייב השגחה צמודה ומוכנות להנשמה. בנוסף עלול לגרום לתת-לחץ דם, ברדיקרדיה, ובשימוש ממושך לעיבוי עצמות (היפראוסטוזיס).</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="acc-item" onclick="toggleAcc(this)">
-                    <div class="acc-header">
-                        <div class="acc-title"><i class="fa-solid fa-tablets"></i> פראצטמול (Acetaminophen)</div>
-                        <i class="fa-solid fa-chevron-down acc-icon"></i>
-                    </div>
-                    <div class="acc-body">
-                        <ul>
-                            <li><strong>שימוש ב-PPHN:</strong> משמש לסגירת PDA סימפטומטי (הפוך מ-PGE1), במקרים בהם הדוקטוס הפתוח מחמיר את אי הספיקה הלבבית או את המצב ההמודינמי של התינוק (ולא מדובר במום התלוי בדוקטוס).</li>
-                            <li><strong>מנגנון:</strong> עיכוב אנזימי COX במערכת העצבים המרכזית ובפריפריה, מה שמוביל לירידה בסינתזת פרוסטגלנדינים (שהם אלו שמשאירים את הדוקטוס פתוח). בעקבות הירידה בפרוסטגלנדינים, הדוקטוס מתכווץ ונסגר.</li>
-                            <li><strong>תופעות לוואי וסכנות (Black Box):</strong> סכנה משמעותית לבלבול במינונים (בין מ"ג למ"ל) העלולה לגרום להרעלת כבד (Hepatotoxicity) חריפה וקטלנית. כמו כן, בשימוש ממושך סכנה לפריחות חמורות (SJS). חובה להשתמש במשאבות מזרק מדויקות לווריד.</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -929,7 +918,7 @@
                             <button class="option-btn" onclick="checkCase('case3', 0, this)">א. Nitric Oxide בשאיפה (iNO).</button>
                             <button class="option-btn" onclick="checkCase('case3', 1, this)">ב. פלולן (Epoprostenol) בעירוי.</button>
                             <button class="option-btn" onclick="checkCase('case3', 2, this)">ג. מילרינון (Milrinone) במתן אנטרלי.</button>
-                            <button class="option-btn" onclick="checkCase('case3', 3, this)">ד. אלפרוסטדיל (PGE1) לשמירת דוקטוס פתוח.</button>
+                            <button class="option-btn" onclick="checkCase('case3', 3, this)">ד. וואזופרסורים - דופמין (Dopamine).</button>
                         </div>
                         <div id="feed-case3" class="feedback-box"></div>
                     </div>
@@ -991,7 +980,7 @@
                         <div class="options-list" id="opts-case6">
                             <button class="option-btn" onclick="checkCase('case6', 0, this)">א. מתן בולוס מהיר של מילרינון להעלאת הלחץ הסיסטמי.</button>
                             <button class="option-btn" onclick="checkCase('case6', 1, this)">ב. מעבר למתן פלולן (Flolan) דרך הווריד.</button>
-                            <button class="option-btn" onclick="checkCase('case6', 2, this)">ג. מתן פראצטמול לווריד לסגירת ה-PDA.</button>
+                            <button class="option-btn" onclick="checkCase('case6', 2, this)">ג. הגדלת מינון דופמין ל-30 מק"ג/ק"ג/דקה.</button>
                             <button class="option-btn" onclick="checkCase('case6', 3, this)">ד. התחלת עירוי רציף של אדרנלין (Epinephrine) להשגת תמיכה וואזופרסורית ואינוטרופית חזקה.</button>
                         </div>
                         <div id="feed-case6" class="feedback-box"></div>
@@ -1048,37 +1037,16 @@
                     </div>
                     <div class="case-body">
                         <div class="scenario-box">
-                            מדוע יש צורך קריטי לתמוך בלחץ הדם הסיסטמי (למשל בעזרת מתן בולוס של נוזלים כגון אלבומין או עירוי וואזופרסורים) ביילוד הסובל מ-PPHN?
+                            מדוע יש צורך קריטי לתמוך בלחץ הדם הסיסטמי (למשל בעזרת עירוי וואזופרסורים כגון דופמין) ביילוד הסובל מ-PPHN?
                         </div>
                         <h4 style="margin-bottom: 15px;">מהי הסיבה הפיזיולוגית העיקרית למתן הוואזופרסורים?</h4>
                         <div class="options-list" id="opts-case9">
                             <button class="option-btn" onclick="checkCase('case9', 0, this)">א. תרופות אלו פועלות באופן ישיר וממוקד להרחבת כלי הדם הריאתיים.</button>
-                            <button class="option-btn" onclick="checkCase('case9', 1, this)">ב. כי נוזלים ואלבומין מפנים את עודפי החמצן המיוצרים על ידי גז ה-iNO.</button>
+                            <button class="option-btn" onclick="checkCase('case9', 1, this)">ב. כי נוזלים וואזופרסורים מפנים את עודפי החמצן המיוצרים על ידי גז ה-iNO.</button>
                             <button class="option-btn" onclick="checkCase('case9', 2, this)">ג. כדי להעלות את הלחץ הסיסטמי כך שיהיה מעט גבוה מהלחץ הריאתי - מה שיקטין או יהפוך את דלף הדם הלא מחומצן מימין לשמאל וישפר חמצון.</button>
                             <button class="option-btn" onclick="checkCase('case9', 3, this)">ד. רק כדי לשפר את זרימת הדם הכליתית ולהגביר תפוקת שתן ביילוד המונשם.</button>
                         </div>
                         <div id="feed-case9" class="feedback-box"></div>
-                    </div>
-                </div>
-
-                <!-- Question 10 -->
-                <div class="case-wrap" id="case10">
-                    <div class="case-header" onclick="toggleCase('case10')">
-                        <div class="case-title">תרחיש מס' 10</div>
-                        <i class="fa-solid fa-chevron-down expand-icon"></i>
-                    </div>
-                    <div class="case-body">
-                        <div class="scenario-box">
-                            יילוד מאובחן עם PPHN קשה ויש חשד למום לבבי התלוי בדוקטוס (Ductal-dependent lesion). הרופא מורה על התחלת עירוי של Alprostadil (PGE1).
-                        </div>
-                        <h4 style="margin-bottom: 15px;">מהי תופעת הלוואי השכיחה והמסוכנת, המופיעה לרוב בשעה הראשונה למתן PGE1 ומחייבת מוכנות מצד האחות?</h4>
-                        <div class="options-list" id="opts-case10">
-                            <button class="option-btn" onclick="checkCase('case10', 0, this)">א. אפניאה (דום נשימה) הדורשת מוכנות מיידית להנשמה ולצנרור קנה.</button>
-                            <button class="option-btn" onclick="checkCase('case10', 1, this)">ב. פרכוסים טוניים-קלוניים העמידים לטיפול.</button>
-                            <button class="option-btn" onclick="checkCase('case10', 2, this)">ג. נמק חריף של המעי (NEC).</button>
-                            <button class="option-btn" onclick="checkCase('case10', 3, this)">ד. היפרגליקמיה (רמות סוכר גבוהות מאוד בדם).</button>
-                        </div>
-                        <div id="feed-case10" class="feedback-box"></div>
                     </div>
                 </div>
 
@@ -1140,8 +1108,7 @@
             'case6': 3, 
             'case7': 0, 
             'case8': 1, 
-            'case9': 2, 
-            'case10': 0 
+            'case9': 2
         };
 
         const casesExplanations = {
@@ -1153,8 +1120,7 @@
             'case6': 'כאשר יילוד סובל מהלם שאינו מגיב לנוזלים (Fluid-refractory shock) ואינו מגיב למינונים גבוהים של דופמין, הפרוטוקול ממליץ לעבור לאדרנלין (Epinephrine) המספק תמיכה וואזופרסורית (מעלה תנגודת סיסטמית) ואינוטרופית חזקה יותר.',
             'case7': 'מכונת הרטט (HFOV) מאפשרת השגת לחץ דרכי אוויר ממוצע (MAP) רצוף ויציב. זה פותח את הנאדיות ומשאיר אותן פתוחות כל הזמן, מה שמונע את שינויי הלחץ החדים (פתיחה וסגירה ב-CMV) שקורעים את הריאה וגורמים לטראומה.',
             'case8': 'כל גירוי, כאב, בכי או התנגדות למנשם גורמים לעלייה באדרנלין ולעלייה מיידית בתנגודת הריאתית, וכך הדלף מימין לשמאל מתגבר והחמצן נופל. לכן טיפול תומך הכולל סדציה, שיכוך כאב וסביבה שקטה הוא קריטי ב-PPHN.',
-            'case9': 'ב-PPHN הלחץ בכלי הדם הריאתיים (ימין) גבוה מאוד. אם לחץ הדם הסיסטמי (שמאל) יירד, הדם ימשיך לזרום מימין לשמאל דרך הדוקטוס והכיחלון יחמיר. המטרה במתן וואזופרסורים/נוזלים היא להעלות את הלחץ הסיסטמי כך שיתנגד ללחץ הריאתי ואף יתגבר עליו.',
-            'case10': 'תרופת ה-PGE1 (אלפרוסטדיל) הניתנת במטרה לשמור על הדוקטוס פתוח, נושאת תופעת לוואי קריטית (Black Box warning) של אפניאה (דום נשימה) בכ-10-12% מהמקרים, לרוב בשעה הראשונה למתן. חובה להיות ערוכים להנשמה ולצנרור.'
+            'case9': 'ב-PPHN הלחץ בכלי הדם הריאתיים (ימין) גבוה מאוד. אם לחץ הדם הסיסטמי (שמאל) יירד, הדם ימשיך לזרום מימין לשמאל דרך הדוקטוס והכיחלון יחמיר. המטרה במתן וואזופרסורים היא להעלות את הלחץ הסיסטמי כך שיתנגד ללחץ הריאתי ואף יתגבר עליו.'
         };
 
         function toggleCase(caseId) {
