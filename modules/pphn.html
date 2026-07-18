@@ -6,7 +6,9 @@
     <title>יתר לחץ דם ריאתי ביילוד (PPHN)</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <style>
         :root {
             color-scheme: light; 
@@ -488,15 +490,11 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-title">
-            <h1>יתר לחץ דם ריאתי ביילוד (PPHN)</h1>
-        </div>
-        <div class="school-badge">
-            <i class="fa-solid fa-hospital-user"></i>
-            רעות לאופר כהן BSN
-        </div>
-    </header>
+    <script src="../dist/header.js" defer
+            data-title="יתר לחץ דם ריאתי ביילוד (PPHN)"
+            data-subtitle="רעות לאופר כהן BSN"
+            data-bg="linear-gradient(135deg, #1e3a8a, #1d4ed8)"
+            data-back="modules.html"></script>
 
     <div class="app-container">
         
@@ -1153,7 +1151,7 @@
                     const headerHeight = document.querySelector('header').offsetHeight;
                     const pos = wrap.getBoundingClientRect().top + window.scrollY;
                     window.scrollTo({ top: pos - headerHeight - 10, behavior: 'smooth' });
-                }, 300);
+                }, 550);
             }
         }
 
@@ -1179,5 +1177,6 @@
             }
         }
     </script>
+    <script src="../dist/footer.js" defer data-bg="linear-gradient(135deg, #1e3a8a, #1d4ed8)"></script>
 </body>
 </html>

@@ -169,7 +169,7 @@ function toggleCase(caseId: string): void {
                 top: elementPosition - headerOffset() - 10,
                 behavior: 'smooth',
             });
-        }, 350);
+        }, 550);
     }
 }
 
