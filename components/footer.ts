@@ -17,12 +17,14 @@
  */
 
 interface FooterContent {
-    slogan: string;
+    sloganStart: string;
+    sloganEmphasis: string;
     copyright: string;
 }
 
 const FOOTER_CONTENT: FooterContent = {
-    slogan: 'לומדות היום. מטפלות טוב יותר מחר. 💜',
+    sloganStart: 'לומדות היום',
+    sloganEmphasis: 'מטפלות טוב יותר מחר',
     copyright: '© פגיית הדסה הר הצופים · רעות לאופר כהן BSN',
 };
 
@@ -40,6 +42,10 @@ const FOOTER_STYLES: string = `
     font-size: clamp(17px, 4vw, 24px);
     font-weight: 800;
     margin-bottom: 10px;
+}
+.site-footer .footer-slogan .slogan-emphasis {
+    font-size: 1.15em;
+    color: #67e8f9;
 }
 .site-footer .footer-copy {
     font-size: clamp(12px, 2.5vw, 14px);
@@ -60,7 +66,13 @@ function renderSiteFooter(content: FooterContent, background?: string): void {
 
     const slogan: HTMLDivElement = document.createElement('div');
     slogan.className = 'footer-slogan';
-    slogan.textContent = content.slogan;
+
+    const sloganStart: Text = document.createTextNode(content.sloganStart + ' ');
+    const sloganEmphasis: HTMLSpanElement = document.createElement('span');
+    sloganEmphasis.className = 'slogan-emphasis';
+    sloganEmphasis.textContent = content.sloganEmphasis;
+    slogan.appendChild(sloganStart);
+    slogan.appendChild(sloganEmphasis);
 
     const copy: HTMLDivElement = document.createElement('div');
     copy.className = 'footer-copy';
