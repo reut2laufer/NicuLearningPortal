@@ -23,7 +23,7 @@ interface FooterContent {
 }
 
 const FOOTER_CONTENT: FooterContent = {
-    sloganStart: 'לומדות היום',
+    sloganStart: 'לומדות היום -',
     sloganEmphasis: 'מטפלות טוב יותר מחר',
     copyright: '© פגיית הדסה הר הצופים · רעות לאופר כהן BSN',
 };
@@ -44,7 +44,7 @@ const FOOTER_STYLES: string = `
     margin-bottom: 10px;
 }
 .site-footer .footer-slogan .slogan-emphasis {
-    font-size: 1.15em;
+    font-size: 1.3em;
     color: #67e8f9;
 }
 .site-footer .footer-copy {
